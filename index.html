@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKAIFA | 未来影视创作的AI原生学院</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-neon: #00ffff;
+            --secondary-neon: #ff0080;
+            --accent-neon: #7c3aed;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(15, 23, 42, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-neon: linear-gradient(45deg, #00ffff, #ff0080, #7c3aed);
+            --gradient-web3: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #ec4899 100%);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0f 0%, #1e1b4b 100%);
+        }
+
+        .neural-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .neural-node {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-neon);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-neon);
+            animation: pulse 2s infinite;
+        }
+
+        .neural-connection {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
+            animation: flow 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        @keyframes flow {
+            0% { opacity: 0; transform: translateX(-100%); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(100%); }
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(124, 58, 237, 0.1));
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 28px;
+            font-weight: 900;
+            background: var(--gradient-neon);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            position: relative;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-neon);
+            opacity: 0.1;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-neon);
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-item:hover::before, .nav-item.active::before {
+            left: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 60px 20px;
+            text-align: center;
+            background: var(--gradient-web3);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 0, 128, 0.15) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #ffffff, #00ffff, #ffffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 2s ease infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            position: relative;
+            background: transparent;
+            color: var(--primary-neon);
+            padding: 15px 40px;
+            border: 2px solid var(--primary-neon);
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-neon);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--bg-dark);
+            box-shadow: 0 0 30px var(--primary-neon);
+            transform: translateY(-3px);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* AI Stats */
+        .ai-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 40px 20px;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(20px);
+        }
+
+        .stat-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px 15px;
+            text-align: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-neon);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+            border-color: var(--primary-neon);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-neon);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: var(--gradient-neon);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .feature-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-neon);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.2);
+            border-color: var(--accent-neon);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-neon);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Course Cards */
+        .course-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .course-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .course-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-badge {
+            display: inline-block;
+            background: var(--gradient-neon);
+            color: var(--bg-dark);
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .course-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .course-price {
+            font-family: 'Orbitron', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--secondary-neon);
+            margin-bottom: 15px;
+        }
+
+        .course-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .course-button {
+            width: 100%;
+            background: transparent;
+            color: var(--secondary-neon);
+            border: 2px solid var(--secondary-neon);
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-neon);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .course-button:hover {
+            color: var(--bg-dark);
+            box-shadow: 0 0 25px var(--secondary-neon);
+        }
+
+        .course-button:hover::before {
+            left: 0;
+        }
+
+        /* Web3 Token Section */
+        .web3-section {
+            background: var(--gradient-web3);
+            margin: 40px 20px;
+            border-radius: 25px;
+            padding: 40px 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .web3-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .web3-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .web3-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .token-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .token-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .token-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .token-symbol {
+            font-family: 'Orbitron', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-neon);
+            margin-bottom: 8px;
+        }
+
+        .token-name {
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .token-features {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Blockchain Certification */
+        .blockchain-cert {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .cert-icon {
+            font-size: 48px;
+            color: var(--primary-neon);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .cert-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-neon);
+            text-transform: uppercase;
+        }
+
+        .cert-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cert-feature {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .cert-feature:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--bg-card);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .contact-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--primary-neon);
+            text-transform: uppercase;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            background: transparent;
+            color: var(--accent-neon);
+            border: 2px solid var(--accent-neon);
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-button:hover {
+            background: var(--accent-neon);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--accent-neon);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-neon);
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .ai-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-item {
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(0, 255, 255, 0.2);
+            border-top: 3px solid var(--primary-neon);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="bg-animation"></div>
+    <div class="neural-network" id="neuralNetwork"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">HKAIFA</div>
+        <div class="tagline">AI Native Film Academy</div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-item active">Home</a>
+            <a href="#ecosystem" class="nav-item">AI Ecosystem</a>
+            <a href="#courses" class="nav-item">Courses</a>
+            <a href="#web3" class="nav-item">Web3</a>
+            <a href="#contact" class="nav-item">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Future of Filmmaking</h1>
+            <p class="hero-subtitle">全球首个AI原生影视教育机构<br>Technology Empowering Art • Art Leading Technology</p>
+            <a href="#courses" class="cta-button">Enter Matrix</a>
+        </div>
+    </section>
+
+    <!-- AI Stats -->
+    <section class="ai-stats">
+        <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Global Nodes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">AI Talents/Year</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">144</div>
+            <div class="stat-label">Neural Courses</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">68</div>
+            <div class="stat-label">Cert Pathways</div>
+        </div>
+    </section>
+
+    <!-- AI Ecosystem -->
+    <section class="section" id="ecosystem">
+        <h2 class="section-title">🧠 Neural Education Ecosystem</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3 class="feature-title">Digital Teacher Matrix</h3>
+                <p class="feature-desc">AI-powered adaptive learning with multimodal interaction, real-time feedback loops, and cross-cultural neural translation</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🧠</span>
+                <h3 class="feature-title">Knowledge Graph Neural Network</h3>
+                <p class="feature-desc">Dynamic industry knowledge base with multi-dimensional associations and visualized learning pathways</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3 class="feature-title">Learning Engine Core</h3>
+                <p class="feature-desc">AI diagnostic assessment, micro-learning units, project-driven experiences, interest-guided exploration</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🥽</span>
+                <h3 class="feature-title">Mixed Reality Metaverse</h3>
+                <p class="feature-desc">VR immersive classrooms, AR-assisted practice, global virtual studios, digital avatar instructors</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🌐</span>
+                <h3 class="feature-title">Industry Neural Bridge</h3>
+                <p class="feature-desc">Real project matching, startup incubation, mentor networks, direct employment channels</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses -->
+    <section class="section" id="courses">
+        <h2 class="section-title">🎯 Neural Training Programs</h2>
+        
+        <div class="course-card">
+            <div class="course-content">
+                <span class="course-badge">AI Genesis</span>
+                <h4 class="course-title">海外爆款AI儿童故事 • Global AI Kids Stories</h4>
+                <div class="course-meta">
+                    <span>⚡ 15 Neural Hours</span>
+                    <span>🎯 Zero-Base Entry</span>
+                </div>
+                <div class="course-price">¥499 <span style="text-decoration: line-through; color: #666; font-size: 16px;">¥1,299</span></div>
+                <p class="course-desc">One-click generation of multilingual audio picture books. Master AI-driven content creation for global markets.</p>
+                <button class="course-button">Initialize Program</button>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <div class="course-content">
+                <span class="course-badge">Neural Vision</span>
+                <h4 class="course-title">无境AI环球旅拍 • Borderless AI Travel</h4>
+                <div class="course-meta">
+                    <span>⚡ 15 Neural Hours</span>
+                    <span>🎯 Visual Creation</span>
+                </div>
+                <div class="course-price">¥599 <span style="text-decoration: line-through; color: #666; font-size: 16px;">¥1,499</span></div>
+                <p class="course-desc">Create global travel videos without leaving home. Master AI visual production and virtual cinematography.</p>
+                <button class="course-button">Initialize Program</button>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <div class="course-content">
+                <span class="course-badge">Sonic AI</span>
+                <h4 class="course-title">AI音乐MV爆款密码 • Viral Music MV Codes</h4>
+                <div class="course-meta">
+                    <span>⚡ 15 Neural Hours</span>
+                    <span>🎯 Music & Video</span>
+                </div>
+                <div class="course-price">¥699 <span style="text-decoration: line-through; color: #666; font-size: 16px;">¥1,699</span></div>
+                <p class="course-desc">Generate million-view music videos with AI. Master viral content algorithms and music visualization.</p>
+                <button class="course-button">Initialize Program</button>
+            </div>
+        </div>
+
+        <h3 style="color: var(--primary-neon); margin: 40px 0 20px 0; font-size: 20px; text-align: center; text-transform: uppercase; letter-spacing: 2px;">⚡ Professional Neural Certifications</h3>
+
+        <div class="course-card">
+            <div class="course-content">
+                <span class="course-badge">Master Level</span>
+                <h4 class="course-title">AI Director Neural Core • AI导演神经核心</h4>
+                <div class="course-meta">
+                    <span>⚡ 180 Neural Hours</span>
+                    <span>🎯 Director Matrix</span>
+                </div>
+                <div class="course-price">¥25,000</div>
+                <p class="course-desc">Master AI-assisted directing workflows, visual style control, virtual actor guidance, and neural narrative architecture.</p>
+                <button class="course-button">Access Matrix</button>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <div class="course-content">
+                <span class="course-badge">Master Level</span>
+                <h4 class="course-title">AI Screenwriter Nexus • AI编剧连接点</h4>
+                <div class="course-meta">
+                    <span>⚡ 160 Neural Hours</span>
+                    <span>🎯 Narrative AI</span>
+                </div>
+                <div class="course-price">¥24,000</div>
+                <p class="course-desc">Master AI-assisted script creation, character design, multimodal content generation, and story architecture.</p>
+                <button class="course-button">Access Matrix</button>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <div class="course-content">
+                <span class="course-badge">Neural Tech</span>
+                <h4 class="course-title">AI Prompt Engineer Core • AI提示工程师核心</h4>
+                <div class="course-meta">
+                    <span>⚡ 140 Neural Hours</span>
+                    <span>🎯 Prompt Matrix</span>
+                </div>
+                <div class="course-price">¥22,000</div>
+                <p class="course-desc">Master prompt engineering, visual prompt optimization, cross-modal coordination, and neural command protocols.</p>
+                <button class="course-button">Access Matrix</button>
+            </div>
+        </div>
+
+        <div class="course-card">
+            <div class="course-content">
+                <span class="course-badge">Neural Tech</span>
+                <h4 class="course-title">AI Virtual Production Engineer • AI虚拟制片工程师</h4>
+                <div class="course-meta">
+                    <span>⚡ 200 Neural Hours</span>
+                    <span>🎯 Production Matrix</span>
+                </div>
+                <div class="course-price">¥25,000</div>
+                <p class="course-desc">Master virtual production technology, AI-driven real-time rendering, LED wall integration, and neural pipelines.</p>
+                <button class="course-button">Access Matrix</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web3 Token Economics -->
+    <section class="web3-section" id="web3">
+        <div class="web3-content">
+            <h2 class="web3-title">🔗 Web3 Token Economy Matrix</h2>
+            <p style="margin-bottom: 25px; color: rgba(255,255,255,0.9);">Transforming intangible knowledge into quantifiable digital assets through blockchain-powered dual-token system</p>
+            
+            <div class="token-grid">
+                <div class="token-card">
+                    <div class="token-symbol">$AIF</div>
+                    <div class="token-name">AI Film Ecosystem Token</div>
+                    <div class="token-features">
+                        • Platform governance & voting rights<br>
+                        • Service payment medium<br>
+                        • Revenue distribution claims<br>
+                        • Advanced resource access
+                    </div>
+                </div>
+                
+                <div class="token-card">
+                    <div class="token-symbol">$ACA</div>
+                    <div class="token-name">AI Content Academy Token Series</div>
+                    <div class="token-features">
+                        • Specific educational content assets<br>
+                        • Course development financing<br>
+                        • Automatic dividend distribution<br>
+                        • Knowledge IP tokenization
+                    </div>
+                </div>
+                
+                <div class="token-card">
+                    <div class="token-symbol">NFT</div>
+                    <div class="token-name">Skill & Achievement Certificates</div>
+                    <div class="token-features">
+                        • Immutable skill verification<br>
+                        • Project portfolio on-chain<br>
+                        • Industry recognition records<br>
+                        • Global certification network
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blockchain Certification -->
+    <section class="blockchain-cert">
+        <span class="cert-icon">🔐</span>
+        <h3 class="cert-title">Blockchain Certification Matrix</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Immutable, verifiable credentials powered by distributed ledger technology</p>
+        
+        <div class="cert-features">
+            <div class="cert-feature">
+                <strong>🛡️ Tamper-Proof Skills</strong><br>
+                Cryptographically secured achievement records
+            </div>
+            <div class="cert-feature">
+                <strong>🎯 Granular Skill Mapping</strong><br>
+                Detailed competency levels and learning paths
+            </div>
+            <div class="cert-feature">
+                <strong>📊 On-Chain Portfolio</strong><br>
+                Permanent project records and contributions
+            </div>
+            <div class="cert-feature">
+                <strong>🌐 Global Recognition</strong><br>
+                Industry-verified certification network
+            </div>
+            <div class="cert-feature">
+                <strong>⚡ Smart Contracts</strong><br>
+                Automated job matching and skill verification
+            </div>
+            <div class="cert-feature">
+                <strong>🔄 Continuous Learning</strong><br>
+                Lifelong skill updates and currency tracking
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Network -->
+    <section class="section">
+        <h2 class="section-title">🌐 Global Neural Network</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🏢</span>
+                <h3 class="feature-title">Innovation Hubs</h3>
+                <p class="feature-desc">Los Angeles • New York • London • Tokyo • Berlin • Singapore<br>10 mega-nodes for AI film research and development</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">Flagship Centers</h3>
+                <p class="feature-desc">50 regional education centers across 20 countries<br>Advanced training facilities and industry partnerships</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📍</span>
+                <h3 class="feature-title">Standard Nodes</h3>
+                <p class="feature-desc">100 localized education bases by 2030<br>Community-focused AI film training and certification</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <h2 class="contact-title">🚀 Connect to the Matrix</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <strong>📧 Neural Link</strong><br>
+                admissions@aif.college
+            </div>
+            <div class="contact-item">
+                <strong>🌐 Web Portal</strong><br>
+                www.aif.college
+            </div>
+            <div class="contact-item">
+                <strong>📍 HQ Node</strong><br>
+                Hong Kong SAR
+            </div>
+            <div class="contact-item">
+                <strong>🔗 Blockchain Network</strong><br>
+                Ethereum • Polygon • IPFS
+            </div>
+        </div>
+        
+        <div class="contact-buttons">
+            <a href="mailto:admissions@aif.college" class="contact-button">Send Message</a>
+            <a href="#" class="contact-button">Join Discord</a>
+            <a href="#" class="contact-button">Follow Twitter</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">HKAIFA</div>
+        <p>&copy; 2025 Hong Kong AI Film Academy. All Rights Reserved.</p>
+        <p>Powered by Blockchain • Enhanced by AI • Secured by Web3</p>
+        <p style="margin-top: 10px; font-size: 11px; opacity: 0.7;">
+            The future of filmmaking starts here • 影视创作的未来始于此
+        </p>
+    </footer>
+
+    <script>
+        // Initialize neural network background
+        function createNeuralNetwork() {
+            const container = document.getElementById('neuralNetwork');
+            const nodeCount = 20;
+            
+            // Clear existing nodes
+            container.innerHTML = '';
+            
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'neural-node';
+                node.style.left = Math.random() * 100 + '%';
+                node.style.top = Math.random() * 100 + '%';
+                node.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(node);
+                
+                // Create connections
+                if (i > 0 && Math.random() > 0.6) {
+                    const connection = document.createElement('div');
+                    connection.className = 'neural-connection';
+                    connection.style.left = Math.random() * 100 + '%';
+                    connection.style.top = Math.random() * 100 + '%';
+                    connection.style.width = Math.random() * 200 + 50 + 'px';
+                    connection.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    connection.style.animationDelay = Math.random() * 3 + 's';
+                    container.appendChild(connection);
+                }
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation active state with glow effect
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Enhanced intersection observer for staggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.feature-card, .course-card, .stat-card, .token-card, .cert-feature').forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px) scale(0.95)';
+            element.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            observer.observe(element);
+        });
+
+        // Course button interactions with futuristic alerts
+        document.querySelectorAll('.course-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const courseTitle = this.closest('.course-card').querySelector('.course-title').textContent;
+                const isBasic = this.textContent === 'Initialize Program';
+                
+                if (isBasic) {
+                    alert(`🚀 NEURAL LINK ESTABLISHED\n\n程序: ${courseTitle}\n\n📡 连接到学习矩阵...\n📧 admissions@aif.college\n🔗 Blockchain verification pending`);
+                } else {
+                    alert(`⚡ ACCESSING MASTER MATRIX\n\n高级程序: ${courseTitle}\n\n🧠 Neural certification pathway\n📊 Professional skill matrix unlock\n📧 Contact: admissions@aif.college`);
+                }
+            });
+        });
+
+        // Loading screen with neural network effect
+        window.addEventListener('load', function() {
+            createNeuralNetwork();
+            
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Random glitch effect for title
+        function glitchEffect() {
+            const logo = document.querySelector('.logo');
+            const originalText = 'HKAIFA';
+            const glitchChars = '!@#$%^&*(){}[]|\\;:,.<>?';
+            
+            let glitched = '';
+            for (let i = 0; i < originalText.length; i++) {
+                if (Math.random() > 0.8) {
+                    glitched += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                } else {
+                    glitched += originalText[i];
+                }
+            }
+            
+            logo.textContent = glitched;
+            setTimeout(() => {
+                logo.textContent = originalText;
+            }, 100);
+        }
+
+        // Trigger glitch effect randomly
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                glitchEffect();
+            }
+        }, 2000);
+
+        // Touch device optimizations
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+        }
+
+        // Performance optimization for animations
+        let ticking = false;
+        function updateAnimations() {
+            // Update any scroll-based animations here
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
