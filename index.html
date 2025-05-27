@@ -155,9 +155,131 @@
 
         .nav-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            gap: 10px;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: relative;
+            z-index: 200;
+        }
+
+        .lang-button {
+            background: transparent;
+            color: var(--primary-neon);
+            border: 2px solid var(--primary-neon);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-neon);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .lang-button:hover {
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .lang-button:hover::before {
+            left: 0;
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--primary-neon);
+            border-radius: 15px;
+            padding: 10px 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+
+        .lang-option:hover {
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--primary-neon);
+            transform: translateX(5px);
+        }
+
+        .lang-option.active {
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--primary-neon);
+            font-weight: 600;
+        }
+
+        .lang-flag {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .lang-arrow {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-switcher.open .lang-arrow {
+            transform: rotate(180deg);
         }
 
         .nav-item {
@@ -763,7 +885,26 @@
             
             .nav-item {
                 font-size: 10px;
-                padding: 6px 10px;
+                padding: 6px 8px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                order: 2;
+            }
+            
+            .lang-switcher {
+                order: 1;
+            }
+            
+            .lang-dropdown {
+                right: auto;
+                left: 0;
+                min-width: 160px;
             }
             
             .contact-buttons {
@@ -818,11 +959,72 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#home" class="nav-item active">Home</a>
-            <a href="#ecosystem" class="nav-item">AI Ecosystem</a>
-            <a href="#courses" class="nav-item">Courses</a>
-            <a href="#web3" class="nav-item">Web3</a>
-            <a href="#contact" class="nav-item">Contact</a>
+            <div class="nav-links">
+                <a href="#home" class="nav-item active" data-translate="nav.home">Home</a>
+                <a href="#ecosystem" class="nav-item" data-translate="nav.ecosystem">AI Ecosystem</a>
+                <a href="#courses" class="nav-item" data-translate="nav.courses">Courses</a>
+                <a href="#web3" class="nav-item" data-translate="nav.web3">Web3</a>
+                <a href="#contact" class="nav-item" data-translate="nav.contact">Contact</a>
+            </div>
+            
+            <!-- Language Switcher -->
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-button" id="langButton">
+                    <span class="lang-flag" id="currentFlag">🌐</span>
+                    <span id="currentLang">EN</span>
+                    <span class="lang-arrow">▼</span>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-option active" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <span>English</span>
+                    </div>
+                    <div class="lang-option" data-lang="zh">
+                        <span class="lang-flag">🇨🇳</span>
+                        <span>中文</span>
+                    </div>
+                    <div class="lang-option" data-lang="es">
+                        <span class="lang-flag">🇪🇸</span>
+                        <span>Español</span>
+                    </div>
+                    <div class="lang-option" data-lang="fr">
+                        <span class="lang-flag">🇫🇷</span>
+                        <span>Français</span>
+                    </div>
+                    <div class="lang-option" data-lang="de">
+                        <span class="lang-flag">🇩🇪</span>
+                        <span>Deutsch</span>
+                    </div>
+                    <div class="lang-option" data-lang="ja">
+                        <span class="lang-flag">🇯🇵</span>
+                        <span>日本語</span>
+                    </div>
+                    <div class="lang-option" data-lang="ko">
+                        <span class="lang-flag">🇰🇷</span>
+                        <span>한국어</span>
+                    </div>
+                    <div class="lang-option" data-lang="ar">
+                        <span class="lang-flag">🇸🇦</span>
+                        <span>العربية</span>
+                    </div>
+                    <div class="lang-option" data-lang="ru">
+                        <span class="lang-flag">🇷🇺</span>
+                        <span>Русский</span>
+                    </div>
+                    <div class="lang-option" data-lang="pt">
+                        <span class="lang-flag">🇧🇷</span>
+                        <span>Português</span>
+                    </div>
+                    <div class="lang-option" data-lang="hi">
+                        <span class="lang-flag">🇮🇳</span>
+                        <span>हिन्दी</span>
+                    </div>
+                    <div class="lang-option" data-lang="it">
+                        <span class="lang-flag">🇮🇹</span>
+                        <span>Italiano</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -1131,6 +1333,304 @@
     </footer>
 
     <script>
+        // Multi-language support
+        const translations = {
+            en: {
+                'nav.home': 'Home',
+                'nav.ecosystem': 'AI Ecosystem',
+                'nav.courses': 'Courses',
+                'nav.web3': 'Web3',
+                'nav.contact': 'Contact',
+                'hero.title': 'Future of Filmmaking',
+                'hero.subtitle': 'World\'s First AI Native Film Education Institution<br>Technology Empowering Art • Art Leading Technology',
+                'hero.cta': 'Enter Matrix',
+                'stats.nodes': 'Global Nodes',
+                'stats.talents': 'AI Talents/Year',
+                'stats.courses': 'Neural Courses',
+                'stats.pathways': 'Cert Pathways'
+            },
+            zh: {
+                'nav.home': '首页',
+                'nav.ecosystem': 'AI生态',
+                'nav.courses': '课程',
+                'nav.web3': 'Web3',
+                'nav.contact': '联系',
+                'hero.title': '影视创作的未来',
+                'hero.subtitle': '全球首个AI原生影视教育机构<br>科技赋能艺术 • 艺术引领科技',
+                'hero.cta': '进入矩阵',
+                'stats.nodes': '全球节点',
+                'stats.talents': 'AI人才/年',
+                'stats.courses': '神经课程',
+                'stats.pathways': '认证路径'
+            },
+            es: {
+                'nav.home': 'Inicio',
+                'nav.ecosystem': 'Ecosistema IA',
+                'nav.courses': 'Cursos',
+                'nav.web3': 'Web3',
+                'nav.contact': 'Contacto',
+                'hero.title': 'Futuro del Cine',
+                'hero.subtitle': 'Primera Institución Educativa Cinematográfica IA Nativa del Mundo<br>Tecnología Potenciando Arte • Arte Liderando Tecnología',
+                'hero.cta': 'Entrar Matriz',
+                'stats.nodes': 'Nodos Globales',
+                'stats.talents': 'Talentos IA/Año',
+                'stats.courses': 'Cursos Neurales',
+                'stats.pathways': 'Rutas Cert'
+            },
+            fr: {
+                'nav.home': 'Accueil',
+                'nav.ecosystem': 'Écosystème IA',
+                'nav.courses': 'Cours',
+                'nav.web3': 'Web3',
+                'nav.contact': 'Contact',
+                'hero.title': 'Avenir du Cinéma',
+                'hero.subtitle': 'Première Institution Éducative Cinématographique IA Native au Monde<br>Technologie Autonomisant l\'Art • Art Dirigeant la Technologie',
+                'hero.cta': 'Entrer Matrice',
+                'stats.nodes': 'Nœuds Globaux',
+                'stats.talents': 'Talents IA/An',
+                'stats.courses': 'Cours Neuraux',
+                'stats.pathways': 'Voies Cert'
+            },
+            de: {
+                'nav.home': 'Startseite',
+                'nav.ecosystem': 'KI-Ökosystem',
+                'nav.courses': 'Kurse',
+                'nav.web3': 'Web3',
+                'nav.contact': 'Kontakt',
+                'hero.title': 'Zukunft des Films',
+                'hero.subtitle': 'Weltweit Erste KI-Native Film-Bildungsinstitution<br>Technologie Stärkt Kunst • Kunst Führt Technologie',
+                'hero.cta': 'Matrix Betreten',
+                'stats.nodes': 'Globale Knoten',
+                'stats.talents': 'KI-Talente/Jahr',
+                'stats.courses': 'Neurale Kurse',
+                'stats.pathways': 'Zert-Pfade'
+            },
+            ja: {
+                'nav.home': 'ホーム',
+                'nav.ecosystem': 'AIエコシステム',
+                'nav.courses': 'コース',
+                'nav.web3': 'Web3',
+                'nav.contact': '連絡先',
+                'hero.title': '映像制作の未来',
+                'hero.subtitle': '世界初のAIネイティブ映像教育機関<br>テクノロジーがアートを支援 • アートがテクノロジーを牽引',
+                'hero.cta': 'マトリックス入場',
+                'stats.nodes': 'グローバルノード',
+                'stats.talents': 'AI人材/年',
+                'stats.courses': 'ニューラルコース',
+                'stats.pathways': '認定経路'
+            },
+            ko: {
+                'nav.home': '홈',
+                'nav.ecosystem': 'AI 생태계',
+                'nav.courses': '강좌',
+                'nav.web3': 'Web3',
+                'nav.contact': '연락처',
+                'hero.title': '영화 제작의 미래',
+                'hero.subtitle': '세계 최초의 AI 네이티브 영화 교육 기관<br>기술이 예술을 강화 • 예술이 기술을 선도',
+                'hero.cta': '매트릭스 입장',
+                'stats.nodes': '글로벌 노드',
+                'stats.talents': 'AI 인재/년',
+                'stats.courses': '뉴럴 코스',
+                'stats.pathways': '인증 경로'
+            },
+            ar: {
+                'nav.home': 'الرئيسية',
+                'nav.ecosystem': 'نظام الذكاء الاصطناعي',
+                'nav.courses': 'الدورات',
+                'nav.web3': 'ويب3',
+                'nav.contact': 'اتصل',
+                'hero.title': 'مستقبل صناعة الأفلام',
+                'hero.subtitle': 'أول مؤسسة تعليمية سينمائية أصلية للذكاء الاصطناعي في العالم<br>التكنولوجيا تمكن الفن • الفن يقود التكنولوجيا',
+                'hero.cta': 'ادخل المصفوفة',
+                'stats.nodes': 'العقد العالمية',
+                'stats.talents': 'مواهب الذكاء الاصطناعي/سنة',
+                'stats.courses': 'الدورات العصبية',
+                'stats.pathways': 'مسارات الشهادات'
+            },
+            ru: {
+                'nav.home': 'Главная',
+                'nav.ecosystem': 'ИИ Экосистема',
+                'nav.courses': 'Курсы',
+                'nav.web3': 'Web3',
+                'nav.contact': 'Контакты',
+                'hero.title': 'Будущее Кинематографа',
+                'hero.subtitle': 'Первый в Мире ИИ-Нативный Кинообразовательный Институт<br>Технологии Расширяют Искусство • Искусство Ведет Технологии',
+                'hero.cta': 'Войти в Матрицу',
+                'stats.nodes': 'Глобальные Узлы',
+                'stats.talents': 'ИИ Таланты/Год',
+                'stats.courses': 'Нейронные Курсы',
+                'stats.pathways': 'Пути Серт'
+            },
+            pt: {
+                'nav.home': 'Início',
+                'nav.ecosystem': 'Ecossistema IA',
+                'nav.courses': 'Cursos',
+                'nav.web3': 'Web3',
+                'nav.contact': 'Contato',
+                'hero.title': 'Futuro do Cinema',
+                'hero.subtitle': 'Primeira Instituição Educacional Cinematográfica IA Nativa do Mundo<br>Tecnologia Capacitando Arte • Arte Liderando Tecnologia',
+                'hero.cta': 'Entrar Matriz',
+                'stats.nodes': 'Nós Globais',
+                'stats.talents': 'Talentos IA/Ano',
+                'stats.courses': 'Cursos Neurais',
+                'stats.pathways': 'Caminhos Cert'
+            },
+            hi: {
+                'nav.home': 'होम',
+                'nav.ecosystem': 'AI इकोसिस्टम',
+                'nav.courses': 'कोर्सेज',
+                'nav.web3': 'Web3',
+                'nav.contact': 'संपर्क',
+                'hero.title': 'फिल्म निर्माण का भविष्य',
+                'hero.subtitle': 'दुनिया का पहला AI नेटिव फिल्म शिक्षा संस्थान<br>तकनीक कला को सशक्त बनाती है • कला तकनीक का नेतृत्व करती है',
+                'hero.cta': 'मैट्रिक्स में प्रवेश',
+                'stats.nodes': 'ग्लोबल नोड्स',
+                'stats.talents': 'AI प्रतिभाएं/वर्ष',
+                'stats.courses': 'न्यूरल कोर्सेज',
+                'stats.pathways': 'प्रमाण पथ'
+            },
+            it: {
+                'nav.home': 'Home',
+                'nav.ecosystem': 'Ecosistema IA',
+                'nav.courses': 'Corsi',
+                'nav.web3': 'Web3',
+                'nav.contact': 'Contatti',
+                'hero.title': 'Futuro del Cinema',
+                'hero.subtitle': 'Prima Istituzione Educativa Cinematografica IA Nativa al Mondo<br>Tecnologia Potenzia Arte • Arte Guida Tecnologia',
+                'hero.cta': 'Entra Matrix',
+                'stats.nodes': 'Nodi Globali',
+                'stats.talents': 'Talenti IA/Anno',
+                'stats.courses': 'Corsi Neurali',
+                'stats.pathways': 'Percorsi Cert'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Language switcher functionality
+        function initLanguageSwitcher() {
+            const langButton = document.getElementById('langButton');
+            const langDropdown = document.getElementById('langDropdown');
+            const langSwitcher = document.getElementById('langSwitcher');
+            const langOptions = document.querySelectorAll('.lang-option');
+
+            langButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langSwitcher.classList.toggle('open');
+                langDropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                langSwitcher.classList.remove('open');
+                langDropdown.classList.remove('active');
+            });
+
+            // Language option selection
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const selectedLang = this.dataset.lang;
+                    const flag = this.querySelector('.lang-flag').textContent;
+                    const langName = this.querySelector('span:last-child').textContent;
+                    
+                    // Update current language
+                    currentLanguage = selectedLang;
+                    
+                    // Update button
+                    document.getElementById('currentFlag').textContent = flag;
+                    document.getElementById('currentLang').textContent = selectedLang.toUpperCase();
+                    
+                    // Update active state
+                    langOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Close dropdown
+                    langSwitcher.classList.remove('open');
+                    langDropdown.classList.remove('active');
+                    
+                    // Apply translations
+                    applyTranslations(selectedLang);
+                    
+                    // Show language change notification
+                    showLanguageNotification(langName);
+                });
+            });
+        }
+
+        function applyTranslations(lang) {
+            const elementsToTranslate = document.querySelectorAll('[data-translate]');
+            
+            elementsToTranslate.forEach(element => {
+                const key = element.dataset.translate;
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Update document language attribute
+            document.documentElement.lang = lang;
+        }
+
+        function showLanguageNotification(langName) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(0, 255, 255, 0.1);
+                border: 1px solid var(--primary-neon);
+                border-radius: 10px;
+                padding: 15px 20px;
+                color: var(--primary-neon);
+                font-family: 'Rajdhani', sans-serif;
+                font-weight: 600;
+                font-size: 14px;
+                backdrop-filter: blur(20px);
+                z-index: 10000;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
+            `;
+            notification.innerHTML = `🌐 Language changed to ${langName}`;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Add data-translate attributes to key elements
+        function addTranslationAttributes() {
+            // Hero section
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const ctaButton = document.querySelector('.cta-button');
+            
+            if (heroTitle) heroTitle.setAttribute('data-translate', 'hero.title');
+            if (heroSubtitle) heroSubtitle.setAttribute('data-translate', 'hero.subtitle');
+            if (ctaButton) ctaButton.setAttribute('data-translate', 'hero.cta');
+            
+            // Stats section
+            const statLabels = document.querySelectorAll('.stat-label');
+            const statKeys = ['stats.nodes', 'stats.talents', 'stats.courses', 'stats.pathways'];
+            statLabels.forEach((label, index) => {
+                if (statKeys[index]) {
+                    label.setAttribute('data-translate', statKeys[index]);
+                }
+            });
+        }
         // Initialize neural network background
         function createNeuralNetwork() {
             const container = document.getElementById('neuralNetwork');
@@ -1239,6 +1739,8 @@
         // Loading screen with neural network effect
         window.addEventListener('load', function() {
             createNeuralNetwork();
+            addTranslationAttributes();
+            initLanguageSwitcher();
             
             setTimeout(() => {
                 const loadingOverlay = document.getElementById('loadingOverlay');
