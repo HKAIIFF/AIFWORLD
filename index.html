@@ -1,1236 +1,1484 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKAIFA | 未来影视创作的AI原生学院</title>
+    <title>HKAIFA - 香港AI電影學院</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;800&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --primary-neon: #00ffff;
-            --secondary-neon: #ff0080;
-            --accent-neon: #7c3aed;
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(15, 23, 42, 0.8);
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-neon: linear-gradient(45deg, #00ffff, #ff0080, #7c3aed);
-            --gradient-web3: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #ec4899 100%);
+            --primary: #3498db;
+            --secondary: #8e44ad;
+            --accent: #00ff9d;
+            --education: #e74c3c;
+            --innovation: #f39c12;
         }
-
+        
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-primary);
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
             overflow-x: hidden;
-            position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(142, 68, 173, 0.1) 0%, transparent 20%);
         }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-                linear-gradient(135deg, #0a0a0f 0%, #1e1b4b 100%);
-        }
-
-        .neural-network {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .neural-node {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-neon);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--primary-neon);
-            animation: pulse 2s infinite;
-        }
-
-        .neural-connection {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-neon), transparent);
-            animation: flow 3s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
-        }
-
-        @keyframes flow {
-            0% { opacity: 0; transform: translateX(-100%); }
-            50% { opacity: 1; }
-            100% { opacity: 0; transform: translateX(100%); }
-        }
-
-        /* Header */
-        .header {
-            position: relative;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(124, 58, 237, 0.1));
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-            padding: 20px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            animation: scan 3s infinite;
-        }
-
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 28px;
-            font-weight: 900;
-            background: var(--gradient-neon);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 3s ease infinite;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+        
+        .logo-font {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
             letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            animation: logoGlow 3s ease-in-out infinite alternate;
         }
-
-        .tagline {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 300;
-            text-transform: uppercase;
+        
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.3); }
+            100% { text-shadow: 0 0 25px rgba(0, 255, 157, 0.6), 0 0 35px rgba(52, 152, 219, 0.4); }
+        }
+        
+        .logo-sub {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 700;
+            font-size: 0.6rem;
             letter-spacing: 2px;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Navigation */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-            padding: 10px 0;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-            gap: 10px;
-        }
-
-        /* Language Switcher */
-        .lang-switcher {
-            position: relative;
-            z-index: 200;
-        }
-
-        .lang-button {
-            background: transparent;
-            color: var(--primary-neon);
-            border: 2px solid var(--primary-neon);
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .lang-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-neon);
-            transition: all 0.3s ease;
-            z-index: -1;
-        }
-
-        .lang-button:hover {
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .lang-button:hover::before {
-            left: 0;
-        }
-
-        .lang-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--primary-neon);
-            border-radius: 15px;
-            padding: 10px 0;
-            min-width: 180px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-        }
-
-        .lang-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(5px);
-        }
-
-        .lang-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 12px;
-            font-weight: 500;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        .lang-option:last-child {
-            border-bottom: none;
-        }
-
-        .lang-option:hover {
-            background: rgba(0, 255, 255, 0.1);
-            color: var(--primary-neon);
-            transform: translateX(5px);
-        }
-
-        .lang-option.active {
-            background: rgba(0, 255, 255, 0.2);
-            color: var(--primary-neon);
-            font-weight: 600;
-        }
-
-        .lang-flag {
-            font-size: 16px;
-            width: 20px;
+            color: var(--accent);
+            margin-top: -8px;
             text-align: center;
+            opacity: 0.8;
         }
-
-        .lang-arrow {
-            font-size: 10px;
-            transition: transform 0.3s ease;
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
-        .lang-switcher.open .lang-arrow {
-            transform: rotate(180deg);
+        
+        .education-gradient {
+            background: linear-gradient(135deg, var(--education), var(--innovation));
         }
-
-        .nav-item {
-            position: relative;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border: 1px solid transparent;
-            border-radius: 20px;
+        
+        .card {
+            background-color: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             overflow: hidden;
         }
-
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-neon);
-            opacity: 0.1;
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.2);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+        
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
         }
-
-        .nav-item:hover, .nav-item.active {
-            color: var(--primary-neon);
-            border-color: var(--primary-neon);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            transform: translateY(-2px);
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.4);
         }
-
-        .nav-item:hover::before, .nav-item.active::before {
-            left: 0;
+        
+        .btn-education {
+            background: linear-gradient(135deg, var(--education), var(--innovation));
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
         }
-
-        /* Hero Section */
+        
+        .btn-education:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 157, 0.1);
+            transform: translateY(-3px);
+        }
+        
         .hero {
             position: relative;
-            padding: 60px 20px;
-            text-align: center;
-            background: var(--gradient-web3);
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
         }
-
-        .hero::before {
-            content: '';
+        
+        .hero:before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 0, 128, 0.15) 0%, transparent 50%);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
         }
-
+        
         .hero-content {
             position: relative;
             z-index: 2;
         }
-
-        .hero-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, #ffffff, #00ffff, #ffffff);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 2s ease infinite;
-        }
-
-        .hero-subtitle {
-            font-size: 16px;
-            margin-bottom: 30px;
-            color: var(--text-secondary);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            position: relative;
-            background: transparent;
-            color: var(--primary-neon);
-            padding: 15px 40px;
-            border: 2px solid var(--primary-neon);
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
+        
+        .hero-bg {
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: var(--primary-neon);
-            transition: all 0.3s ease;
-            z-index: -1;
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            animation: bgPan 30s infinite linear;
         }
-
-        .cta-button:hover {
-            color: var(--bg-dark);
-            box-shadow: 0 0 30px var(--primary-neon);
-            transform: translateY(-3px);
+        
+        @keyframes bgPan {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
-
-        .cta-button:hover::before {
-            left: 0;
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
         }
-
-        /* AI Stats */
-        .ai-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            padding: 40px 20px;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(20px);
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
-
-        .stat-card {
-            position: relative;
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 25px 15px;
-            text-align: center;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-neon);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-            border-color: var(--primary-neon);
-        }
-
-        .stat-number {
-            font-family: 'Orbitron', monospace;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-neon);
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Sections */
-        .section {
-            padding: 40px 20px;
-            position: relative;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: var(--gradient-neon);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 3s ease infinite;
-        }
-
-        /* Feature Cards */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .feature-card {
-            position: relative;
-            background: var(--bg-card);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-neon);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.2);
-            border-color: var(--accent-neon);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--primary-neon);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .feature-desc {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Course Cards */
-        .course-card {
-            position: relative;
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 0, 128, 0.2);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            animation: rotate 4s linear infinite;
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
             opacity: 0;
-            transition: opacity 0.3s ease;
         }
-
-        .course-card:hover::before {
-            opacity: 1;
+        
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-in-out forwards;
+            opacity: 0;
         }
-
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
+        
+        .animate-slide-right {
+            animation: slideRight 0.8s ease-in-out forwards;
+            opacity: 0;
         }
-
-        .course-content {
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideRight {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .cyber-border {
             position: relative;
-            z-index: 2;
         }
-
-        .course-badge {
-            display: inline-block;
-            background: var(--gradient-neon);
-            color: var(--bg-dark);
-            font-size: 10px;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .course-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-        }
-
-        .course-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .course-price {
-            font-family: 'Orbitron', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--secondary-neon);
-            margin-bottom: 15px;
-        }
-
-        .course-desc {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .course-button {
-            width: 100%;
-            background: transparent;
-            color: var(--secondary-neon);
-            border: 2px solid var(--secondary-neon);
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .course-button::before {
+        
+        .cyber-border:after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--secondary-neon);
-            transition: all 0.3s ease;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, transparent 30%, var(--accent) 45%, var(--secondary) 55%, transparent 70%);
+            background-size: 200% 200%;
+            animation: borderGlow 5s linear infinite;
             z-index: -1;
-        }
-
-        .course-button:hover {
-            color: var(--bg-dark);
-            box-shadow: 0 0 25px var(--secondary-neon);
-        }
-
-        .course-button:hover::before {
-            left: 0;
-        }
-
-        /* Web3 Token Section */
-        .web3-section {
-            background: var(--gradient-web3);
-            margin: 40px 20px;
-            border-radius: 25px;
-            padding: 40px 25px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .web3-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
-        }
-
-        .web3-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .web3-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .token-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .token-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .token-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-        }
-
-        .token-symbol {
-            font-family: 'Orbitron', monospace;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary-neon);
-            margin-bottom: 8px;
-        }
-
-        .token-name {
-            font-size: 14px;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .token-features {
-            font-size: 12px;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        /* Blockchain Certification */
-        .blockchain-cert {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(0, 255, 255, 0.3);
             border-radius: 20px;
-            padding: 30px 20px;
-            margin: 20px;
-            text-align: center;
         }
-
-        .cert-icon {
-            font-size: 48px;
-            color: var(--primary-neon);
-            margin-bottom: 20px;
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .ai-element {
+            position: absolute;
+            background-color: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent);
+            z-index: 3;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
+        }
+        
+        .data-stream {
+            position: absolute;
+            height: 100px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--secondary), transparent);
+            z-index: 0;
+            animation: dataStream 2s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes dataStream {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        .language-selector {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+        }
+        
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            background-color: rgba(26, 32, 44, 0.95);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 100;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            top: 40px;
+            right: 0;
+        }
+        
+        .language-selector:hover .language-dropdown {
             display: block;
         }
-
-        .cert-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary-neon);
-            text-transform: uppercase;
-        }
-
-        .cert-features {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .cert-feature {
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            font-size: 13px;
-            transition: all 0.3s ease;
-        }
-
-        .cert-feature:hover {
-            background: rgba(0, 255, 255, 0.2);
-            transform: translateX(5px);
-        }
-
-        /* Contact */
-        .contact {
-            background: var(--bg-card);
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(0, 255, 255, 0.2);
-        }
-
-        .contact-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--primary-neon);
-            text-transform: uppercase;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .contact-item {
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .contact-button {
-            background: transparent;
-            color: var(--accent-neon);
-            border: 2px solid var(--accent-neon);
-            padding: 12px 20px;
-            border-radius: 25px;
+        
+        .language-dropdown a {
+            color: white;
+            padding: 12px 16px;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
+            display: flex;
+            align-items: center;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-
-        .contact-button:hover {
-            background: var(--accent-neon);
-            color: var(--bg-dark);
-            box-shadow: 0 0 20px var(--accent-neon);
-            transform: translateY(-2px);
+        
+        .language-dropdown a:hover {
+            background-color: rgba(52, 152, 219, 0.2);
         }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-dark);
-            color: var(--text-secondary);
-            padding: 30px 20px;
+        
+        .language-dropdown img {
+            width: 24px;
+            margin-right: 10px;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .stats-card {
             text-align: center;
-            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 16px;
+            background: rgba(26, 32, 44, 0.5);
+            border: 1px solid rgba(0, 255, 157, 0.1);
+            transition: all 0.3s ease;
         }
-
-        .footer-logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 18px;
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(26, 32, 44, 0.7);
+        }
+        
+        .stats-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .stats-card .number {
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-neon);
             margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 28px;
-            }
-            
-            .section-title {
-                font-size: 20px;
-            }
-            
-            .ai-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-item {
-                font-size: 10px;
-                padding: 6px 8px;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .nav-links {
-                order: 2;
-            }
-            
-            .lang-switcher {
-                order: 1;
-            }
-            
-            .lang-dropdown {
-                right: auto;
-                left: 0;
-                min-width: 160px;
-            }
-            
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        
+        .course-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
         }
-
-        /* Loading Animation */
-        .loading-overlay {
+        
+        .course-card:hover {
+            border-left-color: var(--education);
+            background: rgba(26, 32, 44, 0.8);
+        }
+        
+        .certification-level {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .level-basic {
+            background: rgba(52, 152, 219, 0.2);
+            color: var(--primary);
+        }
+        
+        .level-professional {
+            background: rgba(142, 68, 173, 0.2);
+            color: var(--secondary);
+        }
+        
+        .level-advanced {
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--education);
+        }
+        
+        .level-expert {
+            background: rgba(243, 156, 18, 0.2);
+            color: var(--innovation);
+        }
+        
+        .token-feature {
+            background: rgba(26, 32, 44, 0.6);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .token-feature:hover {
+            border-color: var(--accent);
+            transform: translateX(10px);
+        }
+        
+        .ecosystem-component {
+            background: rgba(26, 32, 44, 0.6);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .ecosystem-component:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 157, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .pricing-card {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .mobile-menu {
+            display: none;
             position: fixed;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-dark);
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+        .mobile-nav-item {
+            display: block;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+        }
+        
+        .mobile-nav-item:last-child {
+            border-bottom: none;
+        }
+        
+        .language-indicator {
             display: flex;
-            justify-content: center;
             align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
         }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(0, 255, 255, 0.2);
-            border-top: 3px solid var(--primary-neon);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        
+        .language-indicator:hover {
+            background: rgba(52, 152, 219, 0.2);
         }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        
+        .language-indicator img {
+            width: 24px;
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .logo-font {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .stats-card {
+                padding: 15px;
+            }
+            
+            .stats-card .number {
+                font-size: 1.8rem;
+            }
+            
+            .stats-card i {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
+    <!-- AI Elements -->
+    <div class="ai-element" style="top: 120px; left: 10%;">
+        AI_教育: 運行中 <br>
+        課程_生成: 最佳 <br>
+        // 下一代學習
     </div>
-
-    <div class="bg-animation"></div>
-    <div class="neural-network" id="neuralNetwork"></div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">HKAIFA</div>
-        <div class="tagline">AI Native Film Academy</div>
-    </header>
+    
+    <div class="ai-element" style="bottom: 150px; right: 15%;">
+        區塊鏈_教育: 直播 <br>
+        代幣_ACA: 鑄造中 <br>
+        // 知識資產
+    </div>
+    
+    <!-- Data streams -->
+    <div class="data-stream" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="data-stream" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="data-stream" style="left: 60%; animation-delay: 1s;"></div>
+    <div class="data-stream" style="left: 80%; animation-delay: 1.5s;"></div>
 
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="#home" class="nav-item active" data-translate="nav.home">Home</a>
-                <a href="#ecosystem" class="nav-item" data-translate="nav.ecosystem">AI Ecosystem</a>
-                <a href="#courses" class="nav-item" data-translate="nav.courses">Courses</a>
-                <a href="#web3" class="nav-item" data-translate="nav.web3">Web3</a>
-                <a href="#contact" class="nav-item" data-translate="nav.contact">Contact</a>
+    <nav class="navbar fixed w-full z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="flex flex-col items-center">
+                <div class="logo-font">HKAIFA</div>
+                <div class="logo-sub">香港AI電影學院</div>
+            </a>
+            <div class="hidden md:flex space-x-8 desktop-nav">
+                <a href="#about" class="hover:text-blue-400 transition">關於我們</a>
+                <a href="#curriculum" class="hover:text-blue-400 transition">課程體系</a>
+                <a href="#ecosystem" class="hover:text-blue-400 transition">教育生態</a>
+                <a href="#tokenomics" class="hover:text-blue-400 transition">代幣經濟</a>
+                <a href="#global" class="hover:text-blue-400 transition">全球中心</a>
+                <a href="#apply" class="hover:text-blue-400 transition">立即申請</a>
             </div>
-            
-            <!-- Language Switcher -->
-            <div class="lang-switcher" id="langSwitcher">
-                <button class="lang-button" id="langButton">
-                    <span class="lang-flag" id="currentFlag">🌐</span>
-                    <span id="currentLang">EN</span>
-                    <span class="lang-arrow">▼</span>
-                </button>
-                <div class="lang-dropdown" id="langDropdown">
-                    <div class="lang-option active" data-lang="en">
-                        <span class="lang-flag">🇺🇸</span>
-                        <span>English</span>
+            <div class="flex items-center space-x-4">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <div class="language-indicator">
+                        <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文">
+                        <span>繁中</span>
+                        <i class="fas fa-chevron-down ml-2 text-sm"></i>
                     </div>
-                    <div class="lang-option" data-lang="zh">
-                        <span class="lang-flag">🇨🇳</span>
-                        <span>中文</span>
-                    </div>
-                    <div class="lang-option" data-lang="es">
-                        <span class="lang-flag">🇪🇸</span>
-                        <span>Español</span>
-                    </div>
-                    <div class="lang-option" data-lang="fr">
-                        <span class="lang-flag">🇫🇷</span>
-                        <span>Français</span>
-                    </div>
-                    <div class="lang-option" data-lang="de">
-                        <span class="lang-flag">🇩🇪</span>
-                        <span>Deutsch</span>
-                    </div>
-                    <div class="lang-option" data-lang="ja">
-                        <span class="lang-flag">🇯🇵</span>
-                        <span>日本語</span>
-                    </div>
-                    <div class="lang-option" data-lang="ko">
-                        <span class="lang-flag">🇰🇷</span>
-                        <span>한국어</span>
-                    </div>
-                    <div class="lang-option" data-lang="ar">
-                        <span class="lang-flag">🇸🇦</span>
-                        <span>العربية</span>
-                    </div>
-                    <div class="lang-option" data-lang="ru">
-                        <span class="lang-flag">🇷🇺</span>
-                        <span>Русский</span>
-                    </div>
-                    <div class="lang-option" data-lang="pt">
-                        <span class="lang-flag">🇧🇷</span>
-                        <span>Português</span>
-                    </div>
-                    <div class="lang-option" data-lang="hi">
-                        <span class="lang-flag">🇮🇳</span>
-                        <span>हिन्दी</span>
-                    </div>
-                    <div class="lang-option" data-lang="it">
-                        <span class="lang-flag">🇮🇹</span>
-                        <span>Italiano</span>
+                    <div class="language-dropdown">
+                        <a href="#" data-lang="zh-hant">
+                            <img src="https://flagcdn.com/w40/hk.png" alt="繁體中文">
+                            繁體中文 (香港)
+                        </a>
+                        <a href="#" data-lang="zh-hans">
+                            <img src="https://flagcdn.com/w40/cn.png" alt="簡體中文">
+                            简体中文
+                        </a>
+                        <a href="#" data-lang="en">
+                            <img src="https://flagcdn.com/w40/gb.png" alt="English">
+                            English
+                        </a>
+                        <a href="#" data-lang="ja">
+                            <img src="https://flagcdn.com/w40/jp.png" alt="日本語">
+                            日本語
+                        </a>
                     </div>
                 </div>
+                
+                <a href="#apply" class="btn-primary px-6 py-2 rounded-full text-sm">立即申請</a>
+                
+                <button class="md:hidden text-white mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="hero-title">Future of Filmmaking</h1>
-            <p class="hero-subtitle">全球首个AI原生影视教育机构<br>Technology Empowering Art • Art Leading Technology</p>
-            <a href="#courses" class="cta-button">Enter Matrix</a>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
         </div>
-    </section>
-
-    <!-- AI Stats -->
-    <section class="ai-stats">
-        <div class="stat-card">
-            <div class="stat-number">100+</div>
-            <div class="stat-label">Global Nodes</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">50K+</div>
-            <div class="stat-label">AI Talents/Year</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">144</div>
-            <div class="stat-label">Neural Courses</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">68</div>
-            <div class="stat-label">Cert Pathways</div>
-        </div>
-    </section>
-
-    <!-- AI Ecosystem -->
-    <section class="section" id="ecosystem">
-        <h2 class="section-title">🧠 Neural Education Ecosystem</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🤖</span>
-                <h3 class="feature-title">Digital Teacher Matrix</h3>
-                <p class="feature-desc">AI-powered adaptive learning with multimodal interaction, real-time feedback loops, and cross-cultural neural translation</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🧠</span>
-                <h3 class="feature-title">Knowledge Graph Neural Network</h3>
-                <p class="feature-desc">Dynamic industry knowledge base with multi-dimensional associations and visualized learning pathways</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">⚡</span>
-                <h3 class="feature-title">Learning Engine Core</h3>
-                <p class="feature-desc">AI diagnostic assessment, micro-learning units, project-driven experiences, interest-guided exploration</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🥽</span>
-                <h3 class="feature-title">Mixed Reality Metaverse</h3>
-                <p class="feature-desc">VR immersive classrooms, AR-assisted practice, global virtual studios, digital avatar instructors</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🌐</span>
-                <h3 class="feature-title">Industry Neural Bridge</h3>
-                <p class="feature-desc">Real project matching, startup incubation, mentor networks, direct employment channels</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courses -->
-    <section class="section" id="courses">
-        <h2 class="section-title">🎯 Neural Training Programs</h2>
         
-        <div class="course-card">
-            <div class="course-content">
-                <span class="course-badge">AI Genesis</span>
-                <h4 class="course-title">海外爆款AI儿童故事 • Global AI Kids Stories</h4>
-                <div class="course-meta">
-                    <span>⚡ 15 Neural Hours</span>
-                    <span>🎯 Zero-Base Entry</span>
-                </div>
-                <div class="course-price">¥499 <span style="text-decoration: line-through; color: #666; font-size: 16px;">¥1,299</span></div>
-                <p class="course-desc">One-click generation of multilingual audio picture books. Master AI-driven content creation for global markets.</p>
-                <button class="course-button">Initialize Program</button>
-            </div>
+        <div class="mt-12 flex flex-col">
+            <a href="#about" class="mobile-nav-item">關於我們</a>
+            <a href="#curriculum" class="mobile-nav-item">課程體系</a>
+            <a href="#ecosystem" class="mobile-nav-item">教育生態</a>
+            <a href="#tokenomics" class="mobile-nav-item">代幣經濟</a>
+            <a href="#global" class="mobile-nav-item">全球中心</a>
+            <a href="#apply" class="mobile-nav-item">立即申請</a>
         </div>
+    </div>
 
-        <div class="course-card">
-            <div class="course-content">
-                <span class="course-badge">Neural Vision</span>
-                <h4 class="course-title">无境AI环球旅拍 • Borderless AI Travel</h4>
-                <div class="course-meta">
-                    <span>⚡ 15 Neural Hours</span>
-                    <span>🎯 Visual Creation</span>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container mx-auto px-4 hero-content">
+            <div class="max-w-4xl animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">全球首個 <span class="gradient-text">AI原生</span> 影視教育機構</h1>
+                <p class="text-xl text-gray-300 mb-8">
+                    HKAIFA透過整合尖端AI技術與傳統敘事藝術，革新影視教育。
+                    加入我們，通過創新課程、區塊鏈認證與全球合作網絡，共同塑造電影的未來。
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                    <a href="#apply" class="btn-education px-8 py-3 rounded-full font-medium text-center">
+                        開始你的旅程
+                    </a>
+                    <a href="#curriculum" class="btn-secondary px-8 py-3 rounded-full font-medium text-center">
+                        探索課程
+                    </a>
                 </div>
-                <div class="course-price">¥599 <span style="text-decoration: line-through; color: #666; font-size: 16px;">¥1,499</span></div>
-                <p class="course-desc">Create global travel videos without leaving home. Master AI visual production and virtual cinematography.</p>
-                <button class="course-button">Initialize Program</button>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-content">
-                <span class="course-badge">Sonic AI</span>
-                <h4 class="course-title">AI音乐MV爆款密码 • Viral Music MV Codes</h4>
-                <div class="course-meta">
-                    <span>⚡ 15 Neural Hours</span>
-                    <span>🎯 Music & Video</span>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="stats-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="number">144</div>
+                        <div class="text-sm">門專業課程</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-certificate"></i>
+                        <div class="number">68</div>
+                        <div class="text-sm">個職業方向</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-globe"></i>
+                        <div class="number">100</div>
+                        <div class="text-sm">個全球中心(2030)</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-users"></i>
+                        <div class="number">5萬+</div>
+                        <div class="text-sm">目標畢業生</div>
+                    </div>
                 </div>
-                <div class="course-price">¥699 <span style="text-decoration: line-through; color: #666; font-size: 16px;">¥1,699</span></div>
-                <p class="course-desc">Generate million-view music videos with AI. Master viral content algorithms and music visualization.</p>
-                <button class="course-button">Initialize Program</button>
-            </div>
-        </div>
-
-        <h3 style="color: var(--primary-neon); margin: 40px 0 20px 0; font-size: 20px; text-align: center; text-transform: uppercase; letter-spacing: 2px;">⚡ Professional Neural Certifications</h3>
-
-        <div class="course-card">
-            <div class="course-content">
-                <span class="course-badge">Master Level</span>
-                <h4 class="course-title">AI Director Neural Core • AI导演神经核心</h4>
-                <div class="course-meta">
-                    <span>⚡ 180 Neural Hours</span>
-                    <span>🎯 Director Matrix</span>
-                </div>
-                <div class="course-price">¥25,000</div>
-                <p class="course-desc">Master AI-assisted directing workflows, visual style control, virtual actor guidance, and neural narrative architecture.</p>
-                <button class="course-button">Access Matrix</button>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-content">
-                <span class="course-badge">Master Level</span>
-                <h4 class="course-title">AI Screenwriter Nexus • AI编剧连接点</h4>
-                <div class="course-meta">
-                    <span>⚡ 160 Neural Hours</span>
-                    <span>🎯 Narrative AI</span>
-                </div>
-                <div class="course-price">¥24,000</div>
-                <p class="course-desc">Master AI-assisted script creation, character design, multimodal content generation, and story architecture.</p>
-                <button class="course-button">Access Matrix</button>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-content">
-                <span class="course-badge">Neural Tech</span>
-                <h4 class="course-title">AI Prompt Engineer Core • AI提示工程师核心</h4>
-                <div class="course-meta">
-                    <span>⚡ 140 Neural Hours</span>
-                    <span>🎯 Prompt Matrix</span>
-                </div>
-                <div class="course-price">¥22,000</div>
-                <p class="course-desc">Master prompt engineering, visual prompt optimization, cross-modal coordination, and neural command protocols.</p>
-                <button class="course-button">Access Matrix</button>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="course-content">
-                <span class="course-badge">Neural Tech</span>
-                <h4 class="course-title">AI Virtual Production Engineer • AI虚拟制片工程师</h4>
-                <div class="course-meta">
-                    <span>⚡ 200 Neural Hours</span>
-                    <span>🎯 Production Matrix</span>
-                </div>
-                <div class="course-price">¥25,000</div>
-                <p class="course-desc">Master virtual production technology, AI-driven real-time rendering, LED wall integration, and neural pipelines.</p>
-                <button class="course-button">Access Matrix</button>
             </div>
         </div>
     </section>
 
-    <!-- Web3 Token Economics -->
-    <section class="web3-section" id="web3">
-        <div class="web3-content">
-            <h2 class="web3-title">🔗 Web3 Token Economy Matrix</h2>
-            <p style="margin-bottom: 25px; color: rgba(255,255,255,0.9);">Transforming intangible knowledge into quantifiable digital assets through blockchain-powered dual-token system</p>
+    <!-- About Section -->
+    <section class="py-20 bg-gray-900 bg-opacity-50" id="about">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">開創影視教育未來</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    隨著全球AI影視市場從2024年的61億美元擴展到2028年預估的200億美元，
+                    HKAIFA致力於解決全球超過18萬AI影視專業人才的嚴重短缺問題。
+                </p>
+            </div>
             
-            <div class="token-grid">
-                <div class="token-card">
-                    <div class="token-symbol">$AIF</div>
-                    <div class="token-name">AI Film Ecosystem Token</div>
-                    <div class="token-features">
-                        • Platform governance & voting rights<br>
-                        • Service payment medium<br>
-                        • Revenue distribution claims<br>
-                        • Advanced resource access
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="animate-slide-right">
+                    <h3 class="text-2xl font-bold mb-6">我們的願景</h3>
+                    <p class="text-gray-300 mb-6">
+                        成為全球領先的AI影視教育機構，打造塑造AI影視產業未來的全球人才培養中心和知識創新樞紐，
+                        同時保持使敘事強大而有意義的基本人文元素。
+                    </p>
+                    <h3 class="text-2xl font-bold mb-6">核心理念</h3>
+                    <p class="text-gray-300 mb-6">
+                        「技術賦能藝術，藝術引領技術」— 我們相信電影製作的未來不在於人工智能取代人類創造力，
+                        而在於人類洞察力與機器能力之間的複雜協作。
+                    </p>
+                </div>
+                
+                <div class="relative animate-fade-in">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Education" class="w-full h-96 object-cover rounded-lg shadow-2xl">
+                    <div class="absolute -bottom-6 -right-6 bg-black bg-opacity-70 rounded-lg p-4 backdrop-blur-sm border border-blue-500">
+                        <div class="text-xs font-mono text-blue-400">
+                            <div>// HKAIFA 使命</div>
+                            <div>培養學生 = <span class="text-green-400">∞</span>;</div>
+                            <div>創新指數 = 0.985;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full education-gradient flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">創新</h4>
+                    <p class="text-gray-300 text-sm">
+                        擁抱技術變革，探索AI與藝術融合的新可能性
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full education-gradient flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-puzzle-piece text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">融合</h4>
+                    <p class="text-gray-300 text-sm">
+                        連接技術與藝術、理論與實踐、教育與產業
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full education-gradient flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">卓越</h4>
+                    <p class="text-gray-300 text-sm">
+                        在技術能力與藝術品質方面追求最高標準
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full education-gradient flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-eye text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">透明</h4>
+                    <p class="text-gray-300 text-sm">
+                        通過區塊鏈技術確保清晰的價值歸屬和公平回報
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section class="py-20" id="curriculum">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">三級金字塔課程體系</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    我們的綜合課程體系適應處於職業發展不同階段的學習者，
+                    結構化為包含基礎、專業和項目實訓模塊的漸進式金字塔。
+                </p>
+            </div>
+            
+            <!-- Curriculum Pyramid Visual -->
+            <div class="relative mb-20">
+                <div class="flex flex-col items-center space-y-8">
+                    <!-- Project Training (Top) -->
+                    <div class="card p-8 max-w-md text-center cyber-border animate-fade-in">
+                        <div class="certification-level level-expert">項目實訓模塊</div>
+                        <h3 class="text-2xl font-bold mb-4">大師級別</h3>
+                        <p class="text-gray-300 mb-4">
+                            將所學知識和技能整合應用於實際項目的實踐經驗
+                        </p>
+                        <div class="flex justify-center space-x-4 text-sm">
+                            <span class="bg-gray-700 px-3 py-1 rounded">創意實驗室</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">產業項目</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">畢業項目</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Professional Module (Middle) -->
+                    <div class="card p-8 max-w-2xl text-center animate-fade-in" style="animation-delay: 0.3s;">
+                        <div class="certification-level level-professional">專業模塊</div>
+                        <h3 class="text-2xl font-bold mb-4">專業化課程</h3>
+                        <p class="text-gray-300 mb-6">
+                            涵蓋七大領域的144門專業課程，支持68個專業認證方向
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                            <div class="bg-gray-700 p-3 rounded">
+                                <div class="font-bold text-blue-400">創作核心</div>
+                                <div class="text-xs">16個方向</div>
+                            </div>
+                            <div class="bg-gray-700 p-3 rounded">
+                                <div class="font-bold text-purple-400">技術實現</div>
+                                <div class="text-xs">8個方向</div>
+                            </div>
+                            <div class="bg-gray-700 p-3 rounded">
+                                <div class="font-bold text-green-400">融合創新</div>
+                                <div class="text-xs">16個方向</div>
+                            </div>
+                            <div class="bg-gray-700 p-3 rounded">
+                                <div class="font-bold text-yellow-400">商業管理</div>
+                                <div class="text-xs">10個方向</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Foundation Module (Base) -->
+                    <div class="card p-8 max-w-4xl text-center animate-fade-in" style="animation-delay: 0.6s;">
+                        <div class="certification-level level-basic">基礎模塊</div>
+                        <h3 class="text-2xl font-bold mb-4">基礎知識體系</h3>
+                        <p class="text-gray-300 mb-6">
+                            AI技術、影視基礎和跨學科基本知識的綜合基礎
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                            <div class="bg-gray-700 p-4 rounded">
+                                <div class="font-bold text-blue-400 mb-2">AI技術基礎</div>
+                                <ul class="text-left space-y-1 text-xs">
+                                    <li>• 人工智能概論</li>
+                                    <li>• 機器學習基礎</li>
+                                    <li>• 深度學習入門</li>
+                                    <li>• 計算機視覺基礎</li>
+                                    <li>• 生成式AI原理</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-700 p-4 rounded">
+                                <div class="font-bold text-purple-400 mb-2">影視基礎知識</div>
+                                <ul class="text-left space-y-1 text-xs">
+                                    <li>• 電影語言與語法</li>
+                                    <li>• 影視敘事原理</li>
+                                    <li>• 視聽語言</li>
+                                    <li>• 影視美學</li>
+                                    <li>• 電影製作基礎</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-700 p-4 rounded">
+                                <div class="font-bold text-green-400 mb-2">交叉學科基礎</div>
+                                <ul class="text-left space-y-1 text-xs">
+                                    <li>• 數位媒體技術</li>
+                                    <li>• 創意設計思維</li>
+                                    <li>• 區塊鏈和Web3入門</li>
+                                    <li>• 數位倫理與法律</li>
+                                    <li>• 媒體心理學</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Featured Professional Tracks -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold mb-8 text-center">精選專業課程</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- AI Director -->
+                    <div class="course-card card p-6">
+                        <div class="certification-level level-professional">專業課程</div>
+                        <h4 class="text-xl font-bold mb-3">AI導演</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            掌握AI輔助導演工作流程、視覺風格控制和虛擬演員指導
+                        </p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-400">180 小時</span>
+                            <span class="text-lg font-bold text-green-400">¥25,000</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>AI增強導演技術</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>虛擬製作管理</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>數位演員指導</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Prompt Engineer -->
+                    <div class="course-card card p-6">
+                        <div class="certification-level level-professional">專業課程</div>
+                        <h4 class="text-xl font-bold mb-3">AI提示工程師</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            掌握提示工程、視覺提示工程和跨模態協同專業技能
+                        </p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-400">140 小時</span>
+                            <span class="text-lg font-bold text-green-400">¥22,000</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>高級提示工程</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>視覺提示優化</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>多模態AI協調</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Screenwriter -->
+                    <div class="course-card card p-6">
+                        <div class="certification-level level-professional">專業課程</div>
+                        <h4 class="text-xl font-bold mb-3">AI編劇</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            掌握AI輔助劇本創作、角色設計和多模態內容創作
+                        </p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-400">160 小時</span>
+                            <span class="text-lg font-bold text-green-400">¥24,000</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>AI輔助編劇</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>AI角色開發</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>敘事結構設計</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Preparatory Courses -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold mb-8 text-center">快速入門預備課程</h3>
+                <p class="text-center text-gray-300 mb-8">
+                    專為絕對初學者設計，專注於快速技能獲取和即時商業應用
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6 text-center">
+                        <div class="certification-level level-basic">15 小時</div>
+                        <h4 class="text-lg font-bold mb-3">海外爆款AI兒童故事</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            一鍵生成多語言有聲繪本，專攻海外市場
+                        </p>
+                        <div class="text-center mb-4">
+                            <span class="text-sm text-gray-400 line-through">¥1,299</span>
+                            <span class="text-2xl font-bold text-green-400 ml-2">¥499</span>
+                        </div>
+                        <a href="#apply" class="btn-education px-6 py-2 rounded-full font-medium text-sm w-full block text-center">
+                            立即報名
+                        </a>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="certification-level level-basic">15 小時</div>
+                        <h4 class="text-lg font-bold mb-3">無需出境的AI環球旅拍</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            足不出戶，使用AI技術創作全球旅行影片
+                        </p>
+                        <div class="text-center mb-4">
+                            <span class="text-sm text-gray-400 line-through">¥1,499</span>
+                            <span class="text-2xl font-bold text-green-400 ml-2">¥599</span>
+                        </div>
+                        <a href="#apply" class="btn-education px-6 py-2 rounded-full font-medium text-sm w-full block text-center">
+                            立即報名
+                        </a>
+                    </div>
+                    
+                    <div class="card p-6 text-center">
+                        <div class="certification-level level-basic">15 小時</div>
+                        <h4 class="text-lg font-bold mb-3">AI音樂MV爆款秘訣</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            一鍵生成百萬播放量的音樂影片製作技巧
+                        </p>
+                        <div class="text-center mb-4">
+                            <span class="text-sm text-gray-400 line-through">¥1,699</span>
+                            <span class="text-2xl font-bold text-green-400 ml-2">¥699</span>
+                        </div>
+                        <a href="#apply" class="btn-education px-6 py-2 rounded-full font-medium text-sm w-full block text-center">
+                            立即報名
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educational Ecosystem -->
+    <section class="py-20 bg-gray-900 bg-opacity-50" id="ecosystem">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">革命性教育生態系統</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    HKAIFA的創新教育生態系統由五大核心組件構成，
+                    創造由前沿技術驅動的無與倫比的學習體驗。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <!-- Digital Teacher System -->
+                <div class="ecosystem-component">
+                    <div class="w-20 h-20 rounded-full bg-blue-500 bg-opacity-20 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-robot text-3xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">數位教師系統</h3>
+                    <p class="text-gray-300 mb-6">
+                        先進的AI驅動自適應學習，提供個性化內容交付、
+                        多模態互動和實時反饋循環。
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="token-feature">
+                            <i class="fas fa-brain mr-2 text-blue-400"></i>
+                            自適應個性化學習
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-comments mr-2 text-blue-400"></i>
+                            多模態互動教學
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-globe mr-2 text-blue-400"></i>
+                            跨語言跨文化教學
+                        </div>
                     </div>
                 </div>
                 
-                <div class="token-card">
-                    <div class="token-symbol">$ACA</div>
-                    <div class="token-name">AI Content Academy Token Series</div>
-                    <div class="token-features">
-                        • Specific educational content assets<br>
-                        • Course development financing<br>
-                        • Automatic dividend distribution<br>
-                        • Knowledge IP tokenization
+                <!-- Knowledge Graph -->
+                <div class="ecosystem-component">
+                    <div class="w-20 h-20 rounded-full bg-purple-500 bg-opacity-20 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-project-diagram text-3xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">知識圖譜生態系統</h3>
+                    <p class="text-gray-300 mb-6">
+                        動態、相互連接的信息網絡，隨行業發展和
+                        學生貢獻持續演變。
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="token-feature">
+                            <i class="fas fa-database mr-2 text-purple-400"></i>
+                            動態更新的行業知識庫
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-sitemap mr-2 text-purple-400"></i>
+                            多維度關聯知識系統
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-users mr-2 text-purple-400"></i>
+                            社區共建共享
+                        </div>
                     </div>
                 </div>
                 
-                <div class="token-card">
-                    <div class="token-symbol">NFT</div>
-                    <div class="token-name">Skill & Achievement Certificates</div>
-                    <div class="token-features">
-                        • Immutable skill verification<br>
-                        • Project portfolio on-chain<br>
-                        • Industry recognition records<br>
-                        • Global certification network
+                <!-- Learning Engine -->
+                <div class="ecosystem-component">
+                    <div class="w-20 h-20 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-cogs text-3xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI學習引擎系統</h3>
+                    <p class="text-gray-300 mb-6">
+                        複雜算法通過診斷評估、微學習設計和
+                        項目驅動體驗優化學習成果。
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="token-feature">
+                            <i class="fas fa-chart-line mr-2 text-green-400"></i>
+                            AI診斷評估
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-cubes mr-2 text-green-400"></i>
+                            微學習單元設計
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-compass mr-2 text-green-400"></i>
+                            興趣引導探索
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mixed Reality Spaces -->
+                <div class="ecosystem-component">
+                    <div class="w-20 h-20 rounded-full bg-yellow-500 bg-opacity-20 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-vr-cardboard text-3xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">混合現實學習空間</h3>
+                    <p class="text-gray-300 mb-6">
+                        沉浸式VR/AR環境，將傳統教育與
+                        前沿虛擬製作技術無縫融合。
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="token-feature">
+                            <i class="fas fa-cube mr-2 text-yellow-400"></i>
+                            VR沉浸式教室
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-eye mr-2 text-yellow-400"></i>
+                            AR輔助實踐
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-user-astronaut mr-2 text-yellow-400"></i>
+                            數位分身教學
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Industry Connection -->
+                <div class="ecosystem-component">
+                    <div class="w-20 h-20 rounded-full bg-red-500 bg-opacity-20 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-handshake text-3xl text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">產業連接平台</h3>
+                    <p class="text-gray-300 mb-6">
+                        學術學習與專業實踐之間的直接橋樑，
+                        通過真實項目和行業合作夥伴關係。
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="token-feature">
+                            <i class="fas fa-tasks mr-2 text-red-400"></i>
+                            真實項目對接
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-rocket mr-2 text-red-400"></i>
+                            創業孵化支持
+                        </div>
+                        <div class="token-feature">
+                            <i class="fas fa-briefcase mr-2 text-red-400"></i>
+                            直接就業通道
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section class="py-20 relative" id="tokenomics">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">創新雙代幣經濟模型</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    HKAIFA實施革命性的雙代幣系統，將無形知識轉化為
+                    可量化的數位資產，為知識創造者和投資者建立直接的價值連接。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+                <!-- AIF Token -->
+                <div class="card cyber-border p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-coins text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">AIF 平台代幣</h3>
+                            <p class="text-gray-400">生態系統基礎代幣</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6">
+                        HKAIFA生態系統的基礎，提供治理權、經濟收益，
+                        以及從所有平台活動中獲取價值。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="token-feature">
+                            <i class="fas fa-vote-yea mr-3 text-blue-400"></i>
+                            <div>
+                                <div class="font-medium">治理權益</div>
+                                <div class="text-sm text-gray-400">對平台升級和關鍵參數進行投票</div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-coins mr-3 text-blue-400"></i>
+                            <div>
+                                <div class="font-medium">經濟收益</div>
+                                <div class="text-sm text-gray-400">獲得平台總收入的一部分</div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-key mr-3 text-blue-400"></i>
+                            <div>
+                                <div class="font-medium">優先訪問</div>
+                                <div class="text-sm text-gray-400">提早獲得高級教育資源</div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-percentage mr-3 text-blue-400"></i>
+                            <div>
+                                <div class="font-medium">費用折扣</div>
+                                <div class="text-sm text-gray-400">根據持有量減少平台費用</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ACA Token Series -->
+                <div class="card cyber-border p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">ACA 代幣系列</h3>
+                            <p class="text-gray-400">教育內容代幣</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6">
+                        項目特定代幣，代表個別教育內容及其未來收入流的所有權。
+                        每個ACA代幣代表特定的知識資產。
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="token-feature">
+                            <i class="fas fa-coins mr-3 text-purple-400"></i>
+                            <div>
+                                <div class="font-medium">收益權利</div>
+                                <div class="text-sm text-gray-400">根據代幣比例自動分配</div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-rocket mr-3 text-purple-400"></i>
+                            <div>
+                                <div class="font-medium">融資工具</div>
+                                <div class="text-sm text-gray-400">課程開發的預先融資</div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-exchange-alt mr-3 text-purple-400"></i>
+                            <div>
+                                <div class="font-medium">二級市場</div>
+                                <div class="text-sm text-gray-400">在平台內自由交易</div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-award mr-3 text-purple-400"></i>
+                            <div>
+                                <div class="font-medium">開放發行</div>
+                                <div class="text-sm text-gray-400">大學、機構和創作者可發行代幣</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Token Operation Process -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold mb-8 text-center">開放式代幣運作流程</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold">1</span>
+                        </div>
+                        <h4 class="font-bold mb-2">代幣發行申請</h4>
+                        <p class="text-sm text-gray-300">教育內容提供者提交ACA代幣發行申請</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-purple-500 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold">2</span>
+                        </div>
+                        <h4 class="font-bold mb-2">內容評估</h4>
+                        <p class="text-sm text-gray-300">專業委員會評估課程價值和可行性</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold">3</span>
+                        </div>
+                        <h4 class="font-bold mb-2">融資階段</h4>
+                        <p class="text-sm text-gray-300">向投資者和學習者銷售代幣，募集開發資金</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold">4</span>
+                        </div>
+                        <h4 class="font-bold mb-2">收益分配</h4>
+                        <p class="text-sm text-gray-300">通過智能合約自動分配收益</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Centers Section -->
+    <section class="py-20 bg-gray-900 bg-opacity-50" id="global">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">全球合作中心戰略</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    HKAIFA雄心勃勃的計劃，到2030年在全球建立100個合作中心，
+                    每年培訓超過5萬名AI影視專業人才，以解決全球關鍵的人才短缺問題。
+                </p>
+            </div>
+            
+            <!-- Expansion Timeline -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold mb-8 text-center">分階段全球擴張</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Phase 1 -->
+                    <div class="card p-6 text-center">
+                        <div class="certification-level level-basic">2025-2026</div>
+                        <h4 class="text-xl font-bold mb-4">第一階段：基礎建立</h4>
+                        <div class="space-y-3 text-sm text-left">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>在5個大洲啟動15個試點合作中心</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>在第一年運營中培訓5,000名學生</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>與25所領先教育機構建立夥伴關係</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>為10個主要市場開發本地化課程</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="card p-6 text-center">
+                        <div class="certification-level level-professional">2027-2028</div>
+                        <h4 class="text-xl font-bold mb-4">第二階段：戰略擴張</h4>
+                        <div class="space-y-3 text-sm text-left">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-blue-400 mr-2"></i>
+                                <span>擴展到20個國家的50個中心</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-blue-400 mr-2"></i>
+                                <span>實現年培訓2萬名學生的能力</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-blue-400 mr-2"></i>
+                                <span>啟動完全在線和混合學習項目</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-blue-400 mr-2"></i>
+                                <span>在關鍵市場建立區域卓越中心</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="card p-6 text-center">
+                        <div class="certification-level level-expert">2029-2030</div>
+                        <h4 class="text-xl font-bold mb-4">第三階段：全球領導地位</h4>
+                        <div class="space-y-3 text-sm text-left">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-purple-400 mr-2"></i>
+                                <span>在全球運營100個中心</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-purple-400 mr-2"></i>
+                                <span>每年培訓超過5萬名學生</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-purple-400 mr-2"></i>
+                                <span>建立AI影視教育的全球標準</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-purple-400 mr-2"></i>
+                                <span>創建自我維持的區域生態系統</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Three-Tier Cooperation Model -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold mb-8 text-center">三級合作模式</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Innovation Centers -->
+                    <div class="card p-6">
+                        <div class="certification-level level-expert">創新中心</div>
+                        <h4 class="text-xl font-bold mb-4">大型綜合性基地</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            位於洛杉磯、倫敦、東京和新加坡等主要全球城市的先進設施。
+                        </p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-building mr-2 text-blue-400"></i>
+                                <span>10,000+ 平方米</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2 text-blue-400"></i>
+                                <span>2,000-3,000 學生/年</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dollar-sign mr-2 text-blue-400"></i>
+                                <span>年度預算1,500-2,500萬美元</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap mr-2 text-blue-400"></i>
+                                <span>全部68個專業方向</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-blue-900 bg-opacity-30 rounded">
+                            <div class="text-xs text-gray-300">
+                                <strong>授權費：</strong> ¥100萬/年<br>
+                                <strong>學費留存：</strong> 線上50%，線下30%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Flagship Centers -->
+                    <div class="card p-6">
+                        <div class="certification-level level-professional">旗艦中心</div>
+                        <h4 class="text-xl font-bold mb-4">區域性教育中心</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            服務多個國家的區域樞紐，提供核心HKAIFA項目，適應當地市場需求。
+                        </p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-building mr-2 text-purple-400"></i>
+                                <span>5,000+ 平方米</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2 text-purple-400"></i>
+                                <span>1,000-1,500 學生/年</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dollar-sign mr-2 text-purple-400"></i>
+                                <span>年度預算800-1,500萬美元</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap mr-2 text-purple-400"></i>
+                                <span>25-35個認證途徑</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-purple-900 bg-opacity-30 rounded">
+                            <div class="text-xs text-gray-300">
+                                <strong>授權費：</strong> ¥50萬/年<br>
+                                <strong>學費留存：</strong> 線上45%，線下30%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Standard Centers -->
+                    <div class="card p-6">
+                        <div class="certification-level level-basic">標準中心</div>
+                        <h4 class="text-xl font-bold mb-4">本地化教育基地</h4>
+                        <p class="text-gray-300 text-sm mb-4">
+                            提供適應特定區域需求和資源的基本AI影視培訓的當地中心。
+                        </p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-building mr-2 text-green-400"></i>
+                                <span>2,000+ 平方米</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2 text-green-400"></i>
+                                <span>500-800 學生/年</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dollar-sign mr-2 text-green-400"></i>
+                                <span>年度預算300-800萬美元</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap mr-2 text-green-400"></i>
+                                <span>15-20個認證途徑</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-green-900 bg-opacity-30 rounded">
+                            <div class="text-xs text-gray-300">
+                                <strong>授權費：</strong> ¥30萬/年<br>
+                                <strong>學費留存：</strong> 40%
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1238,574 +1486,831 @@
     </section>
 
     <!-- Blockchain Certification -->
-    <section class="blockchain-cert">
-        <span class="cert-icon">🔐</span>
-        <h3 class="cert-title">Blockchain Certification Matrix</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 20px;">Immutable, verifiable credentials powered by distributed ledger technology</p>
-        
-        <div class="cert-features">
-            <div class="cert-feature">
-                <strong>🛡️ Tamper-Proof Skills</strong><br>
-                Cryptographically secured achievement records
+    <section class="py-20" id="certification">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">基於區塊鏈的認證體系</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    HKAIFA利用區塊鏈技術創建防篡改、全面且可驗證的
+                    教育證書，為專業認證建立新標準。
+                </p>
             </div>
-            <div class="cert-feature">
-                <strong>🎯 Granular Skill Mapping</strong><br>
-                Detailed competency levels and learning paths
-            </div>
-            <div class="cert-feature">
-                <strong>📊 On-Chain Portfolio</strong><br>
-                Permanent project records and contributions
-            </div>
-            <div class="cert-feature">
-                <strong>🌐 Global Recognition</strong><br>
-                Industry-verified certification network
-            </div>
-            <div class="cert-feature">
-                <strong>⚡ Smart Contracts</strong><br>
-                Automated job matching and skill verification
-            </div>
-            <div class="cert-feature">
-                <strong>🔄 Continuous Learning</strong><br>
-                Lifelong skill updates and currency tracking
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+                <div class="animate-slide-right">
+                    <h3 class="text-2xl font-bold mb-6">四級認證框架</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="card p-6">
+                            <div class="certification-level level-basic">第一級</div>
+                            <h4 class="text-lg font-bold mb-2">技能模塊認證</h4>
+                            <p class="text-gray-300 text-sm">
+                                單一技能點的微認證，具有細粒度驗證
+                                和可疊加證書組件，實現快速獲取。
+                            </p>
+                        </div>
+                        
+                        <div class="card p-6">
+                            <div class="certification-level level-professional">第二級</div>
+                            <h4 class="text-lg font-bold mb-2">專業方向認證</h4>
+                            <p class="text-gray-300 text-sm">
+                                特定專業領域的綜合認證，具有
+                                行業驗證標準和職業導向資格。
+                            </p>
+                        </div>
+                        
+                        <div class="card p-6">
+                            <div class="certification-level level-advanced">第三級</div>
+                            <h4 class="text-lg font-bold mb-2">項目能力認證</h4>
+                            <p class="text-gray-300 text-sm">
+                                基於作品集的評估，具有實際應用展示
+                                和客戶/導師驗證組件。
+                            </p>
+                        </div>
+                        
+                        <div class="card p-6">
+                            <div class="certification-level level-expert">第四級</div>
+                            <h4 class="text-lg font-bold mb-2">行業專家認證</h4>
+                            <p class="text-gray-300 text-sm">
+                                由行業專家評審的高級認證，具有綜合
+                                專業精通驗證和同行認可。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-fade-in">
+                    <h3 class="text-2xl font-bold mb-6">區塊鏈學歷證書特性</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="token-feature">
+                            <i class="fas fa-shield-alt mr-3 text-blue-400"></i>
+                            <div>
+                                <div class="font-medium">不可篡改的技能證明</div>
+                                <div class="text-sm text-gray-400">
+                                    區塊鏈記錄確保真實性與加密驗證
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-chart-pie mr-3 text-purple-400"></i>
+                            <div>
+                                <div class="font-medium">詳細的技能構成</div>
+                                <div class="text-sm text-gray-400">
+                                    精細化技能畫像與具體能力水平
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-folder-open mr-3 text-green-400"></i>
+                            <div>
+                                <div class="font-medium">實際項目記錄</div>
+                                <div class="text-sm text-gray-400">
+                                    作品集上鏈永久保存與項目貢獻驗證
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-award mr-3 text-yellow-400"></i>
+                            <div>
+                                <div class="font-medium">行業認可信息</div>
+                                <div class="text-sm text-gray-400">
+                                    全球化的認證互認網絡與專家背書
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="token-feature">
+                            <i class="fas fa-sync mr-3 text-red-400"></i>
+                            <div>
+                                <div class="font-medium">持續學習記錄</div>
+                                <div class="text-sm text-gray-400">
+                                    終身學習檔案與技能時效性指標
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-gray-800 rounded-lg">
+                        <h4 class="font-bold mb-3">智能就業匹配</h4>
+                        <p class="text-sm text-gray-300 mb-4">
+                            我們的AI驅動系統在認證人才和行業機會之間創建高效連接。
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 text-xs">
+                            <div>✓ 精準職位匹配</div>
+                            <div>✓ 智能合約工作委託</div>
+                            <div>✓ 去中心化工作評價</div>
+                            <div>✓ 動態技能培訓對接</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Global Network -->
-    <section class="section">
-        <h2 class="section-title">🌐 Global Neural Network</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🏢</span>
-                <h3 class="feature-title">Innovation Hubs</h3>
-                <p class="feature-desc">Los Angeles • New York • London • Tokyo • Berlin • Singapore<br>10 mega-nodes for AI film research and development</p>
+    <!-- Instructor System -->
+    <section class="py-20 bg-gray-900 bg-opacity-50" id="instructors">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">講師認證與管理體系</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    HKAIFA實施全面的講師認證系統，確保教學質量，
+                    同時提供公平的補償和職業發展機會。
+                </p>
             </div>
-            <div class="feature-card">
-                <span class="feature-icon">🎯</span>
-                <h3 class="feature-title">Flagship Centers</h3>
-                <p class="feature-desc">50 regional education centers across 20 countries<br>Advanced training facilities and industry partnerships</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📍</span>
-                <h3 class="feature-title">Standard Nodes</h3>
-                <p class="feature-desc">100 localized education bases by 2030<br>Community-focused AI film training and certification</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+                <!-- Certified Instructor -->
+                <div class="card p-6 text-center">
+                    <div class="certification-level level-basic">入門級</div>
+                    <h4 class="text-lg font-bold mb-3">認證講師</h4>
+                    <div class="text-2xl font-bold text-green-400 mb-2">¥5,000</div>
+                    <div class="text-sm text-gray-400 mb-4">認證費</div>
+                    
+                    <div class="space-y-2 text-sm text-left mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>在線理論測評</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>教學能力評估</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-percentage text-blue-400 mr-2"></i>
+                            <span>3% 績效獎勵</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-xs text-gray-400 bg-gray-800 p-3 rounded">
+                        可受聘講授行業人才認證課程及預備認證課程
+                    </div>
+                </div>
+                
+                <!-- Senior Instructor -->
+                <div class="card p-6 text-center">
+                    <div class="certification-level level-professional">專業級</div>
+                    <h4 class="text-lg font-bold mb-3">高級講師</h4>
+                    <div class="text-2xl font-bold text-green-400 mb-2">¥8,000</div>
+                    <div class="text-sm text-gray-400 mb-4">認證費</div>
+                    
+                    <div class="space-y-2 text-sm text-left mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>理論 + 教學 + 經驗</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>行業經驗認證</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-percentage text-blue-400 mr-2"></i>
+                            <span>5% 績效獎勵</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-xs text-gray-400 bg-gray-800 p-3 rounded">
+                        可受聘講授職業人才認證課程和高級項目
+                    </div>
+                </div>
+                
+                <!-- Gold Instructor -->
+                <div class="card p-6 text-center border-2 border-yellow-500">
+                    <div class="certification-level level-advanced">專家級</div>
+                    <h4 class="text-lg font-bold mb-3">金牌講師</h4>
+                    <div class="text-2xl font-bold text-green-400 mb-2">¥12,000</div>
+                    <div class="text-sm text-gray-400 mb-4">認證費</div>
+                    
+                    <div class="space-y-2 text-sm text-left mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>專家委員會面試</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>全面評估流程</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-percentage text-yellow-400 mr-2"></i>
+                            <span>10% 績效獎勵</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-xs text-gray-400 bg-gray-800 p-3 rounded">
+                        可受聘講授學院所有課程包括大師班
+                    </div>
+                </div>
+                
+                <!-- Specific Skill Certification -->
+                <div class="card p-6 text-center">
+                    <div class="certification-level level-basic">專項</div>
+                    <h4 class="text-lg font-bold mb-3">技能認證</h4>
+                    <div class="text-2xl font-bold text-green-400 mb-2">¥2,000</div>
+                    <div class="text-sm text-gray-400 mb-4">每項技能模塊</div>
+                    
+                    <div class="space-y-2 text-sm text-left mb-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>40個專業方向</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>特定技能專注</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-tools text-blue-400 mr-2"></i>
+                            <span>高級以上級別必需</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-xs text-gray-400 bg-gray-800 p-3 rounded">
+                        針對特定專業方向的專項認證
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <h2 class="contact-title">🚀 Connect to the Matrix</h2>
-        <div class="contact-grid">
-            <div class="contact-item">
-                <strong>📧 Neural Link</strong><br>
-                admissions@aif.college
+    <!-- Pricing Section -->
+    <section class="py-20" id="pricing">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">綜合收費標準</h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto">
+                    靈活定價反映教育價值，同時保持對不同全球市場的可及性。
+                </p>
             </div>
-            <div class="contact-item">
-                <strong>🌐 Web Portal</strong><br>
-                www.aif.college
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <!-- Industry Talent Certification -->
+                <div class="pricing-card card p-8 text-center">
+                    <div class="certification-level level-basic">基礎</div>
+                    <h3 class="text-2xl font-bold mb-4">行業人才認證</h3>
+                    <div class="text-4xl font-bold text-green-400 mb-2">¥12,000</div>
+                    <div class="text-sm text-gray-400 mb-6">120 學時 / 3 個月</div>
+                    
+                    <div class="space-y-3 text-sm text-left mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>在線學習平台訪問</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>線下研討會和工作坊</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>評估和評價</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>結業認證</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#apply" class="btn-primary px-6 py-3 rounded-full font-medium w-full block text-center">
+                        立即報名
+                    </a>
+                </div>
+                
+                <!-- Professional Tracks -->
+                <div class="pricing-card featured card p-8 text-center">
+                    <div class="certification-level level-professional">專業</div>
+                    <h3 class="text-2xl font-bold mb-4">職業人才認證</h3>
+                    <div class="text-4xl font-bold text-green-400 mb-2">¥22,000-25,000</div>
+                    <div class="text-sm text-gray-400 mb-6">140-200 學時 / 4-6 個月</div>
+                    
+                    <div class="space-y-3 text-sm text-left mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>專業化職業方向</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>行業標準課程</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>真實項目經驗</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>職業安置支持</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>區塊鏈認證</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#apply" class="btn-education px-6 py-3 rounded-full font-medium w-full block text-center">
+                        選擇方向
+                    </a>
+                </div>
+                
+                <!-- Master Classes -->
+                <div class="pricing-card card p-8 text-center">
+                    <div class="certification-level level-expert">大師級</div>
+                    <h3 class="text-2xl font-bold mb-4">國際大師班</h3>
+                    <div class="text-4xl font-bold text-green-400 mb-2">¥100,000</div>
+                    <div class="text-sm text-gray-400 mb-6">每期課程</div>
+                    
+                    <div class="space-y-3 text-sm text-left mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>國際頂尖AI影視專家</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>前沿行業洞察</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>獨家網絡機會</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-2"></i>
+                            <span>高級認證</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#apply" class="btn-secondary px-6 py-3 rounded-full font-medium w-full block text-center">
+                        預訂席位
+                    </a>
+                </div>
             </div>
-            <div class="contact-item">
-                <strong>📍 HQ Node</strong><br>
-                Hong Kong SAR
-            </div>
-            <div class="contact-item">
-                <strong>🔗 Blockchain Network</strong><br>
-                Ethereum • Polygon • IPFS
+            
+            <!-- Project Classes -->
+            <div class="card p-8 mb-20">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">實戰項目班</h3>
+                    <p class="text-gray-300">
+                        真實AI影視項目，學員全程參與策劃、製作、宣發等環節
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-gray-800 rounded-lg">
+                        <h4 class="text-lg font-bold mb-2">小型項目</h4>
+                        <div class="text-2xl font-bold text-green-400 mb-2">¥20萬-30萬</div>
+                        <div class="text-sm text-gray-400 mb-4">1-3個月 | 5-10人</div>
+                        <div class="text-xs text-gray-300">
+                            短片、宣傳片和數位內容創作項目
+                        </div>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-gray-800 rounded-lg">
+                        <h4 class="text-lg font-bold mb-2">中型項目</h4>
+                        <div class="text-2xl font-bold text-green-400 mb-2">¥30萬-60萬</div>
+                        <div class="text-sm text-gray-400 mb-4">3-6個月 | 10-20人</div>
+                        <div class="text-xs text-gray-300">
+                            紀錄片系列、商業廣告和中型製作
+                        </div>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-gray-800 rounded-lg">
+                        <h4 class="text-lg font-bold mb-2">大型項目</h4>
+                        <div class="text-2xl font-bold text-green-400 mb-2">¥60萬-100萬</div>
+                        <div class="text-sm text-gray-400 mb-4">6-12個月 | 20-30人</div>
+                        <div class="text-xs text-gray-300">
+                            劇情片、系列製作和綜合媒體活動
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="contact-buttons">
-            <a href="mailto:admissions@aif.college" class="contact-button">Send Message</a>
-            <a href="#" class="contact-button">Join Discord</a>
-            <a href="#" class="contact-button">Follow Twitter</a>
+    </section>
+
+    <!-- Apply Section -->
+    <section class="py-24 relative" id="apply">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-purple-900 opacity-80"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">塑造AI電影的未來</h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    加入HKAIFA，成為AI影視教育全球革命的一部分。無論你是開始
+                    你的旅程還是提升你的職業，我們都有完美的項目適合你。
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="card p-8">
+                        <h3 class="text-2xl font-bold mb-4">學生申請</h3>
+                        <p class="text-gray-300 mb-6">
+                            在AI電影製作中開始你的旅程，提供為所有技能水平設計的綜合課程。
+                        </p>
+                        <div class="space-y-3 text-sm text-left mb-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap text-blue-400 mr-2"></i>
+                                <span>144門專業課程可選</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-certificate text-blue-400 mr-2"></i>
+                                <span>68個職業認證方向</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-briefcase text-blue-400 mr-2"></i>
+                                <span>直接行業安置支持</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-coins text-blue-400 mr-2"></i>
+                                <span>區塊鏈驗證證書</span>
+                            </div>
+                        </div>
+                        <a href="#student-application" class="btn-education px-8 py-3 rounded-full font-medium w-full block text-center">
+                            學生申請
+                        </a>
+                    </div>
+                    
+                    <div class="card p-8">
+                        <h3 class="text-2xl font-bold mb-4">講師申請</h3>
+                        <p class="text-gray-300 mb-6">
+                            分享你的專業知識，加入我們全球AI影視教育先鋒網絡。
+                        </p>
+                        <div class="space-y-3 text-sm text-left mb-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-chalkboard-teacher text-purple-400 mr-2"></i>
+                                <span>四級講師認證體系</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-percentage text-purple-400 mr-2"></i>
+                                <span>3-10% 績效獎勵</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-globe text-purple-400 mr-2"></i>
+                                <span>全球教學機會</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-trophy text-purple-400 mr-2"></i>
+                                <span>專業認可與成長</span>
+                            </div>
+                        </div>
+                        <a href="#instructor-application" class="btn-primary px-8 py-3 rounded-full font-medium w-full block text-center">
+                            講師申請
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card p-8 mb-12">
+                    <h3 class="text-2xl font-bold mb-6">合作夥伴機會</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-university text-2xl text-green-400"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2">教育機構</h4>
+                            <p class="text-sm text-gray-300">
+                                與HKAIFA合作建立合作中心，擴展你的AI教育項目。
+                            </p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 rounded-full bg-yellow-500 bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-building text-2xl text-yellow-400"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2">行業夥伴</h4>
+                            <p class="text-sm text-gray-300">
+                                在課程開發、提供真實項目和獲得我們的人才管道方面合作。
+                            </p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 rounded-full bg-blue-500 bg-opacity-20 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-coins text-2xl text-blue-400"></i>
+                            </div>
+                            <h4 class="text-lg font-bold mb-2">代幣投資者</h4>
+                            <p class="text-sm text-gray-300">
+                                通過我們創新的AIF和ACA代幣生態系統投資教育未來。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-lg text-gray-200 mb-6">
+                        準備成為AI影視革命的一部分？今天就聯繫我們，了解更多機會。
+                    </p>
+                    <a href="mailto:admissions@aif.college" class="btn-secondary px-8 py-3 rounded-full font-medium mr-4">
+                        聯繫招生辦
+                    </a>
+                    <a href="#whitepaper" class="btn-primary px-8 py-3 rounded-full font-medium">
+                        下載白皮書
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-logo">HKAIFA</div>
-        <p>&copy; 2025 Hong Kong AI Film Academy. All Rights Reserved.</p>
-        <p>Powered by Blockchain • Enhanced by AI • Secured by Web3</p>
-        <p style="margin-top: 10px; font-size: 11px; opacity: 0.7;">
-            The future of filmmaking starts here • 影视创作的未来始于此
-        </p>
+    <footer class="py-12 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="flex flex-col items-start mb-4">
+                        <div class="logo-font text-2xl">HKAIFA</div>
+                        <div class="logo-sub text-xs">香港AI電影學院</div>
+                    </a>
+                    <p class="text-gray-400 mb-4">
+                        全球首個AI原生影視教育機構，連接技術與創意，
+                        塑造電影的未來。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">教育</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#curriculum" class="text-gray-400 hover:text-white">課程體系</a></li>
+                        <li><a href="#certification" class="text-gray-400 hover:text-white">認證體系</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white">收費標準</a></li>
+                        <li><a href="#instructors" class="text-gray-400 hover:text-white">成為講師</a></li>
+                        <li><a href="#apply" class="text-gray-400 hover:text-white">立即申請</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">技術</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#ecosystem" class="text-gray-400 hover:text-white">教育生態系統</a></li>
+                        <li><a href="#tokenomics" class="text-gray-400 hover:text-white">代幣經濟</a></li>
+                        <li><a href="#blockchain" class="text-gray-400 hover:text-white">區塊鏈整合</a></li>
+                        <li><a href="#ai-technology" class="text-gray-400 hover:text-white">AI技術</a></li>
+                        <li><a href="#whitepaper" class="text-gray-400 hover:text-white">白皮書</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">全球網絡</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#global" class="text-gray-400 hover:text-white">全球中心</a></li>
+                        <li><a href="#partnerships" class="text-gray-400 hover:text-white">合作夥伴</a></li>
+                        <li><a href="#community" class="text-gray-400 hover:text-white">社區</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white">活動</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">聯繫我們</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-center text-gray-500 text-sm mb-4 md:mb-0">
+                        <p>© 2025 香港AI電影學院。保留所有權利。</p>
+                    </div>
+                    <div class="flex space-x-4 text-sm">
+                        <a href="#terms" class="text-gray-400 hover:text-white">服務條款</a>
+                        <a href="#privacy" class="text-gray-400 hover:text-white">隱私政策</a>
+                        <a href="#legal" class="text-gray-400 hover:text-white">法律聲明</a>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <div class="inline-flex items-center space-x-4 text-sm text-gray-400">
+                        <span>聯繫信息：</span>
+                        <span>📧 admissions@aif.college</span>
+                        <span>🌐 www.aif.college</span>
+                        <span>📍 香港特別行政區</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Multi-language support
-        const translations = {
-            en: {
-                'nav.home': 'Home',
-                'nav.ecosystem': 'AI Ecosystem',
-                'nav.courses': 'Courses',
-                'nav.web3': 'Web3',
-                'nav.contact': 'Contact',
-                'hero.title': 'Future of Filmmaking',
-                'hero.subtitle': 'World\'s First AI Native Film Education Institution<br>Technology Empowering Art • Art Leading Technology',
-                'hero.cta': 'Enter Matrix',
-                'stats.nodes': 'Global Nodes',
-                'stats.talents': 'AI Talents/Year',
-                'stats.courses': 'Neural Courses',
-                'stats.pathways': 'Cert Pathways'
-            },
-            zh: {
-                'nav.home': '首页',
-                'nav.ecosystem': 'AI生态',
-                'nav.courses': '课程',
-                'nav.web3': 'Web3',
-                'nav.contact': '联系',
-                'hero.title': '影视创作的未来',
-                'hero.subtitle': '全球首个AI原生影视教育机构<br>科技赋能艺术 • 艺术引领科技',
-                'hero.cta': '进入矩阵',
-                'stats.nodes': '全球节点',
-                'stats.talents': 'AI人才/年',
-                'stats.courses': '神经课程',
-                'stats.pathways': '认证路径'
-            },
-            es: {
-                'nav.home': 'Inicio',
-                'nav.ecosystem': 'Ecosistema IA',
-                'nav.courses': 'Cursos',
-                'nav.web3': 'Web3',
-                'nav.contact': 'Contacto',
-                'hero.title': 'Futuro del Cine',
-                'hero.subtitle': 'Primera Institución Educativa Cinematográfica IA Nativa del Mundo<br>Tecnología Potenciando Arte • Arte Liderando Tecnología',
-                'hero.cta': 'Entrar Matriz',
-                'stats.nodes': 'Nodos Globales',
-                'stats.talents': 'Talentos IA/Año',
-                'stats.courses': 'Cursos Neurales',
-                'stats.pathways': 'Rutas Cert'
-            },
-            fr: {
-                'nav.home': 'Accueil',
-                'nav.ecosystem': 'Écosystème IA',
-                'nav.courses': 'Cours',
-                'nav.web3': 'Web3',
-                'nav.contact': 'Contact',
-                'hero.title': 'Avenir du Cinéma',
-                'hero.subtitle': 'Première Institution Éducative Cinématographique IA Native au Monde<br>Technologie Autonomisant l\'Art • Art Dirigeant la Technologie',
-                'hero.cta': 'Entrer Matrice',
-                'stats.nodes': 'Nœuds Globaux',
-                'stats.talents': 'Talents IA/An',
-                'stats.courses': 'Cours Neuraux',
-                'stats.pathways': 'Voies Cert'
-            },
-            de: {
-                'nav.home': 'Startseite',
-                'nav.ecosystem': 'KI-Ökosystem',
-                'nav.courses': 'Kurse',
-                'nav.web3': 'Web3',
-                'nav.contact': 'Kontakt',
-                'hero.title': 'Zukunft des Films',
-                'hero.subtitle': 'Weltweit Erste KI-Native Film-Bildungsinstitution<br>Technologie Stärkt Kunst • Kunst Führt Technologie',
-                'hero.cta': 'Matrix Betreten',
-                'stats.nodes': 'Globale Knoten',
-                'stats.talents': 'KI-Talente/Jahr',
-                'stats.courses': 'Neurale Kurse',
-                'stats.pathways': 'Zert-Pfade'
-            },
-            ja: {
-                'nav.home': 'ホーム',
-                'nav.ecosystem': 'AIエコシステム',
-                'nav.courses': 'コース',
-                'nav.web3': 'Web3',
-                'nav.contact': '連絡先',
-                'hero.title': '映像制作の未来',
-                'hero.subtitle': '世界初のAIネイティブ映像教育機関<br>テクノロジーがアートを支援 • アートがテクノロジーを牽引',
-                'hero.cta': 'マトリックス入場',
-                'stats.nodes': 'グローバルノード',
-                'stats.talents': 'AI人材/年',
-                'stats.courses': 'ニューラルコース',
-                'stats.pathways': '認定経路'
-            },
-            ko: {
-                'nav.home': '홈',
-                'nav.ecosystem': 'AI 생태계',
-                'nav.courses': '강좌',
-                'nav.web3': 'Web3',
-                'nav.contact': '연락처',
-                'hero.title': '영화 제작의 미래',
-                'hero.subtitle': '세계 최초의 AI 네이티브 영화 교육 기관<br>기술이 예술을 강화 • 예술이 기술을 선도',
-                'hero.cta': '매트릭스 입장',
-                'stats.nodes': '글로벌 노드',
-                'stats.talents': 'AI 인재/년',
-                'stats.courses': '뉴럴 코스',
-                'stats.pathways': '인증 경로'
-            },
-            ar: {
-                'nav.home': 'الرئيسية',
-                'nav.ecosystem': 'نظام الذكاء الاصطناعي',
-                'nav.courses': 'الدورات',
-                'nav.web3': 'ويب3',
-                'nav.contact': 'اتصل',
-                'hero.title': 'مستقبل صناعة الأفلام',
-                'hero.subtitle': 'أول مؤسسة تعليمية سينمائية أصلية للذكاء الاصطناعي في العالم<br>التكنولوجيا تمكن الفن • الفن يقود التكنولوجيا',
-                'hero.cta': 'ادخل المصفوفة',
-                'stats.nodes': 'العقد العالمية',
-                'stats.talents': 'مواهب الذكاء الاصطناعي/سنة',
-                'stats.courses': 'الدورات العصبية',
-                'stats.pathways': 'مسارات الشهادات'
-            },
-            ru: {
-                'nav.home': 'Главная',
-                'nav.ecosystem': 'ИИ Экосистема',
-                'nav.courses': 'Курсы',
-                'nav.web3': 'Web3',
-                'nav.contact': 'Контакты',
-                'hero.title': 'Будущее Кинематографа',
-                'hero.subtitle': 'Первый в Мире ИИ-Нативный Кинообразовательный Институт<br>Технологии Расширяют Искусство • Искусство Ведет Технологии',
-                'hero.cta': 'Войти в Матрицу',
-                'stats.nodes': 'Глобальные Узлы',
-                'stats.talents': 'ИИ Таланты/Год',
-                'stats.courses': 'Нейронные Курсы',
-                'stats.pathways': 'Пути Серт'
-            },
-            pt: {
-                'nav.home': 'Início',
-                'nav.ecosystem': 'Ecossistema IA',
-                'nav.courses': 'Cursos',
-                'nav.web3': 'Web3',
-                'nav.contact': 'Contato',
-                'hero.title': 'Futuro do Cinema',
-                'hero.subtitle': 'Primeira Instituição Educacional Cinematográfica IA Nativa do Mundo<br>Tecnologia Capacitando Arte • Arte Liderando Tecnologia',
-                'hero.cta': 'Entrar Matriz',
-                'stats.nodes': 'Nós Globais',
-                'stats.talents': 'Talentos IA/Ano',
-                'stats.courses': 'Cursos Neurais',
-                'stats.pathways': 'Caminhos Cert'
-            },
-            hi: {
-                'nav.home': 'होम',
-                'nav.ecosystem': 'AI इकोसिस्टम',
-                'nav.courses': 'कोर्सेज',
-                'nav.web3': 'Web3',
-                'nav.contact': 'संपर्क',
-                'hero.title': 'फिल्म निर्माण का भविष्य',
-                'hero.subtitle': 'दुनिया का पहला AI नेटिव फिल्म शिक्षा संस्थान<br>तकनीक कला को सशक्त बनाती है • कला तकनीक का नेतृत्व करती है',
-                'hero.cta': 'मैट्रिक्स में प्रवेश',
-                'stats.nodes': 'ग्लोबल नोड्स',
-                'stats.talents': 'AI प्रतिभाएं/वर्ष',
-                'stats.courses': 'न्यूरल कोर्सेज',
-                'stats.pathways': 'प्रमाण पथ'
-            },
-            it: {
-                'nav.home': 'Home',
-                'nav.ecosystem': 'Ecosistema IA',
-                'nav.courses': 'Corsi',
-                'nav.web3': 'Web3',
-                'nav.contact': 'Contatti',
-                'hero.title': 'Futuro del Cinema',
-                'hero.subtitle': 'Prima Istituzione Educativa Cinematografica IA Nativa al Mondo<br>Tecnologia Potenzia Arte • Arte Guida Tecnologia',
-                'hero.cta': 'Entra Matrix',
-                'stats.nodes': 'Nodi Globali',
-                'stats.talents': 'Talenti IA/Anno',
-                'stats.courses': 'Corsi Neurali',
-                'stats.pathways': 'Percorsi Cert'
+        // Add random data streams
+        function createDataStreams() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const stream = document.createElement('div');
+                    stream.className = 'data-stream';
+                    stream.style.left = Math.random() * 100 + '%';
+                    stream.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(stream);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        stream.remove();
+                    }, 4000);
+                }, i * 3000);
             }
-        };
-
-        let currentLanguage = 'en';
-
-        // Language switcher functionality
-        function initLanguageSwitcher() {
-            const langButton = document.getElementById('langButton');
-            const langDropdown = document.getElementById('langDropdown');
-            const langSwitcher = document.getElementById('langSwitcher');
-            const langOptions = document.querySelectorAll('.lang-option');
-
-            langButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                langSwitcher.classList.toggle('open');
-                langDropdown.classList.toggle('active');
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start data streams
+            createDataStreams();
+            setInterval(createDataStreams, 15000);
+            
+            // Add scroll animations
+            const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        if (entry.target.classList.contains('animate-slide-up')) {
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                        if (entry.target.classList.contains('animate-slide-right')) {
+                            entry.target.style.transform = 'translateX(0)';
+                        }
+                        if (entry.target.classList.contains('animate-fade-in')) {
+                            entry.target.style.transform = 'scale(1)';
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                if (el.classList.contains('animate-slide-up')) {
+                    el.style.transform = 'translateY(50px)';
+                }
+                if (el.classList.contains('animate-slide-right')) {
+                    el.style.transform = 'translateX(-50px)';
+                }
+                if (el.classList.contains('animate-fade-in')) {
+                    el.style.transform = 'scale(0.95)';
+                }
+                el.style.transition = 'all 0.8s ease-in-out';
+                observer.observe(el);
             });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function() {
-                langSwitcher.classList.remove('open');
-                langDropdown.classList.remove('active');
-            });
-
-            // Language option selection
-            langOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const selectedLang = this.dataset.lang;
-                    const flag = this.querySelector('.lang-flag').textContent;
-                    const langName = this.querySelector('span:last-child').textContent;
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            
+            if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                });
+                
+                // Close mobile menu when clicking on nav items
+                const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+                mobileNavItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        document.body.style.overflow = 'auto';
+                    });
+                });
+            }
+            
+            // Language selection
+            const languageLinks = document.querySelectorAll('.language-dropdown a');
+            const languageIndicator = document.querySelector('.language-indicator');
+            
+            languageLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = link.getAttribute('data-lang');
+                    const flag = link.querySelector('img').src;
+                    const text = link.textContent.trim();
                     
-                    // Update current language
-                    currentLanguage = selectedLang;
+                    // Update language indicator
+                    if (languageIndicator) {
+                        const shortText = text === '繁體中文 (香港)' ? '繁中' : 
+                                         text === '简体中文' ? '简中' : 
+                                         text === 'English' ? 'EN' : 
+                                         text === '日本語' ? 'JA' : text;
+                        languageIndicator.innerHTML = `
+                            <img src="${flag}" alt="${text}">
+                            <span>${shortText}</span>
+                            <i class="fas fa-chevron-down ml-2 text-sm"></i>
+                        `;
+                    }
                     
-                    // Update button
-                    document.getElementById('currentFlag').textContent = flag;
-                    document.getElementById('currentLang').textContent = selectedLang.toUpperCase();
-                    
-                    // Update active state
-                    langOptions.forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Close dropdown
-                    langSwitcher.classList.remove('open');
-                    langDropdown.classList.remove('active');
-                    
-                    // Apply translations
-                    applyTranslations(selectedLang);
-                    
-                    // Show language change notification
-                    showLanguageNotification(langName);
+                    // Show translation message
+                    alert(`切換至 ${text} - AI翻譯已啟動`);
                 });
             });
-        }
-
-        function applyTranslations(lang) {
-            const elementsToTranslate = document.querySelectorAll('[data-translate]');
             
-            elementsToTranslate.forEach(element => {
-                const key = element.dataset.translate;
-                if (translations[lang] && translations[lang][key]) {
-                    element.innerHTML = translations[lang][key];
-                }
+            // Smooth scrolling for anchor links
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80; // Account for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
             
-            // Update document language attribute
-            document.documentElement.lang = lang;
-        }
-
-        function showLanguageNotification(langName) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: rgba(0, 255, 255, 0.1);
-                border: 1px solid var(--primary-neon);
-                border-radius: 10px;
-                padding: 15px 20px;
-                color: var(--primary-neon);
-                font-family: 'Rajdhani', sans-serif;
-                font-weight: 600;
-                font-size: 14px;
-                backdrop-filter: blur(20px);
-                z-index: 10000;
-                transform: translateX(100%);
-                transition: all 0.3s ease;
-                box-shadow: 0 5px 20px rgba(0, 255, 255, 0.2);
-            `;
-            notification.innerHTML = `🌐 Language changed to ${langName}`;
-            
-            document.body.appendChild(notification);
-            
-            // Animate in
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Add data-translate attributes to key elements
-        function addTranslationAttributes() {
-            // Hero section
-            const heroTitle = document.querySelector('.hero-title');
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            const ctaButton = document.querySelector('.cta-button');
-            
-            if (heroTitle) heroTitle.setAttribute('data-translate', 'hero.title');
-            if (heroSubtitle) heroSubtitle.setAttribute('data-translate', 'hero.subtitle');
-            if (ctaButton) ctaButton.setAttribute('data-translate', 'hero.cta');
-            
-            // Stats section
-            const statLabels = document.querySelectorAll('.stat-label');
-            const statKeys = ['stats.nodes', 'stats.talents', 'stats.courses', 'stats.pathways'];
-            statLabels.forEach((label, index) => {
-                if (statKeys[index]) {
-                    label.setAttribute('data-translate', statKeys[index]);
-                }
+            // Application button handlers
+            const applicationButtons = document.querySelectorAll('[href="#apply"], [href="#student-application"], [href="#instructor-application"]');
+            applicationButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#student-application') {
+                        e.preventDefault();
+                        alert('學生申請入口開啟中...\n\n您將被重新導向至我們的綜合申請表格，您可以：\n\n• 選擇您偏好的項目方向\n• 上傳您的作品集\n• 安排面試\n• 申請獎學金');
+                    } else if (this.getAttribute('href') === '#instructor-application') {
+                        e.preventDefault();
+                        alert('講師申請入口開啟中...\n\n您將被重新導向至我們的講師認證系統，您可以：\n\n• 提交您的證書\n• 參加評估\n• 安排認證面試\n• 加入我們的全球網絡');
+                    }
+                });
             });
-        }
-        // Initialize neural network background
-        function createNeuralNetwork() {
-            const container = document.getElementById('neuralNetwork');
-            const nodeCount = 20;
             
-            // Clear existing nodes
-            container.innerHTML = '';
+            // Add dynamic statistics counter animation
+            const statNumbers = document.querySelectorAll('.stats-card .number');
+            const animateNumbers = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const text = target.textContent;
+                        
+                        if (!target.dataset.animated) {
+                            target.dataset.animated = 'true';
+                            
+                            if (text.includes('144')) {
+                                let current = 0;
+                                const timer = setInterval(() => {
+                                    current += 3;
+                                    if (current >= 144) {
+                                        current = 144;
+                                        clearInterval(timer);
+                                    }
+                                    target.textContent = current;
+                                }, 30);
+                            } else if (text.includes('68')) {
+                                let current = 0;
+                                const timer = setInterval(() => {
+                                    current += 2;
+                                    if (current >= 68) {
+                                        current = 68;
+                                        clearInterval(timer);
+                                    }
+                                    target.textContent = current;
+                                }, 40);
+                            } else if (text.includes('100')) {
+                                let current = 0;
+                                const timer = setInterval(() => {
+                                    current += 2;
+                                    if (current >= 100) {
+                                        current = 100;
+                                        clearInterval(timer);
+                                    }
+                                    target.textContent = current;
+                                }, 30);
+                            } else if (text.includes('5萬')) {
+                                target.textContent = '5萬+';
+                            }
+                        }
+                    }
+                });
+            };
             
-            // Create nodes
-            for (let i = 0; i < nodeCount; i++) {
-                const node = document.createElement('div');
-                node.className = 'neural-node';
-                node.style.left = Math.random() * 100 + '%';
-                node.style.top = Math.random() * 100 + '%';
-                node.style.animationDelay = Math.random() * 2 + 's';
-                container.appendChild(node);
+            const numberObserver = new IntersectionObserver(animateNumbers, { threshold: 0.5 });
+            statNumbers.forEach(num => numberObserver.observe(num));
+            
+            // Add hover effects for cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
                 
-                // Create connections
-                if (i > 0 && Math.random() > 0.6) {
-                    const connection = document.createElement('div');
-                    connection.className = 'neural-connection';
-                    connection.style.left = Math.random() * 100 + '%';
-                    connection.style.top = Math.random() * 100 + '%';
-                    connection.style.width = Math.random() * 200 + 50 + 'px';
-                    connection.style.transform = `rotate(${Math.random() * 360}deg)`;
-                    connection.style.animationDelay = Math.random() * 3 + 's';
-                    container.appendChild(connection);
-                }
-            }
-        }
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
             });
-        });
-
-        // Navigation active state with glow effect
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navItems = document.querySelectorAll('.nav-item');
             
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
+            // Email link handler
+            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const email = this.getAttribute('href').replace('mailto:', '');
+                    if (!email) {
+                        e.preventDefault();
+                        alert('電子郵件：admissions@aif.college\n\n請發送您的查詢，我們將在24小時內回覆。');
+                    }
+                });
             });
-
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === '#' + current) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // Enhanced intersection observer for staggered animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0) scale(1)';
-                    }, index * 100);
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.feature-card, .course-card, .stat-card, .token-card, .cert-feature').forEach((element, index) => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(30px) scale(0.95)';
-            element.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            observer.observe(element);
-        });
-
-        // Course button interactions with futuristic alerts
-        document.querySelectorAll('.course-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const courseTitle = this.closest('.course-card').querySelector('.course-title').textContent;
-                const isBasic = this.textContent === 'Initialize Program';
-                
-                if (isBasic) {
-                    alert(`🚀 NEURAL LINK ESTABLISHED\n\n程序: ${courseTitle}\n\n📡 连接到学习矩阵...\n📧 admissions@aif.college\n🔗 Blockchain verification pending`);
-                } else {
-                    alert(`⚡ ACCESSING MASTER MATRIX\n\n高级程序: ${courseTitle}\n\n🧠 Neural certification pathway\n📊 Professional skill matrix unlock\n📧 Contact: admissions@aif.college`);
-                }
-            });
-        });
-
-        // Loading screen with neural network effect
-        window.addEventListener('load', function() {
-            createNeuralNetwork();
-            addTranslationAttributes();
-            initLanguageSwitcher();
             
-            setTimeout(() => {
-                const loadingOverlay = document.getElementById('loadingOverlay');
-                loadingOverlay.style.opacity = '0';
-                setTimeout(() => {
-                    loadingOverlay.style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-        });
-
-        // Random glitch effect for title
-        function glitchEffect() {
-            const logo = document.querySelector('.logo');
-            const originalText = 'HKAIFA';
-            const glitchChars = '!@#$%^&*(){}[]|\\;:,.<>?';
-            
-            let glitched = '';
-            for (let i = 0; i < originalText.length; i++) {
-                if (Math.random() > 0.8) {
-                    glitched += glitchChars[Math.floor(Math.random() * glitchChars.length)];
-                } else {
-                    glitched += originalText[i];
-                }
-            }
-            
-            logo.textContent = glitched;
-            setTimeout(() => {
-                logo.textContent = originalText;
-            }, 100);
-        }
-
-        // Trigger glitch effect randomly
-        setInterval(() => {
-            if (Math.random() > 0.95) {
-                glitchEffect();
-            }
-        }, 2000);
-
-        // Touch device optimizations
-        if ('ontouchstart' in window) {
-            document.body.classList.add('touch-device');
-        }
-
-        // Performance optimization for animations
-        let ticking = false;
-        function updateAnimations() {
-            // Update any scroll-based animations here
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                requestAnimationFrame(updateAnimations);
-                ticking = true;
-            }
+            console.log('HKAIFA 繁體中文網站已初始化 - 準備迎接AI影視教育的未來！');
         });
     </script>
 </body>
 </html>
+                
+                
+                
