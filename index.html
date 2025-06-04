@@ -500,6 +500,7 @@
             margin-right: 8px;
         }
         
+        /* 移动端优化 */
         @media (max-width: 768px) {
             .desktop-nav {
                 display: none;
@@ -513,9 +514,18 @@
                 font-size: 1.8rem;
             }
             
+            .hero {
+                padding-top: 100px; /* 增加顶部内边距，避免导航栏遮挡 */
+                min-height: 90vh; /* 减少最小高度，适应小屏幕 */
+            }
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
                 line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
             
             .stats-card {
@@ -529,12 +539,90 @@
             .stats-card i {
                 font-size: 2rem;
             }
+            
+            /* 调整浮动框位置 */
+            .ai-element {
+                display: none; /* 在移动端隐藏浮动框 */
+            }
+            
+            /* 调整导航栏高度 */
+            .navbar {
+                padding: 12px 0;
+            }
+            
+            /* 调整按钮大小 */
+            .btn-primary, .btn-education, .btn-secondary {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+            
+            /* 调整课程卡片 */
+            .course-card {
+                padding: 15px;
+            }
+            
+            /* 调整生态系统组件 */
+            .ecosystem-component {
+                padding: 20px;
+            }
+            
+            /* 调整全局中心部分 */
+            .global-center-card {
+                padding: 15px;
+            }
+            
+            /* 调整申请部分 */
+            .apply-card {
+                padding: 20px;
+            }
+        }
+        
+        /* 小屏幕手机优化 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .stats-card {
+                padding: 12px;
+            }
+            
+            .stats-card .number {
+                font-size: 1.5rem;
+            }
+            
+            .stats-card i {
+                font-size: 1.8rem;
+            }
+            
+            .language-indicator {
+                padding: 6px 8px;
+                font-size: 0.9rem;
+            }
+            
+            .language-indicator img {
+                width: 20px;
+            }
+            
+            .btn-primary, .btn-education, .btn-secondary {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- AI Elements -->
-    <div class="ai-element" style="top: 120px; left: 10%;">
+    <!-- 将第一个浮动框移动到右下角 -->
+    <div class="ai-element" style="bottom: 200px; right: 15%;">
         AI_教育: 運行中 <br>
         課程_生成: 最佳 <br>
         // 下一代學習
@@ -1896,7 +1984,7 @@
                 </p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div class="card p-8">
+                    <div class="card p-8 apply-card">
                         <h3 class="text-2xl font-bold mb-4">學生申請</h3>
                         <p class="text-gray-300 mb-6">
                             在AI電影製作中開始你的旅程，提供為所有技能水平設計的綜合課程。
@@ -1924,7 +2012,7 @@
                         </a>
                     </div>
                     
-                    <div class="card p-8">
+                    <div class="card p-8 apply-card">
                         <h3 class="text-2xl font-bold mb-4">講師申請</h3>
                         <p class="text-gray-300 mb-6">
                             分享你的專業知識，加入我們全球AI影視教育先鋒網絡。
@@ -2311,6 +2399,3 @@
     </script>
 </body>
 </html>
-                
-                
-                
