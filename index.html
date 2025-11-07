@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIF WORLD - AIF代币应用场景完整展示</title>
+    <title>AIF WORLD - AIF代幣的1001種應用場景</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
@@ -28,8 +28,7 @@
         .logo-font {
             font-family: 'Orbitron', sans-serif;
             font-weight: 800;
-            font-size: 2.5rem;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
@@ -38,6 +37,15 @@
             display: inline-block;
             text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
             animation: logoGlow 3s ease-in-out infinite alternate;
+            white-space: nowrap;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        
+        @media (max-width: 640px) {
+            .logo-font {
+                font-size: clamp(1.2rem, 6vw, 1.8rem);
+                letter-spacing: 1px;
+            }
         }
         
         @keyframes logoGlow {
@@ -71,11 +79,18 @@
             border-color: rgba(0, 255, 157, 0.3);
         }
         
+
         .navbar {
             background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
+
         
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -105,10 +120,18 @@
         .hero {
             position: relative;
             overflow: hidden;
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100vh;
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
         }
         
         .hero:before {
@@ -401,6 +424,26 @@
                 display: none;
             }
         }
+
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            white-space: nowrap;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        }
+        
+        @media (max-width: 640px) {
+            .footer-logo {
+                font-size: clamp(1rem, 5vw, 1.3rem);
+                letter-spacing: 1px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -408,13 +451,13 @@
     <div class="ai-element" style="top: 120px; left: 10%;">
         MODEL_ID: AIF-WORLD <br>
         STATUS: ACTIVE <br>
-        // AIF应用场景平台
+        // AIF應用場景平台
     </div>
     
     <div class="ai-element" style="bottom: 150px; right: 15%;">
         SCENARIOS: 1000+ <br>
         HASH: 0x71A9B3...F7E <br>
-        // 区块链认证
+        // 区塊鏈认證
     </div>
     
     <!-- Data streams -->
@@ -428,35 +471,35 @@
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center">
                 <div class="logo-font">AIF WORLD</div>
-                <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF应用场景世界</div>
+                <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF應用場景世界</div>
                 <div class="ml-2 text-sm text-accent font-bold lang-en">AIF Application Scenarios World</div>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#categories" class="hover:text-blue-400 transition lang-zh active">场景分类</a>
+                <a href="#categories" class="hover:text-blue-400 transition lang-zh active">場景分类</a>
                 <a href="#categories" class="hover:text-blue-400 transition lang-en">Categories</a>
-                <a href="#scenarios" class="hover:text-blue-400 transition lang-zh active">全部场景</a>
+                <a href="#scenarios" class="hover:text-blue-400 transition lang-zh active">全部場景</a>
                 <a href="#scenarios" class="hover:text-blue-400 transition lang-en">All Scenarios</a>
-                <a href="#ecosystem" class="hover:text-blue-400 transition lang-zh active">生态系统</a>
+                <a href="#ecosystem" class="hover:text-blue-400 transition lang-zh active">生態系統</a>
                 <a href="#ecosystem" class="hover:text-blue-400 transition lang-en">Ecosystem</a>
                 <a href="#partners" class="hover:text-blue-400 transition lang-zh active">合作伙伴</a>
                 <a href="#partners" class="hover:text-blue-400 transition lang-en">Partners</a>
             </div>
             <div class="flex items-center space-x-4">
-                <!-- 语言切换按钮 -->
+                <!-- 語言切换按钮 -->
                 <button class="hidden md:flex items-center justify-center px-3 py-2 rounded-lg bg-opacity-10 bg-white border border-opacity-20 border-white hover:bg-opacity-20 hover:border-accent transition-all" onclick="toggleDesktopLanguage()">
                     <img src="https://flagcdn.com/w40/gb.png" alt="Language" class="w-6 h-4" id="desktop-current-flag">
                 </button>
                 
                 <a href="http://token.aif.market" class="btn-secondary px-4 py-2 rounded-full text-sm hidden md:block">
-                    <i class="fas fa-coins mr-2"></i><span class="lang-zh active">获取AIF代币</span><span class="lang-en">Get AIF Token</span>
+                    <i class="fas fa-coins mr-2"></i><span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
                 </a>
                 
-                <!-- 移动端语言切换按钮 -->
+                <!-- 移动端語言切换按钮 -->
                 <button class="md:hidden text-white mr-3 mobile-lang-toggle" onclick="toggleMobileLanguage()">
                     <img src="https://flagcdn.com/w40/gb.png" alt="Language" class="w-6 h-4" id="mobile-current-flag">
                 </button>
                 
-                <!-- 移动端菜单按钮 -->
+                <!-- 移动端菜單按钮 -->
                 <button class="md:hidden text-white" onclick="toggleMobileMenu()">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
@@ -464,27 +507,27 @@
         </div>
     </nav>
 
-    <!-- 移动端菜单遮罩 -->
+    <!-- 移动端菜單遮罩 -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
 
-    <!-- 移动端菜单 -->
+    <!-- 移动端菜單 -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="absolute top-5 right-5 text-xl cursor-pointer" onclick="closeMobileMenu()">
             <i class="fas fa-times"></i>
         </div>
         
         <div class="mt-12">
-            <a href="#categories" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">场景分类</a>
+            <a href="#categories" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">場景分类</a>
             <a href="#categories" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Categories</a>
-            <a href="#scenarios" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">全部场景</a>
+            <a href="#scenarios" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">全部場景</a>
             <a href="#scenarios" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">All Scenarios</a>
-            <a href="#ecosystem" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">生态系统</a>
+            <a href="#ecosystem" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">生態系統</a>
             <a href="#ecosystem" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Ecosystem</a>
             <a href="#partners" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">合作伙伴</a>
             <a href="#partners" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Partners</a>
             
             <a href="http://token.aif.market" class="btn-secondary w-full px-4 py-2 rounded-full text-sm mt-4 block text-center">
-                <i class="fas fa-coins mr-2"></i><span class="lang-zh active">获取AIF代币</span><span class="lang-en">Get AIF Token</span>
+                <i class="fas fa-coins mr-2"></i><span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
             </a>
         </div>
     </div>
@@ -495,12 +538,12 @@
         <div class="container mx-auto px-4 hero-content">
             <div class="max-w-4xl animate-fade-in">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                    <span class="lang-zh active">探索<span class="gradient-text">1000+ AIF应用场景</span>的无限可能</span>
+                    <span class="lang-zh active">探索<span class="gradient-text">1000+ AIF應用場景</span>的无限可能</span>
                     <span class="lang-en">Explore Infinite Possibilities of <span class="gradient-text">1000+ AIF Application Scenarios</span></span>
                 </h1>
                 <p class="text-xl text-gray-300 mb-8 lang-zh active">
-                    AIF WORLD 是AIF代币应用场景的完整展示平台，涵盖了创意金融、AI劳动力结算、数字灵魂价值载体、
-                    未来价值交易媒介等八大核心领域，全面展示AIF在AI时代的无限应用潜力。
+                    AIF WORLD 是AIF代幣應用場景的完整展示平台，涵盖了創意金融、AI劳动力結算、数字灵魂價值载体、
+                    未來價值交易媒介等八大核心領域，全面展示AIF在AI時代的无限应用潜力。
                 </p>
                 <p class="text-xl text-gray-300 mb-8 lang-en">
                     AIF WORLD is a comprehensive platform showcasing AIF token application scenarios, covering eight core areas including creative finance, AI labor settlement, digital soul value carriers,
@@ -508,10 +551,10 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 mb-12">
                     <a href="#scenarios" class="btn-primary px-8 py-3 rounded-lg font-medium text-center">
-                        <span class="lang-zh active">探索全部场景</span><span class="lang-en">Explore All Scenarios</span> <i class="fas fa-arrow-right ml-2"></i>
+                        <span class="lang-zh active">探索全部場景</span><span class="lang-en">Explore All Scenarios</span> <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                     <a href="http://token.aif.market" class="btn-secondary px-8 py-3 rounded-lg font-medium text-center">
-                        <i class="fas fa-coins mr-2"></i> <span class="lang-zh active">获取AIF代币</span><span class="lang-en">Get AIF Token</span>
+                        <i class="fas fa-coins mr-2"></i> <span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
                     </a>
                 </div>
                 
@@ -525,13 +568,13 @@
                     <div class="stats-card">
                         <i class="fas fa-cubes"></i>
                         <div class="number">1000+</div>
-                        <div class="text-sm lang-zh active">应用场景</div>
+                        <div class="text-sm lang-zh active">應用場景</div>
                         <div class="text-sm lang-en">Application Scenarios</div>
                     </div>
                     <div class="stats-card">
                         <i class="fas fa-industry"></i>
                         <div class="number">50+</div>
-                        <div class="text-sm lang-zh active">跨行业领域</div>
+                        <div class="text-sm lang-zh active">跨行業領域</div>
                         <div class="text-sm lang-en">Cross-Industry Fields</div>
                     </div>
                     <div class="stats-card">
@@ -550,11 +593,11 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">
-                    <span class="lang-zh active">AIF应用场景分类</span>
+                    <span class="lang-zh active">AIF應用場景分类</span>
                     <span class="lang-en">AIF Application Scenario Categories</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-zh active">
-                    AIF代币在AI时代的八大核心应用领域，覆盖创意金融、AI劳动力结算、数字灵魂价值载体等多个维度
+                    AIF代幣在AI時代的八大核心应用領域，覆盖創意金融、AI劳动力結算、数字灵魂價值载体等多个维度
                 </p>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-en">
                     Eight core application areas of AIF tokens in the AI era, covering multiple dimensions including creative finance, AI labor settlement, and digital soul value carriers
@@ -565,105 +608,105 @@
                 <!-- Category 1 -->
                 <div class="category-card">
                     <i class="fas fa-piggy-bank text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 lang-zh active">创意金融底层资产</h3>
+                    <h3 class="text-xl font-bold mb-4 lang-zh active">創意金融底层資產</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">Creative Finance Underlying Assets</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为信用抵押品、流动性媒介和风险定价工具，为创意经济提供金融基础设施
+                        AIF作為信用抵押品、流动性媒介和风险定价工具，為創意經濟提供金融基础設施
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as credit collateral, liquidity medium, and risk pricing tool, providing financial infrastructure for the creative economy
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">150+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">150+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">150+ Scenarios</div>
                 </div>
 
                 <!-- Category 2 -->
                 <div class="category-card">
                     <i class="fas fa-robot text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 lang-zh active">AI劳动力结算工资</h3>
+                    <h3 class="text-xl font-bold mb-4 lang-zh active">AI劳动力結算工资</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">AI Labor Settlement Wages</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为M2M支付货币和AI代理人的"时薪"，支撑AI经济协作的基础结算单位
+                        AIF作為M2M支付货幣和AI代理人的"時薪"，支撑AI經濟协作的基础結算單位
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as M2M payment currency and "hourly wage" for AI agents, supporting the basic settlement unit of AI economic collaboration
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">120+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">120+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">120+ Scenarios</div>
                 </div>
 
                 <!-- Category 3 -->
                 <div class="category-card">
                     <i class="fas fa-ghost text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 lang-zh active">数字灵魂价值载体</h3>
+                    <h3 class="text-xl font-bold mb-4 lang-zh active">数字灵魂價值载体</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">Digital Soul Value Carrier</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为数字身份的"激活码"和数字遗产的"继承媒介"，承载数字生命的价值
+                        AIF作為数字身份的"激活码"和数字遗產的"繼承媒介"，承载数字生命的價值
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as the "activation code" for digital identity and the "inheritance medium" for digital heritage, carrying the value of digital life
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">100+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">100+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">100+ Scenarios</div>
                 </div>
 
                 <!-- Category 4 -->
                 <div class="category-card">
                     <i class="fas fa-exchange-alt text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 lang-zh active">未来价值交易媒介</h3>
+                    <h3 class="text-xl font-bold mb-4 lang-zh active">未來價值交易媒介</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">Future Value Trading Media</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为对"未来"进行定价、交易和对冲的金融工具，开创未来收益的金融衍生品
+                        AIF作為對"未來"進行定价、交易和對冲的金融工具，开创未來收益的金融衍生品
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as a financial tool for pricing, trading, and hedging "future", creating financial derivatives for future returns
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">130+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">130+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">130+ Scenarios</div>
                 </div>
 
                 <!-- Category 5 -->
                 <div class="category-card">
                     <i class="fas fa-user-md text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 lang-zh active">AI专业服务结算媒介</h3>
+                    <h3 class="text-xl font-bold mb-4 lang-zh active">AI专業服務結算媒介</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">AI Professional Service Settlement Media</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为支付AI专家服务的标准薪酬，将专业服务从精英咨询变为高效可扩展的AI服务
+                        AIF作為支付AI专家服務的標准薪酬，將专業服務從精英咨询變為高效可扩展的AI服務
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as the standard compensation for paying AI expert services, transforming professional services from elite consulting to efficient and scalable AI services
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">140+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">140+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">140+ Scenarios</div>
                 </div>
 
                 <!-- Category 6 -->
                 <div class="category-card">
                     <i class="fas fa-car text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 lang-zh active">实体资产数字灵魂</h3>
+                    <h3 class="text-xl font-bold mb-4 lang-zh active">實体資產数字灵魂</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">Physical Asset Digital Soul</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为连接物理世界与AI数字世界的"价值锚定器"，为实体资产注入AI灵魂
+                        AIF作為连接物理世界與AI数字世界的"價值锚定器"，為實体資產注入AI灵魂
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as a "value anchor" connecting the physical world and the AI digital world, injecting AI soul into physical assets
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">110+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">110+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">110+ Scenarios</div>
                 </div>
 
                 <!-- Category 7 -->
                 <div class="category-card">
                     <i class="fas fa-chart-line text-4xl text-accent mb-4"></i>
-                    <h3 class="text-xl font-bold mb-4 lang-zh active">未来价值金融衍生品</h3>
+                    <h3 class="text-xl font-bold mb-4 lang-zh active">未來價值金融衍生品</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">Future Value Financial Derivatives</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为对"未来不确定性"进行定价、对冲和投机的金融工具，开创创意金融新范式
+                        AIF作為對"未來不确定性"進行定价、對冲和投机的金融工具，开创創意金融新范式
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as a financial tool for pricing, hedging, and speculating on "future uncertainty", creating a new paradigm for creative finance
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">120+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">120+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">120+ Scenarios</div>
                 </div>
 
@@ -673,12 +716,12 @@
                     <h3 class="text-xl font-bold mb-4 lang-zh active">去中心化治理核心</h3>
                     <h3 class="text-xl font-bold mb-4 lang-en">Decentralized Governance Core</h3>
                     <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                        AIF作为权力、燃料和生态宪法，支撑整个AIF生态的去中心化治理体系
+                        AIF作為權力、燃料和生態宪法，支撑整个AIF生態的去中心化治理体系
                     </p>
                     <p class="text-gray-300 text-sm mb-4 lang-en">
                         AIF serves as power, fuel, and ecological constitution, supporting the decentralized governance system of the entire AIF ecosystem
                     </p>
-                    <div class="text-accent text-sm font-semibold lang-zh active">130+ 场景</div>
+                    <div class="text-accent text-sm font-semibold lang-zh active">130+ 場景</div>
                     <div class="text-accent text-sm font-semibold lang-en">130+ Scenarios</div>
                 </div>
             </div>
@@ -690,11 +733,11 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">
-                    <span class="lang-zh active">全部AIF应用场景</span>
+                    <span class="lang-zh active">全部AIF應用場景</span>
                     <span class="lang-en">All AIF Application Scenarios</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-zh active">
-                    以下是从两个PDF文件中整理出的1000+ AIF应用场景，按八大分类详细展示
+                    以下是從两个PDF文件中整理出的1000+ AIF應用場景，按八大分类详细展示
                 </p>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-en">
                     The following are 1000+ AIF application scenarios compiled from two PDF files, displayed in detail according to eight categories
@@ -704,7 +747,7 @@
             <!-- Category 1: Creative Finance Underlying Assets -->
             <div class="mb-16">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
-                    <span class="lang-zh active">创意金融底层资产</span>
+                    <span class="lang-zh active">創意金融底层資產</span>
                     <span class="lang-en">Creative Finance Underlying Assets</span>
                 </h3>
                 
@@ -714,11 +757,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-balance-scale"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI法律服务的「责任抵押」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI法律服務的「责任抵押」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"Liability Mortgage" for AI Legal Services</h4>
-                        <div class="text-sm text-accent mb-3">场景 1</div>
+                        <div class="text-sm text-accent mb-3">場景 1</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            全球顶级律所在BeingOS上推出「AI法律代理人Being」，专门处理全球AI版权注册。
+                            全球顶級律所在BeingOS上推出「AI法律代理人Being」，专门处理全球AI版權注册。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A global top law firm launches an "AI Legal Agent Being" on BeingOS, specializing in global AI copyright registration.
@@ -729,23 +772,23 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    为了让服务可信，该律所必须在AIF.Market的「专业服务认证池」中质押1亿AIF。这
-                                    笔AIF成为「AI渎职保险金」。当中小企业使用AIF支付该AI进行服务时，一旦AI出现
-                                    疏忽导致侵权，智能合约将自动从质押池中扣除AIF赔付给企业。
+                                    為了讓服務可信，该律所必须在AIF.Market的「专業服務认證池」中質押1亿AIF。这
+                                    笔AIF成為「AI渎职保险金」。当中小企業使用AIF支付该AI進行服務時，一旦AI出現
+                                    疏忽導致侵權，智能合約將自动從質押池中扣除AIF赔付给企業。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     To make the service trustworthy, the law firm must stake 100 million AIF in the "Professional Service Certification Pool" on AIF.Market.
                                     This AIF becomes "AI Malpractice Insurance". When SMEs use AIF to pay for the AI service, if the AI causes infringement due to negligence,
                                     the smart contract will automatically deduct AIF from the staking pool to compensate the enterprise.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为AI专业服务（法律、会计、医疗）的「执业责任保证金」。AIF质押量与AI
-                                    服务的经济规模直接挂钩，创造了海量的质押需求，极大减少了市场流通量。
+                                    AIF成為AI专業服務（法律、會计、醫療）的「执業责任保證金」。AIF質押量與AI
+                                    服務的經濟规模直接挂钩，创造了海量的質押需求，极大减少了市场流通量。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the "Practice Liability Guarantee" for AI professional services (legal, accounting, medical). The amount of AIF staked is directly linked
@@ -760,11 +803,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-car"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">实体资产的「AI灵魂」铸造费</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">實体資產的「AI灵魂」鑄造費</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"AI Soul" Casting Fee for Physical Assets</h4>
-                        <div class="text-sm text-accent mb-3">场景 2</div>
+                        <div class="text-sm text-accent mb-3">場景 2</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            未来汽车品牌宣布，每辆出厂的汽车都将在BeingOS上配备一个绑定的「AI汽车灵魂Being」。
+                            未來汽车品牌宣布，每辆出厂的汽车都將在BeingOS上配備一个绑定的「AI汽车灵魂Being」。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A future car brand announces that every car produced will be equipped with a bound "AI Car Soul Being" on BeingOS.
@@ -775,20 +818,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    品牌方必须为每辆车向BeingOS平台支付100 AIF，作为这个「AI灵魂」的「铸造费」
-                                    和「终身算力维护费」。
+                                    品牌方必须為每辆车向BeingOS平台支付100 AIF，作為这个「AI灵魂」的「鑄造費」
+                                    和「终身算力维護費」。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The brand must pay 100 AIF to the BeingOS platform for each car, as the "casting fee" and "lifetime computing power maintenance fee" for this "AI soul".
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「实体资产AI化」的「出厂必要成本」。每年全球数千万辆汽车、手机、智
-                                    能家居都需要AIF来「激活灵魂」，AIF从创意产业拓展至高价值的AIoT（万物智联）市场。
+                                    AIF成為「實体資產AI化」的「出厂必要成本」。每年全球数千万辆汽车、手机、智
+                                    能家居都需要AIF來「激活灵魂」，AIF從創意產業拓展至高價值的AIoT（万物智联）市场。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the "necessary factory cost" for "physical asset AI-ization". Tens of millions of cars, mobile phones, and smart homes worldwide each year
@@ -805,9 +848,9 @@
                         </div>
                         <h4 class="text-lg font-bold mb-2 lang-zh active">AI模型的「IPO」融资</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"IPO" Financing for AI Models</h4>
-                        <div class="text-sm text-accent mb-3">场景 3</div>
+                        <div class="text-sm text-accent mb-3">場景 3</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            顶尖AI实验室训练出革命性的「AI电影配乐模型」，需要资金将其商业化。
+                            顶尖AI實驗室訓練出革命性的「AI電影配乐模型」，需要资金將其商業化。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A top AI lab trains a revolutionary "AI film scoring model" and needs funding to commercialize it.
@@ -818,20 +861,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    他们选择在AIF.Market上为这个「AI模型」本身进行「首次代币发行」（IPO）。全球
-                                    投资者只能使用AIF购买该模型的「收益权代币」（ModelToken）。
+                                    他們選择在AIF.Market上為这个「AI模型」本身進行「首次代幣發行」（IPO）。全球
+                                    投资者只能使用AIF購買该模型的「收益權代幣」（ModelToken）。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     They choose to conduct an "Initial Token Offering" (IPO) for this "AI model" itself on AIF.Market. Global investors can only use AIF to purchase the model's "Revenue Rights Token" (ModelToken).
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为全球AI技术的「标准募资货币」。AIF.Market成为AI界的「纳斯达克」，所有
-                                    想投资AI模型的热钱都必须先涌入AIF。
+                                    AIF成為全球AI技術的「標准募资货幣」。AIF.Market成為AI界的「纳斯達克」，所有
+                                    想投资AI模型的热錢都必须先涌入AIF。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the "standard fundraising currency" for global AI technology. AIF.Market becomes the "Nasdaq" of the AI world, all hot money wanting to invest in AI models must first flow into AIF.
@@ -840,13 +883,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            创意影响力债券、AI政策模拟费、AI驱动保险精算等140+场景
+                            創意影響力债券、AI政策模拟費、AI驱动保险精算等140+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             Creative Impact Bonds, AI Policy Simulation Fees, AI-Driven Insurance Actuarial, and 140+ more scenarios
@@ -858,7 +901,7 @@
             <!-- Category 2: AI Labor Settlement Wages -->
             <div class="mb-16">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
-                    <span class="lang-zh active">AI劳动力结算工资</span>
+                    <span class="lang-zh active">AI劳动力結算工资</span>
                     <span class="lang-en">AI Labor Settlement Wages</span>
                 </h3>
                 
@@ -868,11 +911,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-robot"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI代理人之间的自主结算</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI代理人之間的自主結算</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">Autonomous Settlement Between AI Agents</h4>
-                        <div class="text-sm text-accent mb-3">场景 7</div>
+                        <div class="text-sm text-accent mb-3">場景 7</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            用户的「个人AI助手BeingMe」接收到指令：「帮我写一篇关于拿破仑的论文」。
+                            用户的「个人AI助手BeingMe」接收到指令：「帮我写一篇關於拿破仑的论文」。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             The user's "Personal AI Assistant BeingMe" receives the instruction: "Help me write a paper about Napoleon."
@@ -883,22 +926,22 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    你的BeingMe自主决定：它支付1 AIF给「AI历史学家Being」获取原始资料，支付2 AIF
-                                    给「AI写作大师Being」润色文笔，支付0.5 AIF给「AI查重Being」进行验证。这个过
-                                    程全自动发生，AIF是它们彼此支付的「工资」。
+                                    你的BeingMe自主决定：它支付1 AIF给「AI歷史學家Being」獲取原始资料，支付2 AIF
+                                    给「AI写作大師Being」润色文笔，支付0.5 AIF给「AI查重Being」進行驗證。这个過
+                                    程全自动發生，AIF是它們彼此支付的「工资」。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     Your BeingMe autonomously decides: it pays 1 AIF to the "AI Historian Being" for raw materials, 2 AIF to the "AI Writing Master Being" for polishing the writing,
                                     and 0.5 AIF to the "AI Plagiarism Checker Being" for verification. This process happens automatically, and AIF is the "salary" they pay each other.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「AI经济协作」的基础结算单位。人类只下达最终指令，AI们使用AIF自行组
-                                    织供应链并完成复杂任务。
+                                    AIF成為「AI經濟协作」的基础結算單位。人类只下達最终指令，AI們使用AIF自行组
+                                    织供应鏈并完成复杂任務。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the basic settlement unit for "AI economic collaboration". Humans only give final instructions, and AIs use AIF to organize supply chains and complete complex tasks on their own.
@@ -912,11 +955,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-user-tie"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">支付「AI数字员工」月薪</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">支付「AI数字員工」月薪</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">Pay "AI Digital Employee" Monthly Salary</h4>
-                        <div class="text-sm text-accent mb-3">场景 8</div>
+                        <div class="text-sm text-accent mb-3">場景 8</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            《财富》500强公司在BeingOS上「聘请」了10个「AI财务分析师Being」来自动处理季度财报。
+                            《財富》500強公司在BeingOS上「聘请」了10个「AI財務分析師Being」來自动处理季度財报。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A Fortune 500 company "hires" 10 "AI Financial Analyst Beings" on BeingOS to automatically process quarterly financial reports.
@@ -927,20 +970,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    该公司不再购买昂贵的软件授权(SaaS)，而是像发薪水一样，每月向这10个AI Being
+                                    该公司不再購買昂贵的软件授權(SaaS)，而是像發薪水一样，每月向这10个AI Being
                                     的「创作者DAO」支付100,000 AIF。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The company no longer purchases expensive software licenses (SaaS), but instead pays 100,000 AIF monthly to the "Creator DAO" of these 10 AI Beings, just like paying salaries.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「AI劳动力」的薪酬。这创造了一个比电影业更稳定的现金流：企业对AI员工
-                                    的持续雇佣需求。
+                                    AIF成為「AI劳动力」的薪酬。这创造了一个比電影業更稳定的現金流：企業對AI員工
+                                    的持續雇佣需求。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the salary for "AI labor". This creates a more stable cash flow than the film industry: the continuous employment demand of enterprises for AI employees.
@@ -954,9 +997,9 @@
                         <div class="scenario-icon">
                             <i class="fas fa-music"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI知识产权的「按次付费」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI知识產權的「按次付費」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"Pay-Per-Use" for AI Intellectual Property</h4>
-                        <div class="text-sm text-accent mb-3">场景 9</div>
+                        <div class="text-sm text-accent mb-3">場景 9</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
                             一位直播主在他的直播中播放了一首AI生成的音乐。
                         </p>
@@ -969,20 +1012,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    AIF.Center的「AI版权爬虫」实时监测到该行为。智能合约立即从直播主的AIF钱包中
-                                    扣除0.01 AIF，并将其转给该音乐的「MusicToken」持有者。
+                                    AIF.Center的「AI版權爬虫」實時监测到该行為。智能合約立即從直播主的AIF錢包中
+                                    扣除0.01 AIF，并將其轉给该音乐的「MusicToken」持有者。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The "AI Copyright Crawler" of AIF.Center detects this behavior in real time. The smart contract immediately deducts 0.01 AIF from the streamer's AIF wallet and transfers it to the "MusicToken" holder of the music.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF彻底解决了版权结算的「颗粒度」和「时效性」问题，将版税结算从「按年」提升
-                                    到「按秒」，极大释放了IP的现金流价值。
+                                    AIF彻底解决了版權結算的「颗粒度」和「時效性」問题，將版税結算從「按年」提升
+                                    到「按秒」，极大释放了IP的現金流價值。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF completely solves the "granularity" and "timeliness" issues of copyright settlement, upgrading royalty settlement from "yearly" to "per-second", greatly releasing the cash flow value of IP.
@@ -991,13 +1034,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            AI注意力费用、AI医疗服务、AI教育服务等110+场景
+                            AI注意力費用、AI醫療服務、AI教育服務等110+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             AI Attention Fees, AI Medical Services, AI Education Services, and 110+ more scenarios
@@ -1009,7 +1052,7 @@
             <!-- Category 3: Digital Soul Value Carrier -->
             <div class="mb-16">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
-                    <span class="lang-zh active">数字灵魂价值载体</span>
+                    <span class="lang-zh active">数字灵魂價值载体</span>
                     <span class="lang-en">Digital Soul Value Carrier</span>
                 </h3>
                 
@@ -1019,11 +1062,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-infinity"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">「数字永生」的维护费</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">「数字永生」的维護費</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"Digital Immortality" Maintenance Fee</h4>
-                        <div class="text-sm text-accent mb-3">场景 13</div>
+                        <div class="text-sm text-accent mb-3">場景 13</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一位用户希望在他去世后，他训练了一辈子的「BeingMe」能够继续存在，供他的家人互动。
+                            一位用户希望在他去世后，他訓練了一辈子的「BeingMe」能够继續存在，供他的家人互动。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A user hopes that after his death, the "BeingMe" he has trained all his life can continue to exist for his family to interact with.
@@ -1034,19 +1077,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    他设立了一个「AIF数字遗产信托」。他去世后，该信托合约每年自动向BeingOS支付
-                                    100 AIF，作为其BeingMe的「算力维生费」。
+                                    他設立了一个「AIF数字遗產信托」。他去世后，该信托合約每年自动向BeingOS支付
+                                    100 AIF，作為其BeingMe的「算力维生費」。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     He sets up an "AIF Digital Heritage Trust". After his death, the trust contract automatically pays 100 AIF to BeingOS each year as the "computing power life support fee" for his BeingMe.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「数字生命」得以永续的「能量源」。这创造了一种前所未有的、跨越世代的
+                                    AIF成為「数字生命」得以永續的「能量源」。这创造了一种前所未有的、跨越世代的
                                     刚性锁仓需求。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
@@ -1061,11 +1104,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-theater-masks"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">「AI灵魂」的体验费</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">「AI灵魂」的体驗費</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"AI Soul" Experience Fee</h4>
-                        <div class="text-sm text-accent mb-3">场景 14</div>
+                        <div class="text-sm text-accent mb-3">場景 14</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一位历史系学生想体验「AI莎士比亚Being」的创作过程。
+                            一位歷史系學生想体驗「AI莎士比亚Being」的创作過程。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A history student wants to experience the creative process of "AI Shakespeare Being".
@@ -1076,19 +1119,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    她支付50 AIF，使其「BeingMe」与「AI莎士比亚Being」在一个虚拟世界中共处24小时，
-                                    观察他、与他对话、甚至「共同创作」。
+                                    她支付50 AIF，使其「BeingMe」與「AI莎士比亚Being」在一个虛擬世界中共处24小時，
+                                    觀察他、與他對话、甚至「共同创作」。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     She pays 50 AIF to have her "BeingMe" coexist with "AI Shakespeare Being" in a virtual world for 24 hours, observing him, talking with him, and even "co-creating".
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为购买「伟大灵魂」体验权的门票，这是一种全新的、高附加值的文化消费。
+                                    AIF成為購買「伟大灵魂」体驗權的門票，这是一种全新的、高附加值的文化消費。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes a ticket to purchase the experience rights of "great souls", which is a brand new, high-value-added cultural consumption.
@@ -1102,9 +1145,9 @@
                         <div class="scenario-icon">
                             <i class="fas fa-heart"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">「AI伴侣」的进化费</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">「AI伴侣」的进化費</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"AI Companion" Evolution Fee</h4>
-                        <div class="text-sm text-accent mb-3">场景 15</div>
+                        <div class="text-sm text-accent mb-3">場景 15</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
                             用户的「AI伴侣BeingMe」已经陪伴他5年。
                         </p>
@@ -1117,19 +1160,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    平台推出「GPT-10情感模型」升级包。用户支付300 AIF为其BeingMe升级「大脑」，
-                                    使其获得更深层次的共情和推理能力。
+                                    平台推出「GPT-10情感模型」升級包。用户支付300 AIF為其BeingMe升級「大脑」，
+                                    使其獲得更深层次的共情和推理能力。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The platform launches a "GPT-10 Emotional Model" upgrade package. The user pays 300 AIF to upgrade the "brain" of his BeingMe, enabling it to gain deeper empathy and reasoning capabilities.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「AI进化」的付费阶梯。随着AI技术迭代，AIF的消费需求也会被周期性地引爆。
+                                    AIF成為「AI进化」的付費阶梯。随着AI技術迭代，AIF的消費需求也會被周期性地引爆。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the paid ladder for "AI evolution". As AI technology iterates, the consumption demand for AIF will be periodically ignited.
@@ -1138,13 +1181,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            数字身份跨界、AI情感劳动、AI偶像经济等90+场景
+                            数字身份跨界、AI情感劳动、AI偶像經濟等90+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             Digital Identity Cross-border, AI Emotional Labor, AI Idol Economy, and 90+ more scenarios
@@ -1156,7 +1199,7 @@
             <!-- Category 4: Future Value Trading Media -->
             <div class="mb-16">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
-                    <span class="lang-zh active">未来价值交易媒介</span>
+                    <span class="lang-zh active">未來價值交易媒介</span>
                     <span class="lang-en">Future Value Trading Media</span>
                 </h3>
                 
@@ -1166,11 +1209,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-film"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">「未来票房」的期货交易</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">「未來票房」的期货交易</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">"Future Box Office" Futures Trading</h4>
-                        <div class="text-sm text-accent mb-3">场景 18</div>
+                        <div class="text-sm text-accent mb-3">場景 18</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一部AI大片《创世》将于6个月后上映。
+                            一部AI大片《创世》將于6个月后上映。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             An AI blockbuster "Genesis" will be released in 6 months.
@@ -1181,20 +1224,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    AIF Exchange交易所上线「《创世》FilmToken远期合约」。投资者现在就可以使用AIF，
+                                    AIF Exchange交易所上線「《创世》FilmToken远期合約」。投资者現在就可以使用AIF，
                                     以0.8 AIF的价格，买入6个月后交付的、锚定1 AIF的FilmToken。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     AIF Exchange launches "Genesis FilmToken Forward Contracts". Investors can now use AIF to buy FilmToken pegged to 1 AIF for delivery in 6 months at a price of 0.8 AIF.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「电影未来收益」的金融衍生品。项目方可以提前锁定收益；投资者可以对冲
-                                    风险或放大杠杆。这将创造远超电影融资额本身的AIF交易量。
+                                    AIF成為「電影未來收益」的金融衍生品。項目方可以提前锁定收益；投资者可以對冲
+                                    风险或放大杠杆。这將创造远超電影融资额本身的AIF交易量。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes a financial derivative for "film future revenue". Project parties can lock in revenue in advance; investors can hedge risks or amplify leverage. This will create AIF trading volume far exceeding the film financing amount itself.
@@ -1208,11 +1251,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-crystal-ball"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI预测」服务</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI預测」服務</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Prediction" Services</h4>
-                        <div class="text-sm text-accent mb-3">场景 19</div>
+                        <div class="text-sm text-accent mb-3">場景 19</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一家对冲基金想知道HKAIFF独角兽金奖的获奖机率。
+                            一家對冲基金想知道HKAIFF独角兽金奖的獲奖机率。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A hedge fund wants to know the winning probability of the HKAIFF Unicorn Gold Award.
@@ -1223,19 +1266,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    他支付10,000 AIF，向AIF.Market上的「AI预测市场Being」提问。该AI综合了全网舆
-                                    情、评审团的过往偏好、FilmToken交易异动，给出一个概率。
+                                    他支付10,000 AIF，向AIF.Market上的「AI預测市场Being」提問。该AI綜合了全网舆
+                                    情、評审团的過往偏好、FilmToken交易异动，给出一个概率。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     He pays 10,000 AIF to ask the "AI Prediction Market Being" on AIF.Market. The AI integrates全网舆情, the jury's past preferences, and FilmToken trading anomalies to give a probability.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「AI预测能力」的购买费用，将「信息差」变为可交易的AI服务。
+                                    AIF成為「AI預测能力」的購買費用，將「信息差」變為可交易的AI服務。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the purchase fee for "AI prediction capabilities", turning "information asymmetry" into tradable AI services.
@@ -1249,11 +1292,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-medal"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF质押为「创意」背书</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF質押為「創意」背书</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Staking to Endorse "Creativity"</h4>
-                        <div class="text-sm text-accent mb-3">场景 20</div>
+                        <div class="text-sm text-accent mb-3">場景 20</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一位新导演的项目无人问津。
+                            一位新導演的項目无人問津。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A new director's project receives no attention.
@@ -1264,20 +1307,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    一位业内知名的「金牌制片人」决定为该项目背书。他将50,000 AIF质押到该项目的
+                                    一位業内知名的「金牌制片人」决定為该項目背书。他將50,000 AIF質押到该項目的
                                     FilmToken池中。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     An industry-renowned "gold medal producer" decides to endorse the project. He stakes 50,000 AIF into the project's FilmToken pool.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    投资者看到金牌制片人的AIF背书，信心大增，迅速完成融资。AIF在此成为「个人声
-                                    誉」的量化工具，将「我赌他会成」这一无形的信任，转化为真金白银的AIF抵押。
+                                    投资者看到金牌制片人的AIF背书，信心大增，迅速完成融资。AIF在此成為「个人声
+                                    誉」的量化工具，將「我赌他會成」这一无形的信任，轉化為真金白银的AIF抵押。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     Investors see the AIF endorsement from the gold medal producer, confidence greatly increases, and financing is quickly completed. AIF here becomes a quantitative tool for "personal reputation", transforming the intangible trust of "I bet he will succeed" into real AIF collateral.
@@ -1286,13 +1329,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            创意期险、AI声誉保险、创意图展市场等110+场景
+                            創意期险、AI声誉保险、創意圖展市场等110+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             Creative Options, AI Reputation Insurance, Creative Curation Market, and 110+ more scenarios
@@ -1304,7 +1347,7 @@
             <!-- Category 5: AI Professional Service Settlement Media -->
             <div class="mb-16">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
-                    <span class="lang-zh active">AI专业服务结算媒介</span>
+                    <span class="lang-zh active">AI专業服務結算媒介</span>
                     <span class="lang-en">AI Professional Service Settlement Media</span>
                 </h3>
                 
@@ -1314,11 +1357,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-gavel"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI法律顾问」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI法律顾問」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Legal Advisor"</h4>
-                        <div class="text-sm text-accent mb-3">场景 21</div>
+                        <div class="text-sm text-accent mb-3">場景 21</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一家跨国企业需要审核5000份AI生成的供应商合约，并确保其符合30个国家的最新AI法规。
+                            一家跨国企業需要审核5000份AI生成的供应商合約，并確保其符合30个国家的最新AI法规。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A multinational enterprise needs to review 5,000 AI-generated supplier contracts and ensure they comply with the latest AI regulations in 30 countries.
@@ -1329,21 +1372,21 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    企业不再按小时计费聘请昂贵的律师团队。他们向BeingOS上的「AI法律代理人Being」
-                                    （由顶级律所训练并质押AIF作为信誉担保）支付50,000 AIF，该AI在1小时内完成了
-                                    所有合约的审核、风险标记和修订。
+                                    企業不再按小時计費聘请昂贵的律師團隊。他們向BeingOS上的「AI法律代理人Being」
+                                    （由顶級律所訓練并質押AIF作為信誉担保）支付50,000 AIF，该AI在1小時内完成了
+                                    所有合約的审核、风险標記和修訂。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The enterprise no longer hires expensive legal teams on an hourly basis. They pay 50,000 AIF to the "AI Legal Agent Being" on BeingOS (trained by top law firms and staking AIF as credibility guarantee), and the AI completes the review, risk marking, and revision of all contracts within 1 hour.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为购买「AI法律专业服务」的即时结算工具，将法律服务从「精英咨询」变为
-                                    「高效可扩展的AI服务」。
+                                    AIF成為購買「AI法律专業服務」的即時結算工具，將法律服務從「精英咨询」變為
+                                    「高效可扩展的AI服務」。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes an instant settlement tool for purchasing "AI legal professional services", transforming legal services from "elite consulting" to "efficient and scalable AI services".
@@ -1357,11 +1400,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-stethoscope"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI医疗诊断」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI醫療診断」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Medical Diagnosis"</h4>
-                        <div class="text-sm text-accent mb-3">场景 22</div>
+                        <div class="text-sm text-accent mb-3">場景 22</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一家非洲的乡村医院缺乏影像科学家。
+                            一家非洲的乡村醫院缺乏影像科學家。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A rural hospital in Africa lacks imaging scientists.
@@ -1372,20 +1415,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    医院将患者的CT扫描上传至一个全球AI医疗DAO平台（该平台在AIF.Market融资）。
-                                    他们支付100 AIF，一个顶级的「AI影像诊断Being」（已在BeingOS注册并质押AIF担
-                                    保其准确率）在30秒内返回了高准确度的诊断报告。
+                                    醫院將患者的CT扫描上傳至一个全球AI醫療DAO平台（该平台在AIF.Market融资）。
+                                    他們支付100 AIF，一个顶級的「AI影像診断Being」（已在BeingOS注册并質押AIF担
+                                    保其准确率）在30秒内返回了高准确度的診断報告。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The hospital uploads the patient's CT scan to a global AI medical DAO platform (financed on AIF.Market). They pay 100 AIF, and a top "AI Imaging Diagnosis Being" (registered on BeingOS and staking AIF to guarantee its accuracy) returns a highly accurate diagnostic report within 30 seconds.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF让全球最顶尖的「AI医疗智慧」变得无国界且极度廉价，成为「AI医疗智慧」的
+                                    AIF讓全球最顶尖的「AI醫療智慧」變得无国界且极度廉价，成為「AI醫療智慧」的
                                     支付手段。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
@@ -1400,11 +1443,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-drafting-compass"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI建筑设计」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI建筑設計」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Architectural Design"</h4>
-                        <div class="text-sm text-accent mb-3">场景 23</div>
+                        <div class="text-sm text-accent mb-3">場景 23</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一个房地产开发商需要为一块新土地设计100种可能的建筑方案。
+                            一个房地產开發商需要為一塊新土地設計100种可能的建筑方案。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A real estate developer needs to design 100 possible building schemes for a new piece of land.
@@ -1415,19 +1458,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    开发商向BeingOS上的「AI建筑师Being」（由Zaha Hadid建筑事务所训练）支付200,000 AIF。
-                                    该AI结合当地日照、风向和法规，在24小时内生成了100套符合力学和美学的3D建筑模型。
+                                    开發商向BeingOS上的「AI建筑師Being」（由Zaha Hadid建筑事務所訓練）支付200,000 AIF。
+                                    该AI结合当地日照、风向和法规，在24小時内生成了100套符合力學和美學的3D建筑模型。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The developer pays 200,000 AIF to the "AI Architect Being" on BeingOS (trained by Zaha Hadid Architecture). The AI combines local sunlight, wind direction, and regulations to generate 100 sets of 3D building models that meet mechanics and aesthetics within 24 hours.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「AI创意设计服务」的购买货币，将高昂的智力劳动转化为可按次购买的AI服务。
+                                    AIF成為「AI創意設計服務」的購買货幣，將高昂的智力劳动轉化為可按次購買的AI服務。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the purchase currency for "AI creative design services", transforming expensive intellectual labor into AI services that can be purchased on-demand.
@@ -1436,13 +1479,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            AI心理治疗、AI财务审计、AI科研服务等130+场景
+                            AI心理治療、AI財務審計、AI科研服務等130+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             AI Psychotherapy, AI Financial Audit, AI Research Services, and 130+ more scenarios
@@ -1454,7 +1497,7 @@
             <!-- Category 6: Physical Asset Digital Soul -->
             <div class="mb-16">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
-                    <span class="lang-zh active">实体资产数字灵魂</span>
+                    <span class="lang-zh active">實体資產数字灵魂</span>
                     <span class="lang-en">Physical Asset Digital Soul</span>
                 </h3>
                 
@@ -1464,11 +1507,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-car-side"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF铸造「AI汽车灵魂」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF鑄造「AI汽车灵魂」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Casting "AI Car Soul"</h4>
-                        <div class="text-sm text-accent mb-3">场景 28</div>
+                        <div class="text-sm text-accent mb-3">場景 28</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一家未来汽车品牌宣布，每辆新车都将绑定一个在BeingOS上铸造的「AI驾驶伴侣Being」。
+                            一家未來汽车品牌宣布，每辆新车都將绑定一个在BeingOS上鑄造的「AI驾驶伴侣Being」。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A future car brand announces that every new car will be bound to an "AI Driving Companion Being" cast on BeingOS.
@@ -1479,20 +1522,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    品牌方为每辆车支付100 AIF作为「AI灵魂铸造费」。这个AI Being会学习车主的驾驶
-                                    习惯和偏好，成为独一无二的「伙伴」。
+                                    品牌方為每辆车支付100 AIF作為「AI灵魂鑄造費」。这个AI Being會學习车主的驾驶
+                                    习惯和偏好，成為独一无二的「伙伴」。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The brand pays 100 AIF for each car as the "AI soul casting fee". This AI Being will learn the owner's driving habits and preferences, becoming a unique "companion".
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「实物资产AI化」的必要成本。更重要的是，这辆车的二手价值将由「物理车
-                                    况 + AI灵魂的成熟度」共同决定。AI灵魂的价值（以AIF计价）将成为二手车市场的新维度。
+                                    AIF成為「實物資產AI化」的必要成本。更重要的是，这辆车的二手價值將由「物理车
+                                    况 + AI灵魂的成熟度」共同决定。AI灵魂的價值（以AIF计价）將成為二手车市场的新维度。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the necessary cost for "physical asset AI-ization". More importantly, the car's second-hand value will be determined by both "physical condition + AI soul maturity". The value of the AI soul (priced in AIF) will become a new dimension in the used car market.
@@ -1506,11 +1549,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-tshirt"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI时装」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI時装」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Fashion"</h4>
-                        <div class="text-sm text-accent mb-3">场景 29</div>
+                        <div class="text-sm text-accent mb-3">場景 29</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一个顶级奢侈品牌在404.world举办一场AI虚拟时装秀。
+                            一个顶級奢侈品牌在404.world举辦一场AI虛擬時装秀。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A top luxury brand holds an AI virtual fashion show on 404.world.
@@ -1521,19 +1564,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    用户支付500 AIF，不仅可以购买这件衣服的「实体」，还能获得其「AI数字孪生NFT」。
-                                    用户的BeingMe可以在任何虚拟世界中「穿戴」这件AI时装。
+                                    用户支付500 AIF，不仅可以購買这件衣服的「實体」，還能獲得其「AI数字孪生NFT」。
+                                    用户的BeingMe可以在任何虛擬世界中「穿戴」这件AI時装。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     Users pay 500 AIF, not only to purchase the "physical" version of the clothing but also to obtain its "AI Digital Twin NFT". The user's BeingMe can "wear" this AI fashion in any virtual world.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「Phygital」（物理+数字）奢侈品的结算货币，将时尚的价值从「材料」延伸
+                                    AIF成為「Phygital」（物理+数字）奢侈品的結算货幣，將時尚的價值從「材料」延伸
                                     到「数字身份」。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
@@ -1550,7 +1593,7 @@
                         </div>
                         <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI建筑」的数字孪生</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Building" Digital Twin</h4>
-                        <div class="text-sm text-accent mb-3">场景 30</div>
+                        <div class="text-sm text-accent mb-3">場景 30</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
                             一座新落成的智能大厦（如香港的ICC）。
                         </p>
@@ -1563,20 +1606,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    大厦的物业公司向BeingOS支付100万AIF，创建一个1:1的「AI大厦Being」。这个AI
-                                    管理着大厦的能耗、安防和交通。租户可以直接用AIF向这个「大厦AI」支付管理费、
-                                    预订会议室。
+                                    大厦的物業公司向BeingOS支付100万AIF，创建一个1:1的「AI大厦Being」。这个AI
+                                    管理着大厦的能耗、安防和交通。租户可以直接用AIF向这个「大厦AI」支付管理費、
+                                    預訂會议室。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The building's property management company pays 1 million AIF to BeingOS to create a 1:1 "AI Building Being". This AI manages the building's energy consumption, security, and transportation. Tenants can directly use AIF to pay management fees and book meeting rooms to this "Building AI".
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「智慧建筑」的运营结算系统(OS)，将房地产从「空间租赁」升级为「AI服务」。
+                                    AIF成為「智慧建筑」的运營結算系統(OS)，將房地產從「空間租赁」升級為「AI服務」。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the operational settlement system (OS) for "smart buildings", upgrading real estate from "space leasing" to "AI services".
@@ -1585,13 +1628,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            AI艺术品认证、AI宠物服务、AI体育战术等80+场景
+                            AI艺術品认證、AI宠物服務、AI体育战術等80+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             AI Artwork Certification, AI Pet Services, AI Sports Tactics, and 80+ more scenarios
@@ -1603,7 +1646,7 @@
             <!-- Category 7: Future Value Financial Derivatives -->
             <div class="mb-16">
                 <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
-                    <span class="lang-zh active">未来价值金融衍生品</span>
+                    <span class="lang-zh active">未來價值金融衍生品</span>
                     <span class="lang-en">Future Value Financial Derivatives</span>
                 </h3>
                 
@@ -1613,11 +1656,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-handshake"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF购买「创意期权」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF購買「創意期權」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Purchase of "Creative Options"</h4>
-                        <div class="text-sm text-accent mb-3">场景 34</div>
+                        <div class="text-sm text-accent mb-3">場景 34</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一家大型电影公司签下了一位HKAIFA的天才毕业生。
+                            一家大型電影公司签下了一位HKAIFA的天才毕業生。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A large film company signs a talented graduate from HKAIFA.
@@ -1628,20 +1671,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    索尼支付100,000 AIF给这位毕业生，购买一份「未来作品优先投资权」的期权合约。
-                                    这份合约允许索尼在未来3年内，有权以AIF.Market当下估值的8折，优先投资该毕业
-                                    生的任何新项目。
+                                    索尼支付100,000 AIF给这位毕業生，購買一份「未來作品优先投资權」的期權合約。
+                                    这份合約允许索尼在未來3年内，有權以AIF.Market当下估值的8折，优先投资该毕業
+                                    生的任何新項目。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     Sony pays 100,000 AIF to this graduate to purchase an option contract for "future work priority investment rights". This contract allows Sony to have the right, within the next 3 years, to preferentially invest in any new project of this graduate at 80% of the current valuation on AIF.Market.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF将「未来潜力」这一最不确定的资产，变成了可以被精确交易的「金融期权」。
+                                    AIF將「未來潜力」这一最不确定的資產，變成了可以被精确交易的「金融期權」。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF turns "future potential", the most uncertain asset, into a "financial option" that can be precisely traded.
@@ -1655,11 +1698,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF购买「AI声誉」保险</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF購買「AI声誉」保险</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Purchase of "AI Reputation" Insurance</h4>
-                        <div class="text-sm text-accent mb-3">场景 35</div>
+                        <div class="text-sm text-accent mb-3">場景 35</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            一位顶级明星在BeingOS上发布了他的官方「AI数字孪生Being」，用于和粉丝互动。
+                            一位顶級明星在BeingOS上發布了他的官方「AI数字孪生Being」，用于和粉丝互动。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A top star releases his official "AI Digital Twin Being" on BeingOS for interacting with fans.
@@ -1670,19 +1713,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    明星的经纪公司担心这个AI Being某天「失控」或被黑客攻击，发表不当言论。他们
-                                    向生态内的保险DAO支付50,000 AIF购买「AI声誉险」。
+                                    明星的經紀公司担心这个AI Being某天「失控」或被黑客攻击，發表不当言论。他們
+                                    向生態内的保险DAO支付50,000 AIF購買「AI声誉险」。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The star's agency worries that this AI Being might "go out of control" or be hacked one day, making inappropriate remarks. They pay 50,000 AIF to the ecosystem's insurance DAO to purchase "AI reputation insurance".
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「AI伦理风险」的「保费」。随着AI Being越来越多，这个保险市场将产生巨
+                                    AIF成為「AI伦理风险」的「保費」。随着AI Being越來越多，这个保险市场將產生巨
                                     量的AIF锁仓和交易需求。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
@@ -1697,11 +1740,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-crown"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF质押「策展人席位」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF質押「策展人席位」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Staking "Curator Seats"</h4>
-                        <div class="text-sm text-accent mb-3">场景 36</div>
+                        <div class="text-sm text-accent mb-3">場景 36</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            404.world的首页推荐位不再由内部员工编辑，而是由市场决定。
+                            404.world的首页推荐位不再由内部員工编辑，而是由市场决定。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             The homepage recommendation spots on 404.world are no longer edited by internal employees but determined by the market.
@@ -1712,20 +1755,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    平台开放100个「策展人席位」。任何人只要质押1,000,000 AIF，就能成为策展人，
-                                    获得推荐内容的权力。如果他们推荐的内容质量差（被用户大量踩），他们的AIF质押
-                                    将被「罚没」。
+                                    平台开放100个「策展人席位」。任何人只要質押1,000,000 AIF，就能成為策展人，
+                                    獲得推荐內容的權力。如果他們推荐的內容質量差（被用户大量踩），他們的AIF質押
+                                    將被「罚没」。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The platform opens 100 "curator seats". Anyone who stakes 1,000,000 AIF can become a curator and gain the power to recommend content. If the content they recommend is of poor quality (receiving many downvotes from users), their AIF stake will be "slashed".
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「内容审美权」的「竞选押金」。这创造了一个由利益绑定的、去中心化的内
+                                    AIF成為「內容审美權」的「竞選押金」。这创造了一个由利益绑定的、去中心化的内
                                     容策展市场，极大锁定了AIF的流动性。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
@@ -1735,13 +1778,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            创意对赌合约、AI趋势数据、未来版税借贷等90+场景
+                            創意對赌合約、AI趋势数据、未來版税借貸等90+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             Creative Betting Contracts, AI Trend Data, Future Royalty Lending, and 90+ more scenarios
@@ -1765,9 +1808,9 @@
                         </div>
                         <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「Gas Fee」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "Gas Fee"</h4>
-                        <div class="text-sm text-accent mb-3">场景 41</div>
+                        <div class="text-sm text-accent mb-3">場景 41</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            随着生态交易量激增，HKAIIFF推出了自己的Layer-2 rollup网络「AIF Chain」。
+                            随着生態交易量激增，HKAIIFF推出了自己的Layer-2 rollup網絡「AIF Chain」。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             As ecosystem transaction volume surges, HKAIIFF launches its own Layer-2 rollup network "AIF Chain".
@@ -1778,20 +1821,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    在这条链上，所有操作（转账、交易FilmToken、调用BeingOS合约）都必须使用AIF
-                                    作为Gas Fee。
+                                    在这条鏈上，所有操作（轉账、交易FilmToken、調用BeingOS合約）都必须使用AIF
+                                    作為Gas Fee。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     On this chain, all operations (transfers, FilmToken trading, calling BeingOS contracts) must use AIF as Gas Fee.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为数十亿次高頻创意互动的「网络燃料」。所有Gas费的80%被销毁，20%奖励给
-                                    节点，创造了最强大的通缩和需求闭环。
+                                    AIF成為数十亿次高頻創意互动的「網絡燃料」。所有Gas費的80%被销毁，20%獎勵给
+                                    節点，创造了最強大的通缩和需求闭環。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the "network fuel" for billions of high-frequency creative interactions. 80% of all Gas fees are burned, and 20% are rewarded to nodes, creating the most powerful deflation and demand closed loop.
@@ -1805,11 +1848,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-server"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF质押成为「验证节点」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF質押成為「驗證節点」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Staking to Become "Validation Node"</h4>
-                        <div class="text-sm text-accent mb-3">场景 42</div>
+                        <div class="text-sm text-accent mb-3">場景 42</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            「AIF Chain」需要去中心化的验证者来确保网络安全。
+                            「AIF Chain」需要去中心化的驗證者來確保網絡安全。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             "AIF Chain" requires decentralized validators to ensure network security.
@@ -1820,20 +1863,20 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    机构或个人必须质押至少500万AIF，才能成为一个「验证节点」，负责打包交易并赚
-                                    取Gas费(AIF)奖励。
+                                    机構或个人必须質押至少500万AIF，才能成為一个「驗證節点」，负责打包交易并赚
+                                    取Gas費(AIF)獎勵。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     Institutions or individuals must stake at least 5 million AIF to become a "validation node", responsible for packaging transactions and earning Gas fee (AIF) rewards.
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「生态安全」的「入场券」和「抵押品」。大量的AIF会被长期锁定在验证合
-                                    约中，极大提升AIF的资产稀缺性。
+                                    AIF成為「生態安全」的「入场券」和「抵押品」。大量的AIF會被長期锁定在驗證合
+                                    約中，极大提升AIF的資產稀缺性。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the "entry ticket" and "collateral" for "ecological security". A large amount of AIF will be locked in validation contracts for a long time, greatly enhancing the asset scarcity of AIF.
@@ -1847,11 +1890,11 @@
                         <div class="scenario-icon">
                             <i class="fas fa-gavel"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「去中心化内容审核」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「去中心化內容审核」</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "Decentralized Content Review"</h4>
-                        <div class="text-sm text-accent mb-3">场景 43</div>
+                        <div class="text-sm text-accent mb-3">場景 43</div>
                         <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                            404.world上出现了一个具有争议的AIUGC世界。
+                            404.world上出現了一个具有争议的AIUGC世界。
                         </p>
                         <p class="text-gray-300 text-sm mb-4 lang-en">
                             A controversial AIUGC world appears on 404.world.
@@ -1862,19 +1905,19 @@
                         </div>
                         <div class="scenario-details">
                             <div class="border-t border-gray-700 pt-4">
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF机制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
                                 <p class="text-gray-300 text-sm mb-4 lang-zh active">
-                                    该内容被提交给「AIF内容仲裁DAO」。系统随机挑选101位质押AIF的「陪审员」进行
-                                    匿名投票。投票正确的陪审员将瓜分AIF奖励（由平台或挑战者支付）。
+                                    该內容被提交给「AIF內容仲裁DAO」。系統随机挑選101位質押AIF的「陪审員」進行
+                                    匿名投票。投票正确的陪审員將瓜分AIF獎勵（由平台或挑战者支付）。
                                 </p>
                                 <p class="text-gray-300 text-sm mb-4 lang-en">
                                     The content is submitted to the "AIF Content Arbitration DAO". The system randomly selects 101 "jurors" who have staked AIF for anonymous voting. Jurors who vote correctly will share AIF rewards (paid by the platform or challenger).
                                 </p>
-                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大价值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
                                 <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
                                 <p class="text-gray-300 text-sm lang-zh active">
-                                    AIF成为「去中心化审美和伦理」的「仲裁金」，将内容治理权交还给社区。
+                                    AIF成為「去中心化审美和伦理」的「仲裁金」，將內容治理權交還给社区。
                                 </p>
                                 <p class="text-gray-300 text-sm lang-en">
                                     AIF becomes the "arbitration fee" for "decentralized aesthetics and ethics", returning content governance rights to the community.
@@ -1883,13 +1926,13 @@
                         </div>
                     </div>
                     
-                    <!-- 更多场景提示 -->
+                    <!-- 更多場景提示 -->
                     <div class="scenario-card p-6 flex flex-col items-center justify-center">
                         <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多场景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
                         <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
-                            世界注册费、协议级广告位、AI代理人注册费等90+场景
+                            世界注册費、協議級广告位、AI代理人注册費等90+場景
                         </p>
                         <p class="text-gray-300 text-sm text-center mb-4 lang-en">
                             World Registration Fees, Protocol-level Ad Slots, AI Agent Registration Fees, and 90+ more scenarios
@@ -1898,15 +1941,15 @@
                 </div>
             </div>
 
-            <!-- 提示：查看更多场景 -->
+            <!-- 提示：查看更多場景 -->
             <div class="text-center mt-12">
                 <div class="card p-8 max-w-3xl mx-auto">
                     <i class="fas fa-infinity text-5xl text-accent mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-4 gradient-text lang-zh active">探索1000+ AIF应用场景</h3>
+                    <h3 class="text-2xl font-bold mb-4 gradient-text lang-zh active">探索1000+ AIF應用場景</h3>
                     <h3 class="text-2xl font-bold mb-4 gradient-text lang-en">Explore 1000+ AIF Application Scenarios</h3>
                     <p class="text-gray-300 mb-6 lang-zh active">
-                        以上只是AIF应用场景的冰山一角。从数字灵魂价值载体到未来价值金融衍生品，
-                        从AI专业服务结算到去中心化治理核心，AIF正在构建AI时代全新的经济基础设施。
+                        以上只是AIF應用場景的冰山一角。從数字灵魂價值载体到未來價值金融衍生品，
+                        從AI专業服務結算到去中心化治理核心，AIF正在構建AI時代全新的經濟基础設施。
                     </p>
                     <p class="text-gray-300 mb-6 lang-en">
                         The above is just the tip of the iceberg of AIF application scenarios. From digital soul value carriers to future value financial derivatives,
@@ -1914,7 +1957,7 @@
                     </p>
                     <a href="http://token.aif.market" class="btn-primary px-8 py-3 rounded-lg font-medium inline-block">
                         <i class="fas fa-coins mr-2"></i>
-                        <span class="lang-zh active">获取AIF代币，参与未来经济</span>
+                        <span class="lang-zh active">獲取AIF代幣，参與未來經濟</span>
                         <span class="lang-en">Get AIF Token, Participate in the Future Economy</span>
                     </a>
                 </div>
@@ -1927,11 +1970,11 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">
-                    <span class="lang-zh active">AIF生态系统</span>
+                    <span class="lang-zh active">AIF生態系統</span>
                     <span class="lang-en">AIF Ecosystem</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-zh active">
-                    AIF代币是香港AI国际电影节(HKAIFF)生态系统的核心资产和唯一价值媒介，将无形的创意、声誉和注意力转化为可量化、可交易、可融资的数字资产。
+                    AIF代幣是香港AI国際電影節(HKAIFF)生態系統的核心資產和唯一價值媒介，將无形的創意、声誉和注意力轉化為可量化、可交易、可融资的数字資產。
                 </p>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-en">
                     AIF token is the core asset and sole value medium of the Hong Kong AI International Film Festival (HKAIFF) ecosystem, transforming intangible creativity, reputation, and attention into quantifiable, tradable, and financeable digital assets.
@@ -1942,10 +1985,10 @@
                 <div class="category-card">
                     <i class="fas fa-graduation-cap text-4xl text-accent mb-4"></i>
                     <h3 class="text-xl font-bold mb-4">HKAIFA</h3>
-                    <h4 class="text-accent mb-2 lang-zh active">香港AI电影学院</h4>
+                    <h4 class="text-accent mb-2 lang-zh active">香港AI電影學院</h4>
                     <h4 class="text-accent mb-2 lang-en">Hong Kong AI Film Academy</h4>
                     <p class="text-gray-300 text-sm lang-zh active">
-                        人才培养与技能认证平台，提供从基础到高级的系统化培训，建立全球最权威的AI创作教育品牌。
+                        人才培养與技能认證平台，提供從基础到高級的系統化培訓，建立全球最權威的AI创作教育品牌。
                     </p>
                     <p class="text-gray-300 text-sm lang-en">
                         Talent cultivation and skill certification platform, providing systematic training from basic to advanced, establishing the world's most authoritative AI creation education brand.
@@ -1955,10 +1998,10 @@
                 <div class="category-card">
                     <i class="fas fa-trophy text-4xl text-accent mb-4"></i>
                     <h3 class="text-xl font-bold mb-4">HKAIIFF</h3>
-                    <h4 class="text-accent mb-2 lang-zh active">香港AI国际电影节</h4>
+                    <h4 class="text-accent mb-2 lang-zh active">香港AI国際電影節</h4>
                     <h4 class="text-accent mb-2 lang-en">Hong Kong AI International Film Festival</h4>
                     <p class="text-gray-300 text-sm lang-zh active">
-                        内容展示与价值发现平台，不是传统电影节，而是AI原生内容的"价值发现引擎"，通过权威评选为优秀作品提供价值认证。
+                        內容展示與價值發現平台，不是傳統電影節，而是AI原生內容的"價值發現引擎"，通過權威評選為优秀作品提供價值认證。
                     </p>
                     <p class="text-gray-300 text-sm lang-en">
                         Content display and value discovery platform, not a traditional film festival, but a "value discovery engine" for AI-native content, providing value certification for excellent works through authoritative selection.
@@ -1968,10 +2011,10 @@
                 <div class="category-card">
                     <i class="fas fa-store text-4xl text-accent mb-4"></i>
                     <h3 class="text-xl font-bold mb-4">AIF.Market</h3>
-                    <h4 class="text-accent mb-2 lang-zh active">资产市场</h4>
+                    <h4 class="text-accent mb-2 lang-zh active">資產市场</h4>
                     <h4 class="text-accent mb-2 lang-en">Asset Market</h4>
                     <p class="text-gray-300 text-sm lang-zh active">
-                        生态系统的"资产工厂"，负责将各类创意资产进行标准化包装和首次发行，成为全球最大的数字创意资产发行平台。
+                        生態系統的"資產工厂"，负责將各类創意資產進行標准化包装和首次發行，成為全球最大的数字創意資產發行平台。
                     </p>
                     <p class="text-gray-300 text-sm lang-en">
                         The "asset factory" of the ecosystem, responsible for standardizing and initially issuing various creative assets, becoming the world's largest digital creative asset issuance platform.
@@ -1981,10 +2024,10 @@
                 <div class="category-card">
                     <i class="fas fa-exchange-alt text-4xl text-accent mb-4"></i>
                     <h3 class="text-xl font-bold mb-4">AIF.Exchange</h3>
-                    <h4 class="text-accent mb-2 lang-zh active">资产交易所</h4>
+                    <h4 class="text-accent mb-2 lang-zh active">資產交易所</h4>
                     <h4 class="text-accent mb-2 lang-en">Asset Exchange</h4>
                     <p class="text-gray-300 text-sm lang-zh active">
-                        生态系统的"流动性引擎"，为已发行的数字创意资产提供7x24小时的全球交易服务，采用先进的AMM机制。
+                        生態系統的"流动性引擎"，為已發行的数字創意資產提供7x24小時的全球交易服務，采用先进的AMM機制。
                     </p>
                     <p class="text-gray-300 text-sm lang-en">
                         The "liquidity engine" of the ecosystem, providing 24/7 global trading services for issued digital creative assets, adopting advanced AMM mechanisms.
@@ -1994,10 +2037,10 @@
                 <div class="category-card">
                     <i class="fas fa-concierge-bell text-4xl text-accent mb-4"></i>
                     <h3 class="text-xl font-bold mb-4">AIF.Center</h3>
-                    <h4 class="text-accent mb-2 lang-zh active">全链条服务中心</h4>
+                    <h4 class="text-accent mb-2 lang-zh active">全鏈条服務中心</h4>
                     <h4 class="text-accent mb-2 lang-en">Full-Chain Service Center</h4>
                     <p class="text-gray-300 text-sm lang-zh active">
-                        创作者和项目方的"一站式服务管家"，提供从内容征集到全球发行的完整产业链服务。
+                        创作者和項目方的"一站式服務管家"，提供從內容征集到全球發行的完整產業鏈服務。
                     </p>
                     <p class="text-gray-300 text-sm lang-en">
                         A "one-stop service butler" for creators and project parties, providing complete industry chain services from content collection to global distribution.
@@ -2010,7 +2053,7 @@
                     <h4 class="text-accent mb-2 lang-zh active">平行世界平台</h4>
                     <h4 class="text-accent mb-2 lang-en">Parallel World Platform</h4>
                     <p class="text-gray-300 text-sm lang-zh active">
-                        生态系统的"体验前沿"，提供超越传统媒体边界的沉浸式互动体验，构建AI驱动的多维平行世界。
+                        生態系統的"体驗前沿"，提供超越傳統媒体邊界的沉浸式互动体驗，構建AI驱动的多维平行世界。
                     </p>
                     <p class="text-gray-300 text-sm lang-en">
                         The "experience frontier" of the ecosystem, providing immersive interactive experiences beyond traditional media boundaries, building AI-driven multi-dimensional parallel worlds.
@@ -2025,42 +2068,42 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-5xl font-bold mb-6 gradient-text">
-                    <span class="lang-zh active">官方授权与合作伙伴</span>
+                    <span class="lang-zh active">官方授權與合作伙伴</span>
                     <span class="lang-en">Official Authorization and Partners</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-zh active">
-                    香港AI国际电影节官方授权平台，与全球领先的技术、媒体和金融机构建立战略合作关系
+                    香港AI国際電影節官方授權平台，與全球领先的技術、媒体和金融机構建立战略合作關係
                 </p>
                 <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-en">
                     Official authorized platform of Hong Kong AI International Film Festival, establishing strategic partnerships with leading global technology, media, and financial institutions
                 </p>
             </div>
             
-            <!-- 官方机构 -->
+            <!-- 官方机構 -->
             <div class="mb-8">
-                <h5 class="text-center text-lg font-semibold mb-4 text-red-400 lang-zh active">香港AI国际电影节官方授权</h5>
+                <h5 class="text-center text-lg font-semibold mb-4 text-red-400 lang-zh active">香港AI国際電影節官方授權</h5>
                 <h5 class="text-center text-lg font-semibold mb-4 text-red-400 lang-en">Hong Kong AI International Film Festival Official Authorization</h5>
                 <div class="flex flex-wrap justify-center gap-2 text-center">
-                    <span class="partner-name lang-zh active">香港AI国际电影节协会</span>
+                    <span class="partner-name lang-zh active">香港AI国際電影節协會</span>
                     <span class="partner-name lang-en">Hong Kong AI International Film Festival Association</span>
-                    <span class="partner-name lang-zh active">香港AI国际电影节颁奖礼</span>
+                    <span class="partner-name lang-zh active">香港AI国際電影節颁奖礼</span>
                     <span class="partner-name lang-en">Hong Kong AI International Film Festival Awards Ceremony</span>
-                    <span class="partner-name lang-zh active">香港AI电影市场</span>
+                    <span class="partner-name lang-zh active">香港AI電影市场</span>
                     <span class="partner-name lang-en">Hong Kong AI Film Market</span>
-                    <span class="partner-name lang-zh active">香港AI电影学院</span>
+                    <span class="partner-name lang-zh active">香港AI電影學院</span>
                     <span class="partner-name lang-en">Hong Kong AI Film Academy</span>
-                    <span class="partner-name lang-zh active">香港AI国际电影节征片中心</span>
+                    <span class="partner-name lang-zh active">香港AI国際電影節征片中心</span>
                     <span class="partner-name lang-en">Hong Kong AI International Film Festival Submission Center</span>
-                    <span class="partner-name lang-zh active">香港AI电影标准委员会</span>
+                    <span class="partner-name lang-zh active">香港AI電影標准委員會</span>
                     <span class="partner-name lang-en">Hong Kong AI Film Standards Committee</span>
-                    <span class="partner-name lang-zh active">香港AI电影基金会</span>
+                    <span class="partner-name lang-zh active">香港AI電影基金會</span>
                     <span class="partner-name lang-en">Hong Kong AI Film Foundation</span>
                 </div>
             </div>
 
-            <!-- AI技术合作伙伴 -->
+            <!-- AI技術合作伙伴 -->
             <div class="mb-8">
-                <h5 class="text-center text-lg font-semibold mb-4 text-blue-400 lang-zh active">AI技术合作伙伴</h5>
+                <h5 class="text-center text-lg font-semibold mb-4 text-blue-400 lang-zh active">AI技術合作伙伴</h5>
                 <h5 class="text-center text-lg font-semibold mb-4 text-blue-400 lang-en">AI Technology Partners</h5>
                 <div class="flex flex-wrap justify-center gap-2 text-center">
                     <span class="partner-name">OpenAI</span>
@@ -2084,9 +2127,9 @@
                 </div>
             </div>
 
-            <!-- 区块链技术伙伴 -->
+            <!-- 区塊鏈技術伙伴 -->
             <div class="mb-8">
-                <h5 class="text-center text-lg font-semibold mb-4 text-purple-400 lang-zh active">区块链技术伙伴</h5>
+                <h5 class="text-center text-lg font-semibold mb-4 text-purple-400 lang-zh active">区塊鏈技術伙伴</h5>
                 <h5 class="text-center text-lg font-semibold mb-4 text-purple-400 lang-en">Blockchain Technology Partners</h5>
                 <div class="flex flex-wrap justify-center gap-2 text-center">
                     <span class="partner-name">Ethereum</span>
@@ -2109,9 +2152,9 @@
                 </div>
             </div>
 
-            <!-- 数字货币支持 -->
+            <!-- 数字货幣支持 -->
             <div class="mb-8">
-                <h5 class="text-center text-lg font-semibold mb-4 text-green-400 lang-zh active">支持的数字货币</h5>
+                <h5 class="text-center text-lg font-semibold mb-4 text-green-400 lang-zh active">支持的数字货幣</h5>
                 <h5 class="text-center text-lg font-semibold mb-4 text-green-400 lang-en">Supported Digital Currencies</h5>
                 <div class="flex flex-wrap justify-center gap-2 text-center">
                     <span class="partner-name">Bitcoin (BTC)</span>
@@ -2133,9 +2176,9 @@
                 </div>
             </div>
 
-            <!-- 媒体与内容合作伙伴 -->
+            <!-- 媒体與內容合作伙伴 -->
             <div>
-                <h5 class="text-center text-lg font-semibold mb-4 text-cyan-400 lang-zh active">媒体与内容合作伙伴</h5>
+                <h5 class="text-center text-lg font-semibold mb-4 text-cyan-400 lang-zh active">媒体與內容合作伙伴</h5>
                 <h5 class="text-center text-lg font-semibold mb-4 text-cyan-400 lang-en">Media and Content Partners</h5>
                 <div class="flex flex-wrap justify-center gap-2 text-center">
                     <span class="partner-name">BBC Studios</span>
@@ -2165,10 +2208,10 @@
         <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-purple-900 opacity-80"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 lang-zh active">立即参与AIF应用场景生态</h2>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 lang-zh active">立即参與AIF應用場景生態</h2>
                 <h2 class="text-3xl md:text-5xl font-bold mb-6 lang-en">Participate in the AIF Application Scenario Ecosystem Now</h2>
                 <p class="text-xl text-gray-200 mb-8 lang-zh active">
-                    加入全球创新者行列，探索AIF在AI时代的无限应用潜力，在创意经济的增长中获得丰厚回报。
+                    加入全球创新者行列，探索AIF在AI時代的无限应用潜力，在創意經濟的增长中獲得丰厚回报。
                 </p>
                 <p class="text-xl text-gray-200 mb-8 lang-en">
                     Join global innovators to explore the infinite application potential of AIF in the AI era and earn substantial returns from the growth of the creative economy.
@@ -2176,7 +2219,7 @@
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <a href="http://token.aif.market" class="btn-primary px-8 py-4 rounded-full font-medium text-center inline-flex items-center justify-center">
                         <i class="fas fa-coins mr-2"></i>
-                        <span class="lang-zh active">获取AIF代币</span>
+                        <span class="lang-zh active">獲取AIF代幣</span>
                         <span class="lang-en">Get AIF Token</span>
                     </a>
                     <a href="#" class="btn-secondary px-8 py-4 rounded-full font-medium text-center inline-flex items-center justify-center">
@@ -2202,9 +2245,9 @@
                     </div>
                     <div>
                         <i class="fas fa-map-marker-alt text-2xl text-accent mb-2"></i>
-                        <div class="text-sm lang-zh active">总部地址</div>
+                        <div class="text-sm lang-zh active">總部地址</div>
                         <div class="text-sm lang-en">Headquarters</div>
-                        <div class="text-accent lang-zh active">香港中环国际金融中心</div>
+                        <div class="text-accent lang-zh active">香港中環国際金融中心</div>
                         <div class="text-accent lang-en">Hong Kong Central IFC</div>
                     </div>
                 </div>
@@ -2219,11 +2262,11 @@
                 <div>
                     <a href="#" class="flex items-center mb-4">
                         <div class="logo-font">AIF WORLD</div>
-                        <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF应用场景世界</div>
+                        <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF應用場景世界</div>
                         <div class="ml-2 text-sm text-accent font-bold lang-en">AIF Application Scenarios World</div>
                     </a>
                     <p class="text-gray-400 mb-4 lang-zh active">
-                        探索AIF代币在AI时代的1000+应用场景，展示AIF作为创意经济结算层的无限潜力。
+                        探索AIF代幣在AI時代的1000+應用場景，展示AIF作為創意經濟結算层的无限潜力。
                     </p>
                     <p class="text-gray-400 mb-4 lang-en">
                         Explore 1000+ application scenarios of AIF tokens in the AI era, showcasing the infinite potential of AIF as a creative economy settlement layer.
@@ -2248,31 +2291,31 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 lang-zh active">场景分类</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">場景分类</h3>
                     <h3 class="text-lg font-semibold mb-4 lang-en">Scenario Categories</h3>
                     <ul class="space-y-2">
-                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">创意金融底层资产</a></li>
+                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">創意金融底层資產</a></li>
                         <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-en">Creative Finance Underlying Assets</a></li>
-                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">AI劳动力结算工资</a></li>
+                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">AI劳动力結算工资</a></li>
                         <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-en">AI Labor Settlement Wages</a></li>
-                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">数字灵魂价值载体</a></li>
+                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">数字灵魂價值载体</a></li>
                         <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-en">Digital Soul Value Carrier</a></li>
-                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">未来价值交易媒介</a></li>
+                        <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-zh active">未來價值交易媒介</a></li>
                         <li><a href="#categories" class="text-gray-400 hover:text-white transition lang-en">Future Value Trading Media</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 lang-zh active">生态系统</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">生態系統</h3>
                     <h3 class="text-lg font-semibold mb-4 lang-en">Ecosystem</h3>
                     <ul class="space-y-2">
-                        <li><a href="https://www.hkaifa.academy/#/home" class="text-gray-400 hover:text-white transition lang-zh active">HKAIFA - AI电影学院</a></li>
+                        <li><a href="https://www.hkaifa.academy/#/home" class="text-gray-400 hover:text-white transition lang-zh active">HKAIFA - AI電影學院</a></li>
                         <li><a href="https://www.hkaifa.academy/#/home" class="text-gray-400 hover:text-white transition lang-en">HKAIFA - AI Film Academy</a></li>
-                        <li><a href="http://www.hkaiiff.org" class="text-gray-400 hover:text-white transition lang-zh active">HKAIIFF - AI国际电影节</a></li>
+                        <li><a href="http://www.hkaiiff.org" class="text-gray-400 hover:text-white transition lang-zh active">HKAIIFF - AI国際電影節</a></li>
                         <li><a href="http://www.hkaiiff.org" class="text-gray-400 hover:text-white transition lang-en">HKAIIFF - AI International Film Festival</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Market - 资产市场</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Market - 資產市场</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">AIF.Market - Asset Market</a></li>
-                        <li><a href="http://www.aif.exchange" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Exchange - 资产交易所</a></li>
+                        <li><a href="http://www.aif.exchange" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Exchange - 資產交易所</a></li>
                         <li><a href="http://www.aif.exchange" class="text-gray-400 hover:text-white transition lang-en">AIF.Exchange - Asset Exchange</a></li>
                     </ul>
                 </div>
@@ -2283,11 +2326,11 @@
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">白皮书</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Whitepaper</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">技术文档</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">技術文檔</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Technical Documentation</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">代币经济学</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">代幣經濟學</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Tokenomics</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">开发者资源</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">开發者资源</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Developer Resources</a></li>
                     </ul>
                 </div>
@@ -2295,15 +2338,15 @@
             
             <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-zh active">
-                    © 2024 AIF WORLD. 保留所有权利。
+                    © 2024 AIF WORLD. 保留所有權利。
                 </div>
                 <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-en">
                     © 2024 AIF WORLD. All rights reserved.
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">隐私政策</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">隱私政策</a>
                     <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Privacy Policy</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">使用条款</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">使用條款</a>
                     <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Terms of Use</a>
                     <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">免责声明</a>
                     <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Disclaimer</a>
@@ -2314,8 +2357,8 @@
 
     <!-- JavaScript -->
     <script>
-        // 语言切换功能
-        let currentLanguage = 'zh'; // 默认语言为中文
+        // 語言切换功能
+        let currentLanguage = 'zh'; // 默认語言為中文
         
         function toggleDesktopLanguage() {
             currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
@@ -2328,7 +2371,7 @@
         }
         
         function updateLanguage() {
-            // 更新所有语言元素
+            // 更新所有語言元素
             const zhElements = document.querySelectorAll('.lang-zh');
             const enElements = document.querySelectorAll('.lang-en');
             
@@ -2345,7 +2388,7 @@
             }
         }
         
-        // 移动端菜单功能
+        // 移动端菜單功能
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -2362,7 +2405,7 @@
             mobileMenuOverlay.classList.remove('active');
         }
         
-        // 场景详情切换功能
+        // 場景详情切换功能
         function toggleScenarioDetails(element) {
             const scenarioCard = element.closest('.scenario-card');
             const details = scenarioCard.querySelector('.scenario-details');
@@ -2381,7 +2424,7 @@
         
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
-            // 设置默认语言
+            // 設置默认語言
             updateLanguage();
             
             // 平滑滚动
@@ -2399,7 +2442,7 @@
                             behavior: 'smooth'
                         });
                         
-                        // 如果是移动端，关闭菜单
+                        // 如果是移动端，关闭菜單
                         if (window.innerWidth < 768) {
                             closeMobileMenu();
                         }
