@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI劳动力结算工资 - AIF代币的1001种应用场景</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #8e44ad;
+            --accent: #00ff9d;
+            --dark-bg: #0a0a0a;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(142, 68, 173, 0.1) 0%, transparent 20%);
+        }
+        
+        .logo-font {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            white-space: nowrap;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        
+        @media (max-width: 640px) {
+            .logo-font {
+                font-size: clamp(1.2rem, 6vw, 1.8rem);
+                letter-spacing: 1px;
+            }
+        }
+        
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.3); }
+            100% { text-shadow: 0 0 25px rgba(0, 255, 157, 0.6), 0 0 35px rgba(52, 152, 219, 0.4); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .card {
+            background-color: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.2);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+        
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 157, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100vh;
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1677442135330-9e84cdb9e8f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            animation: bgPan 30s infinite linear;
+        }
+        
+        @keyframes bgPan {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .ai-element {
+            position: absolute;
+            background-color: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent);
+            z-index: 3;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
+        }
+        
+        .data-stream {
+            position: absolute;
+            height: 100px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--secondary), transparent);
+            z-index: 0;
+            animation: dataStream 2s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes dataStream {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .scenario-card {
+            background: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .scenario-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
+        }
+        
+        .scenario-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .scenario-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .scenario-details.active {
+            max-height: 2000px;
+        }
+        
+        .scenario-toggle {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .scenario-toggle:hover {
+            color: var(--accent);
+        }
+        
+        .category-card {
+            background: rgba(26, 32, 44, 0.6);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(26, 32, 44, 0.8);
+        }
+        
+        .partner-name {
+            font-size: 0.8rem;
+            color: #ccc;
+            padding: 4px 8px;
+            margin: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .partner-name:hover {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 255, 157, 0.3);
+        }
+        
+        .language-selector {
+            position: relative;
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        .lang-zh, .lang-en {
+            display: none;
+        }
+        
+        .lang-zh.active, .lang-en.active {
+            display: block;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.open {
+            right: 0;
+        }
+        
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-lang-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-lang-toggle:hover {
+            background: rgba(0,255,157,0.2);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .mobile-lang-toggle img {
+            border-radius: 2px;
+        }
+        
+        .stats-card {
+            background: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        .stats-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .stats-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-font {
+                font-size: 1.8rem;
+            }
+            
+            .language-selector {
+                display: none;
+            }
+            
+            .navbar .btn-secondary {
+                display: none;
+            }
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            white-space: nowrap;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        }
+        
+        @media (max-width: 640px) {
+            .footer-logo {
+                font-size: clamp(1rem, 5vw, 1.3rem);
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AI Elements -->
+    <div class="ai-element" style="top: 120px; left: 10%;">
+        MODEL_ID: AIF-WORLD <br>
+        STATUS: ACTIVE <br>
+        // AIF應用場景平台
+    </div>
+    
+    <div class="ai-element" style="bottom: 150px; right: 15%;">
+        SCENARIOS: 1000+ <br>
+        HASH: 0x71A9B3...F7E <br>
+        // 区塊鏈认證
+    </div>
+    
+    <!-- Data streams -->
+    <div class="data-stream" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="data-stream" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="data-stream" style="left: 60%; animation-delay: 1s;"></div>
+    <div class="data-stream" style="left: 80%; animation-delay: 1.5s;"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <div class="logo-font">AIF WORLD</div>
+                <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF代幣的1001種應用場景</div>
+                <div class="ml-2 text-sm text-accent font-bold lang-en">AIF Token 1001 Application Scenarios</div>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#categories" class="hover:text-blue-400 transition lang-zh active">場景分類</a>
+                <a href="index.html#categories" class="hover:text-blue-400 transition lang-en">Categories</a>
+                <a href="index.html#scenarios" class="hover:text-blue-400 transition lang-zh active">全部場景</a>
+                <a href="index.html#scenarios" class="hover:text-blue-400 transition lang-en">All Scenarios</a>
+                <a href="index.html#ecosystem" class="hover:text-blue-400 transition lang-zh active">生態系統</a>
+                <a href="index.html#ecosystem" class="hover:text-blue-400 transition lang-en">Ecosystem</a>
+                <a href="index.html#partners" class="hover:text-blue-400 transition lang-zh active">合作伙伴</a>
+                <a href="index.html#partners" class="hover:text-blue-400 transition lang-en">Partners</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- 語言切换按钮 -->
+                <button class="hidden md:flex items-center justify-center px-3 py-2 rounded-lg bg-opacity-10 bg-white border border-opacity-20 border-white hover:bg-opacity-20 hover:border-accent transition-all" onclick="toggleDesktopLanguage()">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="Language" class="w-6 h-4" id="desktop-current-flag">
+                </button>
+                
+                <a href="http://token.aif.market" class="btn-secondary px-4 py-2 rounded-full text-sm hidden md:block">
+                    <i class="fas fa-coins mr-2"></i><span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
+                </a>
+                
+                <!-- 移动端語言切换按钮 -->
+                <button class="md:hidden text-white mr-3 mobile-lang-toggle" onclick="toggleMobileLanguage()">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="Language" class="w-6 h-4" id="mobile-current-flag">
+                </button>
+                
+                <!-- 移动端菜單按钮 -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端菜單遮罩 -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- 移动端菜單 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="absolute top-5 right-5 text-xl cursor-pointer" onclick="closeMobileMenu()">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <div class="mt-12">
+            <a href="index.html#categories" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">場景分類</a>
+            <a href="index.html#categories" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Categories</a>
+            <a href="index.html#scenarios" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">全部場景</a>
+            <a href="index.html#scenarios" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">All Scenarios</a>
+            <a href="index.html#ecosystem" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">生態系統</a>
+            <a href="index.html#ecosystem" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Ecosystem</a>
+            <a href="index.html#partners" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">合作伙伴</a>
+            <a href="index.html#partners" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Partners</a>
+            
+            <a href="http://token.aif.market" class="btn-secondary w-full px-4 py-2 rounded-full text-sm mt-4 block text-center">
+                <i class="fas fa-coins mr-2"></i><span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container mx-auto px-4 hero-content">
+            <div class="max-w-4xl animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="lang-zh active"><span class="gradient-text">AI劳动力结算工资</span>应用场景</span>
+                    <span class="lang-en"><span class="gradient-text">AI Labor Settlement Wages</span> Application Scenarios</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 lang-zh active">
+                    AIF作为M2M支付货币和AI代理人的"时薪"，支撑AI经济协作的基础结算单位，创造比电影业更稳定的现金流。
+                </p>
+                <p class="text-xl text-gray-300 mb-8 lang-en">
+                    AIF serves as M2M payment currency and "hourly wage" for AI agents, supporting the basic settlement unit of AI economic collaboration, creating a more stable cash flow than the film industry.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="#scenarios" class="btn-primary px-8 py-3 rounded-lg font-medium text-center">
+                        <span class="lang-zh active">探索全部場景</span><span class="lang-en">Explore All Scenarios</span> <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="http://token.aif.market" class="btn-secondary px-8 py-3 rounded-lg font-medium text-center">
+                        <i class="fas fa-coins mr-2"></i> <span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="stats-card">
+                        <i class="fas fa-robot"></i>
+                        <div class="number">120+</div>
+                        <div class="text-sm lang-zh active">應用場景</div>
+                        <div class="text-sm lang-en">Application Scenarios</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div class="number">M2M</div>
+                        <div class="text-sm lang-zh active">支付模式</div>
+                        <div class="text-sm lang-en">Payment Mode</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-industry"></i>
+                        <div class="number">50+</div>
+                        <div class="text-sm lang-zh active">跨行業領域</div>
+                        <div class="text-sm lang-en">Cross-Industry Fields</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-infinity"></i>
+                        <div class="number">∞</div>
+                        <div class="text-sm lang-zh active">创新潜力</div>
+                        <div class="text-sm lang-en">Innovation Potential</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Scenarios Section -->
+    <section id="scenarios" class="py-16 bg-gray-900 bg-opacity-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">
+                    <span class="lang-zh active">AI劳动力结算工资應用場景</span>
+                    <span class="lang-en">AI Labor Settlement Wages Application Scenarios</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-zh active">
+                    以下是AI劳动力结算工资分类下的120+ AIF應用場景，详细展示了AIF作为M2M支付货币和AI代理人"时薪"的各种应用
+                </p>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-en">
+                    The following are 120+ AIF application scenarios in the AI Labor Settlement Wages category, detailing various applications of AIF as M2M payment currency and "hourly wage" for AI agents
+                </p>
+            </div>
+
+            <!-- Category: AI Labor Settlement Wages -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">AI劳动力结算工资</span>
+                    <span class="lang-en">AI Labor Settlement Wages</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 7 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI代理人之間的自主結算</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Autonomous Settlement Between AI Agents</h4>
+                        <div class="text-sm text-accent mb-3">場景 7</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            用户的「个人AI助手BeingMe」接收到指令：「帮我写一篇關於拿破仑的论文」。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            The user's "Personal AI Assistant BeingMe" receives the instruction: "Help me write a paper about Napoleon."
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    你的BeingMe自主决定：它支付1 AIF给「AI歷史學家Being」獲取原始资料，支付2 AIF
+                                    给「AI写作大師Being」润色文笔，支付0.5 AIF给「AI查重Being」進行驗證。这个過
+                                    程全自动發生，AIF是它們彼此支付的「工资」。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    Your BeingMe autonomously decides: it pays 1 AIF to the "AI Historian Being" for raw materials, 2 AIF to the "AI Writing Master Being" for polishing the writing,
+                                    and 0.5 AIF to the "AI Plagiarism Checker Being" for verification. This process happens automatically, and AIF is the "salary" they pay each other.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI經濟协作」的基础結算單位。人类只下達最终指令，AI們使用AIF自行组
+                                    织供应鏈并完成复杂任務。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the basic settlement unit for "AI economic collaboration". Humans only give final instructions, and AIs use AIF to organize supply chains and complete complex tasks on their own.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 8 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">支付「AI数字員工」月薪</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Pay "AI Digital Employee" Monthly Salary</h4>
+                        <div class="text-sm text-accent mb-3">場景 8</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            《財富》500強公司在BeingOS上「聘请」了10个「AI財務分析師Being」來自动处理季度財报。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A Fortune 500 company "hires" 10 "AI Financial Analyst Beings" on BeingOS to automatically process quarterly financial reports.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    该公司不再購買昂贵的软件授權(SaaS)，而是像發薪水一样，每月向这10个AI Being
+                                    的「创作者DAO」支付100,000 AIF。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The company no longer purchases expensive software licenses (SaaS), but instead pays 100,000 AIF monthly to the "Creator DAO" of these 10 AI Beings, just like paying salaries.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI劳动力」的薪酬。这创造了一个比電影業更稳定的現金流：企業對AI員工
+                                    的持續雇佣需求。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the salary for "AI labor". This creates a more stable cash flow than the film industry: the continuous employment demand of enterprises for AI employees.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 9 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI知识產權的「按次付費」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">"Pay-Per-Use" for AI Intellectual Property</h4>
+                        <div class="text-sm text-accent mb-3">場景 9</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一位直播主在他的直播中播放了一首AI生成的音乐。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A streamer plays an AI-generated music in his live broadcast.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    AIF.Center的「AI版權爬虫」實時监测到该行為。智能合約立即從直播主的AIF錢包中
+                                    扣除0.01 AIF，并將其轉给该音乐的「MusicToken」持有者。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The "AI Copyright Crawler" of AIF.Center detects this behavior in real time. The smart contract immediately deducts 0.01 AIF from the streamer's AIF wallet and transfers it to the "MusicToken" holder of the music.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF彻底解决了版權結算的「颗粒度」和「時效性」問题，將版税結算從「按年」提升
+                                    到「按秒」，极大释放了IP的現金流價值。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF completely solves the "granularity" and "timeliness" issues of copyright settlement, upgrading royalty settlement from "yearly" to "per-second", greatly releasing the cash flow value of IP.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 10 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI注意力」費用</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Attention" Fees</h4>
+                        <div class="text-sm text-accent mb-3">場景 10</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一个品牌希望在404.world的AIUGC世界中精准投放广告。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A brand wants to precisely place ads in the AIUGC world of 404.world.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    品牌方不再購買「广告位」，而是直接購買「用户的注意力」。
+                                    他們設定：「當用户的『AI伴侶BeingMe』检测到用户情緒低落时，推送一个
+                                    療癒的30秒短片。每有效觀看一次，品牌方支付1 AIF给该用户。」
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The brand no longer buys "ad space", but directly purchases "user's attention".
+                                    They set: "When the user's 'AI Companion BeingMe' detects that the user is feeling down, push a
+                                    healing 30-second short video. For each effective viewing, the brand pays 1 AIF to the user."
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「C2B注意力經濟」的結算货币。用户不再被动看广告，而是主动「出售」
+                                    自己的注意力来赚取AIF。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the settlement currency for "C2B attention economy". Users are no longer passively watching ads, but actively "selling"
+                                    their attention to earn AIF.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 11 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">支付「AI醫療」服務</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Payment for "AI Medical" Services</h4>
+                        <div class="text-sm text-accent mb-3">場景 11</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一位病人在家中使用AI健康監測設備。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A patient uses an AI health monitoring device at home.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    设备检测到心率异常，立即觸發BeingOS上的「AI心臟科醫生Being」進行24/7監測。
+                                    家屬的AIF錢包自动按小時支付「AI監護費」。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The device detects an abnormal heart rate and immediately triggers the "AI Cardiologist Being" on BeingOS for 24/7 monitoring.
+                                    The family's AIF wallet automatically pays the "AI monitoring fee" per hour.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI专業服務」的即時結算工具，尤其適用於需要高頻、持續性服務的醫療健康領域。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes an instant settlement tool for "AI professional services", especially suitable for medical and health fields that require high-frequency, continuous services.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 12 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI教育」服務</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Education" Services</h4>
+                        <div class="text-sm text-accent mb-3">場景 12</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一名學生正在學習微積分。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A student is learning calculus.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他支付2 AIF，聘請HKAIFA的「AI費曼老師Being」為他一對一輔導1小時。这个AI能
+                                    以10種不同的比喻方式講解同一個知識點，直到學生完全理解。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    He pays 2 AIF to hire HKAIFA's "AI Feynman Teacher Being" for one-on-one tutoring for 1 hour. This AI can
+                                    explain the same knowledge point in 10 different metaphorical ways until the student fully understands.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF讓「頂級個性化教育」變得極度廉價和可得。AIF成為全球數十億學習者購買AI輔導的「學費」。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF makes "top-level personalized education" extremely cheap and accessible. AIF becomes the "tuition" for billions of learners worldwide to purchase AI tutoring.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 21 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI法律顧問」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Legal Advisor"</h4>
+                        <div class="text-sm text-accent mb-3">場景 21</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一家跨國企業需要審核5000份AI生成的供應商合約，並確保其符合30個國家的最新AI法規。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A multinational enterprise needs to review 5,000 AI-generated supplier contracts and ensure they comply with the latest AI regulations in 30 countries.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    企業不再按小時計費聘請昂貴的律師團隊。他們向BeingOS上的「AI法律代理人Being」
+                                    （由頂級律所訓練並質押AIF作為信譽擔保）支付50,000 AIF，該AI在1小時內完成了
+                                    所有合約的審核、風險標記和修訂。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The enterprise no longer hires expensive legal teams on an hourly basis. They pay 50,000 AIF to the "AI Legal Agent Being" on BeingOS (trained by top law firms and staking AIF as credibility guarantee), and the AI completes the review, risk marking, and revision of all contracts within 1 hour.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為購買「AI法律專業服務」的即時結算工具，將法律服務從「精英諮詢」變為
+                                    「高效可擴展的AI服務」。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes an instant settlement tool for purchasing "AI legal professional services", transforming legal services from "elite consulting" to "efficient and scalable AI services".
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 22 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI醫療診斷」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Medical Diagnosis"</h4>
+                        <div class="text-sm text-accent mb-3">場景 22</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一家非洲的鄉村醫院缺乏影像科學家。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A rural hospital in Africa lacks imaging scientists.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    醫院將患者的CT掃描上傳至一個全球AI醫療DAO平台（該平台在AIF.Market融資）。
+                                    他們支付100 AIF，一個頂級的「AI影像診斷Being」（已在BeingOS註冊並質押AIF擔
+                                    保其準確率）在30秒內返回了高準確度的診斷報告。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The hospital uploads the patient's CT scan to a global AI medical DAO platform (financed on AIF.Market). They pay 100 AIF, and a top "AI Imaging Diagnosis Being" (registered on BeingOS and staking AIF to guarantee its accuracy) returns a highly accurate diagnostic report within 30 seconds.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF讓全球最頂尖的「AI醫療智慧」變得無國界且極度廉價，成為「AI醫療智慧」的
+                                    支付手段。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF makes the world's top "AI medical wisdom" borderless and extremely cheap, becoming the payment method for "AI medical wisdom".
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 23 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI建築設計」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Architectural Design"</h4>
+                        <div class="text-sm text-accent mb-3">場景 23</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一個房地產開發商需要為一塊新土地設計100種可能的建築方案。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A real estate developer needs to design 100 possible building schemes for a new piece of land.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    開發商向BeingOS上的「AI建築師Being」（由Zaha Hadid建築事務所訓練）支付200,000 AIF。
+                                    該AI結合當地日照、風向和法規，在24小時內生成了100套符合力學和美學的3D建築模型。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The developer pays 200,000 AIF to the "AI Architect Being" on BeingOS (trained by Zaha Hadid Architecture). The AI combines local sunlight, wind direction, and regulations to generate 100 sets of 3D building models that meet mechanics and aesthetics within 24 hours.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI創意設計服務」的購買貨幣，將高昂的智力勞動轉化為可按次購買的AI服務。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the purchase currency for "AI creative design services", transforming expensive intellectual labor into AI services that can be purchased on-demand.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 24 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI心理治療」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Psychotherapy"</h4>
+                        <div class="text-sm text-accent mb-3">場景 24</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一位用戶需要24/7的情緒支持和認知行為療法(CBT)。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A user needs 24/7 emotional support and cognitive behavioral therapy (CBT).
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他在BeingOS上每月支付300 AIF，訂閱一個「AI心理治療師Being」。該AI具備無限的
+                                    耐心、24/7在線、絕對保密，並能實時分析用戶的語氣和用詞以提供專業干預。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    He pays 300 AIF monthly on BeingOS to subscribe to an "AI Psychotherapist Being". This AI has unlimited
+                                    patience, is online 24/7, absolutely confidential, and can analyze the user's tone and wording in real time to provide professional intervention.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI精神健康服務」的訂閱費，解決了全球心理諮詢師短缺和費用高昂的核心痛點。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the subscription fee for "AI mental health services", solving the core pain points of global shortage of psychological counselors and high costs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 25 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI財務審計」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Financial Audit"</h4>
+                        <div class="text-sm text-accent mb-3">場景 25</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一家上市公司需要對其季度財報進行AI輔助審計。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A listed company needs AI-assisted audit of its quarterly financial reports.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    該公司支付50,000 AIF給一個在AIF.Market註冊的「AI審計Being」（由四大會計師事務
+                                    所訓練和擔保）。該AI自動交叉驗證了所有鏈上和鏈下的財務數據，並標記了3個潛在
+                                    的欺詐風險點。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The company pays 50,000 AIF to an "AI Audit Being" registered on AIF.Market (trained and guaranteed by the Big Four accounting firms).
+                                    The AI automatically cross-verifies all on-chain and off-chain financial data and marks 3 potential fraud risk points.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI金融合規」服務的結算工具，用AI的不可篡改性來保障財務的真實性。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the settlement tool for "AI financial compliance" services, using the immutability of AI to ensure the authenticity of finances.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 26 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI科研」服務</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Scientific Research" Services</h4>
+                        <div class="text-sm text-accent mb-3">場景 26</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一個生物醫學團隊需要模擬100萬種蛋白質折疊的可能性。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A biomedical team needs to simulate the possibility of 1 million protein folds.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機制</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他們支付100,000 AIF給AIF.Market上的「AI科研計算平台」，該平台調動全球閒置的
+                                    AI實力（DePIN）來完成這項任務。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    They pay 100,000 AIF to the "AI Scientific Computing Platform" on AIF.Market, which mobilizes global idle
+                                    AI power (DePIN) to complete this task.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「去中心化科學(DeSci)」的「算力結算券」，加速了人類的科研進程。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "computing power settlement voucher" for "decentralized science (DeSci)", accelerating human scientific research progress.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 更多場景提示 -->
+                    <div class="scenario-card p-6 flex flex-col items-center justify-center">
+                        <i class="fas fa-ellipsis-h text-4xl text-accent mb-4"></i>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">更多場景</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">More Scenarios</h4>
+                        <p class="text-gray-300 text-sm text-center mb-4 lang-zh active">
+                            AI城市模擬、AI體育戰術、AI寵物服務等100+場景
+                        </p>
+                        <p class="text-gray-300 text-sm text-center mb-4 lang-en">
+                            AI City Simulation, AI Sports Tactics, AI Pet Services, and 100+ more scenarios
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 提示：查看更多場景 -->
+            <div class="text-center mt-12">
+                <div class="card p-8 max-w-3xl mx-auto">
+                    <i class="fas fa-infinity text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4 gradient-text lang-zh active">探索1000+ AIF應用場景</h3>
+                    <h3 class="text-2xl font-bold mb-4 gradient-text lang-en">Explore 1000+ AIF Application Scenarios</h3>
+                    <p class="text-gray-300 mb-6 lang-zh active">
+                        以上只是AIF應用場景的冰山一角。從AI勞動力結算到未來價值金融衍生品，
+                        從AI專業服務結算到去中心化治理核心，AIF正在構建AI時代全新的經濟基礎設施。
+                    </p>
+                    <p class="text-gray-300 mb-6 lang-en">
+                        The above is just the tip of the iceberg of AIF application scenarios. From AI labor settlement to future value financial derivatives,
+                        from AI professional service settlements to decentralized governance cores, AIF is building a new economic infrastructure for the AI era.
+                    </p>
+                    <a href="http://token.aif.market" class="btn-primary px-8 py-3 rounded-lg font-medium inline-block">
+                        <i class="fas fa-coins mr-2"></i>
+                        <span class="lang-zh active">獲取AIF代幣，参與未來經濟</span>
+                        <span class="lang-en">Get AIF Token, Participate in the Future Economy</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-purple-900 opacity-80"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 lang-zh active">立即参與AIF應用場景生態</h2>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 lang-en">Participate in the AIF Application Scenario Ecosystem Now</h2>
+                <p class="text-xl text-gray-200 mb-8 lang-zh active">
+                    加入全球创新者行列，探索AIF在AI時代的无限应用潜力，在創意經濟的增长中獲得丰厚回报。
+                </p>
+                <p class="text-xl text-gray-200 mb-8 lang-en">
+                    Join global innovators to explore the infinite application potential of AIF in the AI era and earn substantial returns from the growth of the creative economy.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="http://token.aif.market" class="btn-primary px-8 py-4 rounded-full font-medium text-center inline-flex items-center justify-center">
+                        <i class="fas fa-coins mr-2"></i>
+                        <span class="lang-zh active">獲取AIF代幣</span>
+                        <span class="lang-en">Get AIF Token</span>
+                    </a>
+                    <a href="#" class="btn-secondary px-8 py-4 rounded-full font-medium text-center inline-flex items-center justify-center">
+                        <i class="fas fa-book mr-2"></i>
+                        <span class="lang-zh active">下载白皮书</span>
+                        <span class="lang-en">Download Whitepaper</span>
+                    </a>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <i class="fas fa-globe text-2xl text-accent mb-2"></i>
+                        <div class="text-sm lang-zh active">官方网站</div>
+                        <div class="text-sm lang-en">Official Website</div>
+                        <div class="text-accent">world.aif.market</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope text-2xl text-accent mb-2"></i>
+                        <div class="text-sm lang-zh active">联络信箱</div>
+                        <div class="text-sm lang-en">Contact Email</div>
+                        <div class="text-accent">info@aif.market</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt text-2xl text-accent mb-2"></i>
+                        <div class="text-sm lang-zh active">總部地址</div>
+                        <div class="text-sm lang-en">Headquarters</div>
+                        <div class="text-accent lang-zh active">香港中環国際金融中心</div>
+                        <div class="text-accent lang-en">Hong Kong Central IFC</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <div class="footer-logo">AIF WORLD</div>
+                        <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF代幣的1001種應用場景</div>
+                        <div class="ml-2 text-sm text-accent font-bold lang-en">AIF Token 1001 Application Scenarios</div>
+                    </a>
+                    <p class="text-gray-400 mb-4 lang-zh active">
+                        探索AIF代幣在AI時代的1000+應用場景，展示AIF作為創意經濟結算层的无限潜力。
+                    </p>
+                    <p class="text-gray-400 mb-4 lang-en">
+                        Explore 1000+ application scenarios of AIF tokens in the AI era, showcasing the infinite potential of AIF as a creative economy settlement layer.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">場景分类</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-en">Scenario Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-zh active">創意金融底层資產</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-en">Creative Finance Underlying Assets</a></li>
+                        <li><a href="ai-labor.html" class="text-accent font-semibold hover:text-white transition lang-zh active">AI劳动力結算工资</a></li>
+                        <li><a href="ai-labor.html" class="text-accent font-semibold hover:text-white transition lang-en">AI Labor Settlement Wages</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-zh active">数字灵魂價值载体</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-en">Digital Soul Value Carrier</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-zh active">未來價值交易媒介</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-en">Future Value Trading Media</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">生態系統</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-en">Ecosystem</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.hkaifa.academy/#/home" class="text-gray-400 hover:text-white transition lang-zh active">HKAIFA - AI電影學院</a></li>
+                        <li><a href="https://www.hkaifa.academy/#/home" class="text-gray-400 hover:text-white transition lang-en">HKAIFA - AI Film Academy</a></li>
+                        <li><a href="http://www.hkaiiff.org" class="text-gray-400 hover:text-white transition lang-zh active">HKAIIFF - AI国際電影節</a></li>
+                        <li><a href="http://www.hkaiiff.org" class="text-gray-400 hover:text-white transition lang-en">HKAIIFF - AI International Film Festival</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Market - 資產市场</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">AIF.Market - Asset Market</a></li>
+                        <li><a href="http://www.aif.exchange" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Exchange - 資產交易所</a></li>
+                        <li><a href="http://www.aif.exchange" class="text-gray-400 hover:text-white transition lang-en">AIF.Exchange - Asset Exchange</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">资源中心</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-en">Resource Center</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">白皮书</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Whitepaper</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">技術文檔</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Technical Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">代幣經濟學</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Tokenomics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">开發者资源</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Developer Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-zh active">
+                    © 2024 AIF WORLD. 保留所有權利。
+                </div>
+                <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-en">
+                    © 2024 AIF WORLD. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">隱私政策</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">使用條款</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Terms of Use</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">免责声明</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 語言切换功能
+        let currentLanguage = 'zh'; // 默认語言為中文
+        
+        function toggleDesktopLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+        
+        function toggleMobileLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            // 更新所有語言元素
+            const zhElements = document.querySelectorAll('.lang-zh');
+            const enElements = document.querySelectorAll('.lang-en');
+            
+            if (currentLanguage === 'zh') {
+                zhElements.forEach(el => el.classList.add('active'));
+                enElements.forEach(el => el.classList.remove('active'));
+                document.getElementById('desktop-current-flag').src = 'https://flagcdn.com/w40/cn.png';
+                document.getElementById('mobile-current-flag').src = 'https://flagcdn.com/w40/cn.png';
+            } else {
+                zhElements.forEach(el => el.classList.remove('active'));
+                enElements.forEach(el => el.classList.add('active'));
+                document.getElementById('desktop-current-flag').src = 'https://flagcdn.com/w40/gb.png';
+                document.getElementById('mobile-current-flag').src = 'https://flagcdn.com/w40/gb.png';
+            }
+        }
+        
+        // 移动端菜單功能
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenu.classList.toggle('open');
+            mobileMenuOverlay.classList.toggle('active');
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.remove('active');
+        }
+        
+        // 場景详情切换功能
+        function toggleScenarioDetails(element) {
+            const scenarioCard = element.closest('.scenario-card');
+            const details = scenarioCard.querySelector('.scenario-details');
+            const icon = element.querySelector('i');
+            
+            details.classList.toggle('active');
+            
+            if (details.classList.contains('active')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 設置默认語言
+            updateLanguage();
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 如果是移动端，关闭菜單
+                        if (window.innerWidth < 768) {
+                            closeMobileMenu();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

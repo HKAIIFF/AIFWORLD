@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>創意金融底層資產 - AIF WORLD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #8e44ad;
+            --accent: #00ff9d;
+            --dark-bg: #0a0a0a;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(142, 68, 173, 0.1) 0%, transparent 20%);
+        }
+        
+                .logo-font {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            white-space: nowrap;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        
+        @media (max-width: 640px) {
+            .logo-font {
+                font-size: clamp(1.2rem, 6vw, 1.8rem);
+                letter-spacing: 1px;
+            }
+        }
+        
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.3); }
+            100% { text-shadow: 0 0 25px rgba(0, 255, 157, 0.6), 0 0 35px rgba(52, 152, 219, 0.4); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .card {
+            background-color: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 255, 157, 0.2);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+        
+                .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 255, 157, 0.1);
+            transform: translateY(-3px);
+        }
+        
+                .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100vh;
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            animation: bgPan 30s infinite linear;
+        }
+        
+        @keyframes bgPan {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .ai-element {
+            position: absolute;
+            background-color: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--accent);
+            z-index: 3;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
+        }
+        
+        .data-stream {
+            position: absolute;
+            height: 100px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--secondary), transparent);
+            z-index: 0;
+            animation: dataStream 2s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes dataStream {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .scenario-card {
+            background: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .scenario-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
+        }
+        
+        .scenario-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .scenario-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .scenario-details.active {
+            max-height: 2000px;
+        }
+        
+        .scenario-toggle {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .scenario-toggle:hover {
+            color: var(--accent);
+        }
+        
+        .category-card {
+            background: rgba(26, 32, 44, 0.6);
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            background: rgba(26, 32, 44, 0.8);
+        }
+        
+        .partner-name {
+            font-size: 0.8rem;
+            color: #ccc;
+            padding: 4px 8px;
+            margin: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .partner-name:hover {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 255, 157, 0.3);
+        }
+        
+        .language-selector {
+            position: relative;
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        .lang-zh, .lang-en {
+            display: none;
+        }
+        
+        .lang-zh.active, .lang-en.active {
+            display: block;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.open {
+            right: 0;
+        }
+        
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-lang-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-lang-toggle:hover {
+            background: rgba(0,255,157,0.2);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .mobile-lang-toggle img {
+            border-radius: 2px;
+        }
+        
+        /* 新增樣式 */
+        .stats-card {
+            background: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        .stats-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .stats-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+                    .logo-font {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            white-space: nowrap;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        
+        @media (max-width: 640px) {
+            .logo-font {
+                font-size: clamp(1.2rem, 6vw, 1.8rem);
+                letter-spacing: 1px;
+            }
+        }
+            
+            .language-selector {
+                display: none;
+            }
+            
+            .navbar .btn-secondary {
+                display: none;
+            }
+        }
+
+        
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            white-space: nowrap;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        }
+        
+        @media (max-width: 640px) {
+            .footer-logo {
+                font-size: clamp(1rem, 5vw, 1.3rem);
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AI Elements -->
+    <div class="ai-element" style="top: 120px; left: 10%;">
+        MODEL_ID: AIF-WORLD <br>
+        STATUS: ACTIVE <br>
+        // AIF應用場景平臺
+    </div>
+    
+    <div class="ai-element" style="bottom: 150px; right: 15%;">
+        SCENARIOS: 150+ <br>
+        HASH: 0x71A9B3...F7E <br>
+        // 区塊鏈認證
+    </div>
+    
+    <!-- Data streams -->
+    <div class="data-stream" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="data-stream" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="data-stream" style="left: 60%; animation-delay: 1s;"></div>
+    <div class="data-stream" style="left: 80%; animation-delay: 1.5s;"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <div class="logo-font">AIF WORLD</div>
+                <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF應用場景世界</div>
+                <div class="ml-2 text-sm text-accent font-bold lang-en">AIF Application Scenarios World</div>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html#categories" class="hover:text-blue-400 transition lang-zh active">場景分類</a>
+                <a href="index.html#categories" class="hover:text-blue-400 transition lang-en">Categories</a>
+                <a href="index.html#scenarios" class="hover:text-blue-400 transition lang-zh active">全部場景</a>
+                <a href="index.html#scenarios" class="hover:text-blue-400 transition lang-en">All Scenarios</a>
+                <a href="index.html#ecosystem" class="hover:text-blue-400 transition lang-zh active">生態系統</a>
+                <a href="index.html#ecosystem" class="hover:text-blue-400 transition lang-en">Ecosystem</a>
+                <a href="index.html#partners" class="hover:text-blue-400 transition lang-zh active">合作伙伴</a>
+                <a href="index.html#partners" class="hover:text-blue-400 transition lang-en">Partners</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- 語言切换按钮 -->
+                <button class="hidden md:flex items-center justify-center px-3 py-2 rounded-lg bg-opacity-10 bg-white border border-opacity-20 border-white hover:bg-opacity-20 hover:border-accent transition-all" onclick="toggleDesktopLanguage()">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="Language" class="w-6 h-4" id="desktop-current-flag">
+                </button>
+                
+                <a href="http://token.aif.market" class="btn-secondary px-4 py-2 rounded-full text-sm hidden md:block">
+                    <i class="fas fa-coins mr-2"></i><span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
+                </a>
+                
+                <!-- 移動端語言切换按钮 -->
+                <button class="md:hidden text-white mr-3 mobile-lang-toggle" onclick="toggleMobileLanguage()">
+                    <img src="https://flagcdn.com/w40/gb.png" alt="Language" class="w-6 h-4" id="mobile-current-flag">
+                </button>
+                
+                <!-- 移動端菜單按钮 -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移動端菜單遮罩 -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- 移動端菜單 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="absolute top-5 right-5 text-xl cursor-pointer" onclick="closeMobileMenu()">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <div class="mt-12">
+            <a href="index.html#categories" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">場景分類</a>
+            <a href="index.html#categories" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Categories</a>
+            <a href="index.html#scenarios" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">全部場景</a>
+            <a href="index.html#scenarios" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">All Scenarios</a>
+            <a href="index.html#ecosystem" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">生態系統</a>
+            <a href="index.html#ecosystem" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Ecosystem</a>
+            <a href="index.html#partners" class="block py-3 hover:text-blue-400 transition lang-zh active" onclick="closeMobileMenu()">合作伙伴</a>
+            <a href="index.html#partners" class="block py-3 hover:text-blue-400 transition lang-en" onclick="closeMobileMenu()">Partners</a>
+            
+            <a href="http://token.aif.market" class="btn-secondary w-full px-4 py-2 rounded-full text-sm mt-4 block text-center">
+                <i class="fas fa-coins mr-2"></i><span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container mx-auto px-4 hero-content">
+            <div class="max-w-4xl animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="lang-zh active">創意金融底層資產</span>
+                    <span class="lang-en">Creative Finance Underlying Assets</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 lang-zh active">
+                    AIF作為信用抵押品、流動性媒介和風險定價工具，為創意經濟提供金融基础設施
+                </p>
+                <p class="text-xl text-gray-300 mb-8 lang-en">
+                    AIF serves as credit collateral, liquidity medium, and risk pricing tool, providing financial infrastructure for the creative economy
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="#scenarios" class="btn-primary px-8 py-3 rounded-lg font-medium text-center">
+                        <span class="lang-zh active">探索全部場景</span><span class="lang-en">Explore All Scenarios</span> <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="http://token.aif.market" class="btn-secondary px-8 py-3 rounded-lg font-medium text-center">
+                        <i class="fas fa-coins mr-2"></i> <span class="lang-zh active">獲取AIF代幣</span><span class="lang-en">Get AIF Token</span>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="stats-card">
+                        <i class="fas fa-layer-group"></i>
+                        <div class="number">150+</div>
+                        <div class="text-sm lang-zh active">應用場景</div>
+                        <div class="text-sm lang-en">Application Scenarios</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-cubes"></i>
+                        <div class="number">8</div>
+                        <div class="text-sm lang-zh active">核心子分類</div>
+                        <div class="text-sm lang-en">Core Subcategories</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-industry"></i>
+                        <div class="number">30+</div>
+                        <div class="text-sm lang-zh active">跨行業領域</div>
+                        <div class="text-sm lang-en">Cross-Industry Fields</div>
+                    </div>
+                    <div class="stats-card">
+                        <i class="fas fa-infinity"></i>
+                        <div class="number">∞</div>
+                        <div class="text-sm lang-zh active">创新潜力</div>
+                        <div class="text-sm lang-en">Innovation Potential</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Scenarios Section -->
+    <section id="scenarios" class="py-16 bg-gray-900 bg-opacity-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title center">
+                    <span class="lang-zh active">創意金融底層資產 - 全部場景</span>
+                    <span class="lang-en">Creative Finance Underlying Assets - All Scenarios</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-zh active">
+                    以下是創意金融底層資產分類下的150+ AIF應用場景，按八大子分類详细展示
+                </p>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto lang-en">
+                    The following are 150+ AIF application scenarios under the Creative Finance Underlying Assets category, displayed in detail according to eight subcategories
+                </p>
+            </div>
+
+            <!-- 子分類1: 專業服務责任抵押 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">專業服務责任抵押</span>
+                    <span class="lang-en">Professional Service Liability Mortgage</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 1 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI法律服務的「责任抵押」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">"Liability Mortgage" for AI Legal Services</h4>
+                        <div class="text-sm text-accent mb-3">場景 1</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            全球顶級律所在BeingOS上推出「AI法律代理人Being」，專门处理全球AI版權注册。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A global top law firm launches an "AI Legal Agent Being" on BeingOS, specializing in global AI copyright registration.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    為了讓服務可信，該律所必须在AIF.Market的「專業服務認證池」中質押1亿AIF。這
+                                    笔AIF成為「AI渎职保險金」。當中小企業使用AIF支付該AI進行服務時，一旦AI出現
+                                    疏忽導致侵權，智能合約將自動從質押池中扣除AIF赔付给企業。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    To make the service trustworthy, the law firm must stake 100 million AIF in the "Professional Service Certification Pool" on AIF.Market.
+                                    This AIF becomes "AI Malpractice Insurance". When SMEs use AIF to pay for the AI service, if the AI causes infringement due to negligence,
+                                    the smart contract will automatically deduct AIF from the staking pool to compensate the enterprise.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為AI專業服務（法律、會計、醫療）的「执業责任保證金」。AIF質押量與AI
+                                    服務的經濟规模直接挂钩，创造了海量的質押需求，极大减少了市场流通量。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "Practice Liability Guarantee" for AI professional services (legal, accounting, medical). The amount of AIF staked is directly linked
+                                    to the economic scale of AI services, creating massive staking demand and greatly reducing market circulation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 8 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">支付法律與合规</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Payment for Legal and Compliance</h4>
+                        <div class="text-sm text-accent mb-3">場景 8</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            項目方在發行FilmToken前需要確保法律合规。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            Project parties need to ensure legal compliance before issuing FilmToken.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他們使用2,000 AIF支付给AIF.Market上的認證法律事務所，後者為其提供智能合約審計和合规報告。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    They use 2,000 AIF to pay certified law firms on AIF.Market, which provide smart contract audits and compliance reports.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「創意合规」的服務費，確保項目在法律框架内运行，降低投资風險。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the service fee for "creative compliance", ensuring projects operate within the legal framework and reducing investment risks.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 23 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI合成演員保險</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AI Synthetic Actor Insurance</h4>
+                        <div class="text-sm text-accent mb-3">場景 23</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            製作方擔心他們核心AI演員模型數据泄露或被滥用。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            Production parties worry about their core AI actor model data being leaked or misused.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他們向生態内的保險DAO支付3,000 AIF保費，為該AI演員的「數字肖像權」上保險。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    They pay 3,000 AIF premium to the ecosystem's insurance DAO to insure the "digital portrait rights" of this AI actor.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為AI時代新型數字資產的「保險金」，為創意資產提供風險保障。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "insurance premium" for new types of digital assets in the AI era, providing risk protection for creative assets.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子分類2: 實體資產AI化 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">實體資產AI化</span>
+                    <span class="lang-en">Physical Asset AI-ization</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 2 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">實體資產的「AI靈魂」鑄造費</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">"AI Soul" Casting Fee for Physical Assets</h4>
+                        <div class="text-sm text-accent mb-3">場景 2</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            未來汽车品牌宣布，每辆出厂的汽车都將在BeingOS上配備一個绑定的「AI汽车靈魂Being」。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A future car brand announces that every car produced will be equipped with a bound "AI Car Soul Being" on BeingOS.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    品牌方必须為每辆车向BeingOS平臺支付100 AIF，作為這個「AI靈魂」的「鑄造費」
+                                    和「终身算力维護費」。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The brand must pay 100 AIF to the BeingOS platform for each car, as the "casting fee" and "lifetime computing power maintenance fee" for this "AI soul".
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「實體資產AI化」的「出厂必要成本」。每年全球數千萬辆汽车、手機、智
+                                    能家居都需要AIF來「激活靈魂」，AIF從創意產業拓展至高價值的AIoT（萬物智联）市场。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "necessary factory cost" for "physical asset AI-ization". Tens of millions of cars, mobile phones, and smart homes worldwide each year
+                                    require AIF to "activate the soul", expanding AIF from the creative industry to the high-value AIoT (AI of Things) market.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 17 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付實物資產</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for Physical Assets</h4>
+                        <div class="text-sm text-accent mb-3">場景 17</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            在香港HKAIIFF期間，创作者需要租用線下场地和摄影器材。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            During the HKAIFF in Hong Kong, creators need to rent offline venues and photography equipment.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    AIF.Center與香港本地100家器材租赁商和场地合作。创作者可直接使用AIF支付租金。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    AIF.Center partners with 100 local equipment rental companies and venues in Hong Kong. Creators can directly use AIF to pay rent.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF打通線上與線下，成為創意產業的「實體結算货幣」，拓展了AIF在現實世界的應用場景。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF connects online and offline, becoming the "physical settlement currency" for the creative industry, expanding AIF's application scenarios in the real world.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 48 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF用于「房地产」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF for "Real Estate"</h4>
+                        <div class="text-sm text-accent mb-3">場景 48</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            香港某地产商開發了「AI創意大楼」。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A Hong Kong real estate developer develops an "AI Creative Building".
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    只有持有10,000 AIF的创作者和公司才能入驻。租金可以用AIF支付並享受10%折扣。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    Only creators and companies holding 10,000 AIF can move in. Rent can be paid with AIF and enjoy a 10% discount.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「線下創意空間」的「准入證明」，將數字創意經濟與實體房地产相结合。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "entry pass" for "offline creative spaces", combining the digital creative economy with physical real estate.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子分類3: AI模型IPO融资 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">AI模型IPO融资</span>
+                    <span class="lang-en">AI Model IPO Financing</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 3 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI模型的「IPO」融资</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">"IPO" Financing for AI Models</h4>
+                        <div class="text-sm text-accent mb-3">場景 3</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            顶尖AI實驗室訓練出革命性的「AI電影配乐模型」，需要资金將其商業化。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A top AI lab trains a revolutionary "AI film scoring model" and needs funding to commercialize it.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他們選擇在AIF.Market上為這個「AI模型」本身進行「首次代幣發行」（IPO）。全球
+                                    投资者只能使用AIF購買該模型的「收益權代幣」（ModelToken）。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    They choose to conduct an "Initial Token Offering" (IPO) for this "AI model" itself on AIF.Market. Global investors can only use AIF to purchase the model's "Revenue Rights Token" (ModelToken).
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為全球AI技術的「標準募资货幣」。AIF.Market成為AI界的「纳斯達克」，所有
+                                    想投资AI模型的热钱都必须先涌入AIF。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "standard fundraising currency" for global AI technology. AIF.Market becomes the "Nasdaq" of the AI world, all hot money wanting to invest in AI models must first flow into AIF.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 2 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">項目融资的唯一媒介</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">The Only Medium for Project Financing</h4>
+                        <div class="text-sm text-accent mb-3">場景 2</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一部AI電影《迴響》在AIF.Market發行100萬個FilmToken（電影收益權代幣）。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            An AI film "Echo" issues 1 million FilmTokens (movie revenue rights tokens) on AIF.Market.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    融资必须使用AIF支付。全球投资者必须先在市场上購買100萬AIF，才能認購《迴響》的FilmToken。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    Financing must be paid with AIF. Global investors must first purchase 1 million AIF on the market to subscribe to "Echo's" FilmToken.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為所有新創意的「原始購買力」，创造了持續、刚性的市场需求。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "original purchasing power" for all new creations, creating sustained, rigid market demand.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 32 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">投资「數位生命」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Invest in "Digital Life"</h4>
+                        <div class="text-sm text-accent mb-3">場景 32</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一位创作者在BeingOS创造的AI虛擬偶像「Lila」人气爆棚。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            An AI virtual idol "Lila" created by a creator on BeingOS becomes extremely popular.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    投资者使用AIF購買「Lila-Token」。Lila未來所有的AIF收入（广告、出场費、帶货）都將按比例分给Token持有者。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    Investors use AIF to purchase "Lila-Token". All of Lila's future AIF income (advertising, appearance fees, product placement) will be proportionally distributed to Token holders.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI藝人經紀」的投资工具，開启了「數位生命經濟」的萬亿市场。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes an investment tool for "AI artist management", opening up the trillion-dollar market of "digital life economy".
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子分類4: 創意影響力债券 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">創意影響力债券</span>
+                    <span class="lang-en">Creative Impact Bonds</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 4 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">創意影響力债券 (CIB)</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Creative Impact Bonds (CIB)</h4>
+                        <div class="text-sm text-accent mb-3">場景 4</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            联合国教科文组织(UNESCO)希望推广AI教育以保護100种濒危語言。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            UNESCO hopes to promote AI education to protect 100 endangered languages.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他們在AIF.Market上發行「創意影響力债券」，只接受AIF投资。投资者使用AIF購買债券，资金用于HKAIFA開發AI教師。5年後，由中立AI節点驗證「語言複苏率」，若達標，則由大型基金會（如蓋兹基金會）以AIF偿還本金和利息。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    They issue "Creative Impact Bonds" on AIF.Market, accepting only AIF investments. Investors use AIF to purchase bonds, and the funds are used by HKAIFA to develop AI teachers. After 5 years, neutral AI nodes verify the "language recovery rate". If the target is met, large foundations (such as the Gates Foundation) repay the principal and interest with AIF.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「可驗證的社會公益」的金融工具，將「行善」的社會價值與「投资回报」的經濟價值挂钩。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes a financial tool for "verifiable social good", linking the social value of "doing good" with the economic value of "investment returns".
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子分類5: 政府政策模拟 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">政府政策模拟</span>
+                    <span class="lang-en">Government Policy Simulation</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 5 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI政策」模拟費</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Policy" Simulation Fee</h4>
+                        <div class="text-sm text-accent mb-3">場景 5</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            香港特区政府希望测試「中环AI无人驾驶」新政的影響。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            The Hong Kong SAR Government wants to test the impact of the "Central AI Autonomous Driving" new policy.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    政府部门向BeingOS支付500萬AIF，在一個1:1的「香港數字孪生世界」中运行模拟。100萬個AI Being（代表市民和车辆）將在這個世界中自主活動30天，以預测拥堵和風險。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    Government departments pay 5 million AIF to BeingOS to run simulations in a 1:1 "Hong Kong Digital Twin World". 1 million AI Beings (representing citizens and vehicles) will autonomously move in this world for 30 days to predict congestion and risks.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「智慧城市」和「政府決策」的模拟推演費用，這是比電影產業更庞大、更刚性的B2G（對政府）需求。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the simulation and deduction fee for "smart cities" and "government decision-making". This is a larger, more rigid B2G (to government) demand than the film industry.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 27 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI城市模拟」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI City Simulation"</h4>
+                        <div class="text-sm text-accent mb-3">場景 27</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            某城市交通部门想知道新修一条地鐵線對未來10年城市拥堵的影響。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A city's transportation department wants to know the impact of building a new subway line on city congestion over the next 10 years.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他們向BeingOS支付1,000,000 AIF，运行一個包含100萬個「AI市民Being」的「城市數字孪生」模型。AI市民們會自主決策（搬家、换工作、出行方式），推演出10种最可能的未來。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    They pay 1,000,000 AIF to BeingOS to run a "City Digital Twin" model containing 1 million "AI Citizen Beings". AI citizens will autonomously make decisions (moving, changing jobs, transportation methods), deducing 10 most likely futures.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI政策模拟」的推演費用，讓政府決策從「拍脑袋」走向「數据驱動」，這是萬亿美元級别的B2G（對政府）市场。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the deduction fee for "AI policy simulation", moving government decision-making from "gut feeling" to "data-driven". This is a trillion-dollar B2G (to government) market.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 99 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF用于「城市治理」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF for "City Governance"</h4>
+                        <div class="text-sm text-accent mb-3">場景 99</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            香港政府希望打造「AI旅游大使」。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            The Hong Kong government wants to create an "AI Tourism Ambassador".
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    政府出资（使用AIF）在BeingOS上创建「AI香港仔Being」，部署在全城的旅游热点，為游客提供24小時個性化服務。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The government funds (using AIF) to create an "AI Hong Kong Being" on BeingOS, deploying it at tourist hotspots throughout the city to provide 24-hour personalized services for tourists.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「智慧城市」的基础設施服務費，將AI服務融入城市公共服務體系。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the infrastructure service fee for "smart cities", integrating AI services into the urban public service system.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子分類6: AI驱動保險精算 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">AI驱動保險精算</span>
+                    <span class="lang-en">AI-Driven Insurance Actuarial</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 6 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AI驱動的保險精算</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AI-Driven Insurance Actuarial</h4>
+                        <div class="text-sm text-accent mb-3">場景 6</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一家保險公司需要精准評估一部AI電影的「烂尾」風險。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            An insurance company needs to accurately assess the "incomplete" risk of an AI film.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    保險公司支付10,000 AIF，調用AIF.Market的「AI風控引擎」。該引擎會分析項目方（已上鏈）的過往信用、剧本的AI評分、以及FilmToken的AIF交易热度，给出一個實時的「完片機率」和「保費建議」。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The insurance company pays 10,000 AIF to call AIF.Market's "AI Risk Control Engine". The engine analyzes the project party's (on-chain) past credit, the script's AI score, and the FilmToken's AIF trading heat, providing a real-time "completion probability" and "premium recommendation".
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI金融風控」的數据服務費。它為无形的創意風險提供了可信的定價標準。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the data service fee for "AI financial risk control". It provides a credible pricing standard for intangible creative risks.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 33 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF作為創意保險的抵押品</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF as Collateral for Creative Insurance</h4>
+                        <div class="text-sm text-accent mb-3">場景 33</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            投资人擔心電影項目烂尾。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            Investors worry about movie projects being incomplete.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    创作者在AIF.Market融资時，必须質押10%的融资额（以AIF形式）作為「完片保證金」。如項目失败，這笔AIF將赔付给投资人。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    When creators finance on AIF.Market, they must stake 10% of the financing amount (in AIF form) as a "completion guarantee deposit". If the project fails, this AIF will be compensated to investors.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為項目方和投资人之間的「信任契約」，降低了投资風險。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes a "trust contract" between project parties and investors, reducing investment risks.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 40 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF支付「AI模型」保險</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF Payment for "AI Model" Insurance</h4>
+                        <div class="text-sm text-accent mb-3">場景 40</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一家AI實驗室擔心他們訓練的AI模型被判定為「AI抄袭」（例如AI画作抄袭了某位藝術家）。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            An AI lab worries that the AI model they trained might be judged as "AI plagiarism" (e.g., AI paintings plagiarizing an artist).
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    實驗室向保險DAO支付10,000 AIF購買「AI原创性保險」。如果模型被告侵權並败诉，保險DAO將支付AIF用于赔偿和支付法律費用。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The lab pays 10,000 AIF to the insurance DAO to purchase "AI Originality Insurance". If the model is sued for infringement and loses, the insurance DAO will pay AIF for compensation and legal fees.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「AI知识产權」風險的對冲工具，是AI創意產業得以大规模商業化的必要金融基础設施。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes a hedging tool for "AI intellectual property" risks, which is a necessary financial infrastructure for the large-scale commercialization of the AI creative industry.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子分類7: 創意信用與融资 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">創意信用與融资</span>
+                    <span class="lang-en">Creative Credit and Financing</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 1 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">創意信用授信</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Creative Credit Granting</h4>
+                        <div class="text-sm text-accent mb-3">場景 1</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一位在HKAIFA獲得認證、過往項目表現良好的導演，將50,000 AIF質押到AIF.Center的「創意信用池」。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A director certified by HKAIFA with good past project performance stakes 50,000 AIF into AIF.Center's "Creative Credit Pool".
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    智能合約自動評估其「鏈上創意履历」（獲獎、項目回报率），並授予他70%（即35,000 AIF）的即時资源额度。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The smart contract automatically evaluates his "on-chain creative resume" (awards, project return rate) and grants him 70% (i.e., 35,000 AIF) of instant resource quota.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    他无需出售AIF，即可立即使用此额度支付生態内的AI算力、數字演員(BeingOS)等製作費用。AIF在此扮演了「信用抵押品」的角色。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    He can immediately use this quota to pay for AI computing power, digital actors (BeingOS), and other production costs within the ecosystem without selling AIF. AIF plays the role of "credit collateral" here.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 30 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">質押AIF獲取「優先投资權」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Staking AIF for "Priority Investment Rights"</h4>
+                        <div class="text-sm text-accent mb-3">場景 30</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一個由HKAIFF金獎得主发起的S級項目即將融资。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            An S-level project initiated by an HKAIFF gold award winner is about to be financed.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    只有質押超過1,000,000 AIF的地址，才能進入「白名單」，獲得優先于散户24小時的私募投资權。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    Only addresses staking more than 1,000,000 AIF can enter the "whitelist" and obtain private placement investment rights 24 hours ahead of retail investors.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為「VIP身份」的證明，質押AIF = 購買顶級創意項目的「優先認購權」。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes proof of "VIP status". Staking AIF = purchasing "priority subscription rights" for top creative projects.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 44 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF收益權的再抵押</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Re-mortgaging AIF Revenue Rights</h4>
+                        <div class="text-sm text-accent mb-3">場景 44</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            投资人持有的FilmToken正在稳定产生AIF現金流。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            The FilmToken held by an investor is steadily generating AIF cash flow.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他將這個「AIF收益權」在AIF.Market抵押，以6%的利息借出AIF，再去投资新項目。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    He mortgages this "AIF revenue right" on AIF.Market, borrows AIF at 6% interest, and then invests in new projects.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF讓「未來的AIF收益」也能在今天产生流動性，极大地提高了资本效率。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF allows "future AIF revenue" to generate liquidity today, greatly improving capital efficiency.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子分類8: 創意資產管理與交易 -->
+            <div class="mb-16">
+                <h3 class="text-2xl md:text-3xl font-bold mb-8 gradient-text">
+                    <span class="lang-zh active">創意資產管理與交易</span>
+                    <span class="lang-en">Creative Asset Management and Trading</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Scenario 12 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">購買「數字資產」版權</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">Purchasing "Digital Asset" Copyright</h4>
+                        <div class="text-sm text-accent mb-3">場景 12</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            導演在AIF.Market的資產庫中，看中了一個AI生成的「未來城市」3D模型。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A director sees an AI-generated "Future City" 3D model in AIF.Market's asset library.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他支付800 AIF購買該模型的NFT版權，用于自己的電影中。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    He pays 800 AIF to purchase the NFT copyright of the model for use in his own movie.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為AI原生數字資產（AI-Generated Content）的定價和交易货幣。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the pricing and trading currency for AI-native digital assets (AI-Generated Content).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 39 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF作為並購货幣</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF as M&A Currency</h4>
+                        <div class="text-sm text-accent mb-3">場景 39</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一個大型的「電影宇宙DAO」希望收購一部成功的AI短片IP。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A large "Cinematic Universe DAO" wants to acquire a successful AI short film IP.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    DAO发起投票，通過後，使用DAO金庫中的AIF（來自其FilmToken收益）向短片创作者收購其100%的FilmToken。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    The DAO initiates a vote. After approval, it uses AIF from the DAO treasury (from its FilmToken revenue) to acquire 100% of the short film creator's FilmToken.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為AI-IP並購市场的「硬通货」，促進了創意資產的流動和整合。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "hard currency" in the AI-IP M&A market, promoting the flow and integration of creative assets.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 43 -->
+                    <div class="scenario-card p-6">
+                        <div class="scenario-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2 lang-zh active">AIF作為「創意儲備」</h4>
+                        <h4 class="text-lg font-bold mb-2 lang-en">AIF as "Creative Reserve"</h4>
+                        <div class="text-sm text-accent mb-3">場景 43</div>
+                        <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                            一家传統電影公司（如华纳兄弟）希望布局AI電影。
+                        </p>
+                        <p class="text-gray-300 text-sm mb-4 lang-en">
+                            A traditional film company (like Warner Bros) wants to enter the AI film market.
+                        </p>
+                        <div class="scenario-toggle text-accent text-sm font-semibold mb-4" onclick="toggleScenarioDetails(this)">
+                            <span class="lang-zh active">查看详情 <i class="fas fa-chevron-down"></i></span>
+                            <span class="lang-en">View Details <i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="scenario-details">
+                            <div class="border-t border-gray-700 pt-4">
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">AIF機製</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">AIF Mechanism</h5>
+                                <p class="text-gray-300 text-sm mb-4 lang-zh active">
+                                    他們宣布在其資產負债表中配置1亿美元的AIF，作為未來5年投资AI電影和支付AI工具的「戰略創意儲備」。
+                                </p>
+                                <p class="text-gray-300 text-sm mb-4 lang-en">
+                                    They announce the allocation of $100 million worth of AIF in their balance sheet as a "strategic creative reserve" for investing in AI films and paying for AI tools over the next 5 years.
+                                </p>
+                                <h5 class="font-bold mb-2 text-accent lang-zh active">巨大價值</h5>
+                                <h5 class="font-bold mb-2 text-accent lang-en">Huge Value</h5>
+                                <p class="text-gray-300 text-sm lang-zh active">
+                                    AIF成為企業布局AI創意時代的「儲備黄金」，獲得了主流機構的認可。
+                                </p>
+                                <p class="text-gray-300 text-sm lang-en">
+                                    AIF becomes the "reserve gold" for enterprises entering the AI creative era, gaining recognition from mainstream institutions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 提示：查看更多場景 -->
+            <div class="text-center mt-12">
+                <div class="card p-8 max-w-3xl mx-auto">
+                    <i class="fas fa-infinity text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4 gradient-text lang-zh active">探索150+ 創意金融底層資產場景</h3>
+                    <h3 class="text-2xl font-bold mb-4 gradient-text lang-en">Explore 150+ Creative Finance Underlying Assets Scenarios</h3>
+                    <p class="text-gray-300 mb-6 lang-zh active">
+                        以上只是創意金融底層資產分類的冰山一角。從專業服務责任抵押到實體資產AI化，
+                        從AI模型IPO融资到創意影響力债券，AIF正在構建AI時代全新的金融基础設施。
+                    </p>
+                    <p class="text-gray-300 mb-6 lang-en">
+                        The above is just the tip of the iceberg of the Creative Finance Underlying Assets category. From professional service liability mortgages to physical asset AI-ization,
+                        from AI model IPO financing to creative impact bonds, AIF is building a new financial infrastructure for the AI era.
+                    </p>
+                    <a href="http://token.aif.market" class="btn-primary px-8 py-3 rounded-lg font-medium inline-block">
+                        <i class="fas fa-coins mr-2"></i>
+                        <span class="lang-zh active">獲取AIF代幣，參與創意金融</span>
+                        <span class="lang-en">Get AIF Token, Participate in Creative Finance</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <div class="footer-logo">AIF WORLD</div>
+                        <div class="ml-2 text-sm text-accent font-bold lang-zh active">AIF應用場景世界</div>
+                        <div class="ml-2 text-sm text-accent font-bold lang-en">AIF Application Scenarios World</div>
+                    </a>
+                    <p class="text-gray-400 mb-4 lang-zh active">
+                        探索AIF代幣在AI時代的1000+應用場景，展示AIF作為創意經濟結算層的无限潜力。
+                    </p>
+                    <p class="text-gray-400 mb-4 lang-en">
+                        Explore 1000+ application scenarios of AIF tokens in the AI era, showcasing the infinite potential of AIF as a creative economy settlement layer.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">場景分類</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-en">Scenario Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-zh active">創意金融底層資產</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-en">Creative Finance Underlying Assets</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-zh active">AI劳動力結算工资</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-en">AI Labor Settlement Wages</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-zh active">數字靈魂價值载體</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-en">Digital Soul Value Carrier</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-zh active">未來價值交易媒介</a></li>
+                        <li><a href="index.html#categories" class="text-gray-400 hover:text-white transition lang-en">Future Value Trading Media</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">生態系統</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-en">Ecosystem</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://www.hkaifa.academy/#/home" class="text-gray-400 hover:text-white transition lang-zh active">HKAIFA - AI電影學院</a></li>
+                        <li><a href="https://www.hkaifa.academy/#/home" class="text-gray-400 hover:text-white transition lang-en">HKAIFA - AI Film Academy</a></li>
+                        <li><a href="http://www.hkaiiff.org" class="text-gray-400 hover:text-white transition lang-zh active">HKAIIFF - AI国際電影節</a></li>
+                        <li><a href="http://www.hkaiiff.org" class="text-gray-400 hover:text-white transition lang-en">HKAIIFF - AI International Film Festival</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Market - 資產市场</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">AIF.Market - Asset Market</a></li>
+                        <li><a href="http://www.aif.exchange" class="text-gray-400 hover:text-white transition lang-zh active">AIF.Exchange - 資產交易所</a></li>
+                        <li><a href="http://www.aif.exchange" class="text-gray-400 hover:text-white transition lang-en">AIF.Exchange - Asset Exchange</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 lang-zh active">资源中心</h3>
+                    <h3 class="text-lg font-semibold mb-4 lang-en">Resource Center</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">白皮书</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Whitepaper</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">技術文檔</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Technical Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">代幣經濟学</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Tokenomics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-zh active">開發者资源</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition lang-en">Developer Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-zh active">
+                    © 2024 AIF WORLD. 保留所有權利。
+                </div>
+                <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-en">
+                    © 2024 AIF WORLD. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">隱私政策</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">使用條款</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Terms of Use</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">免责聲明</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 語言切换功能
+        let currentLanguage = 'zh'; // 默認語言為中文
+        
+        function toggleDesktopLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+        
+        function toggleMobileLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            // 更新所有語言元素
+            const zhElements = document.querySelectorAll('.lang-zh');
+            const enElements = document.querySelectorAll('.lang-en');
+            
+            if (currentLanguage === 'zh') {
+                zhElements.forEach(el => el.classList.add('active'));
+                enElements.forEach(el => el.classList.remove('active'));
+                document.getElementById('desktop-current-flag').src = 'https://flagcdn.com/w40/cn.png';
+                document.getElementById('mobile-current-flag').src = 'https://flagcdn.com/w40/cn.png';
+            } else {
+                zhElements.forEach(el => el.classList.remove('active'));
+                enElements.forEach(el => el.classList.add('active'));
+                document.getElementById('desktop-current-flag').src = 'https://flagcdn.com/w40/gb.png';
+                document.getElementById('mobile-current-flag').src = 'https://flagcdn.com/w40/gb.png';
+            }
+        }
+        
+        // 移動端菜單功能
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenu.classList.toggle('open');
+            mobileMenuOverlay.classList.toggle('active');
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.remove('active');
+        }
+        
+        // 場景详情切换功能
+        function toggleScenarioDetails(element) {
+            const scenarioCard = element.closest('.scenario-card');
+            const details = scenarioCard.querySelector('.scenario-details');
+            const icon = element.querySelector('i');
+            
+            details.classList.toggle('active');
+            
+            if (details.classList.contains('active')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 設置默認語言
+            updateLanguage();
+            
+            // 平滑滚動
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 如果是移動端，关闭菜單
+                        if (window.innerWidth < 768) {
+                            closeMobileMenu();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
