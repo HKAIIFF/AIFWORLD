@@ -360,6 +360,34 @@
             border-radius: 2px;
         }
         
+        /* 新增样式 */
+        .stats-card {
+            background: rgba(26, 32, 44, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.2);
+        }
+        
+        .stats-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .stats-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
         @media (max-width: 768px) {
             .logo-font {
                 font-size: 1.8rem;
@@ -2267,4 +2295,118 @@
             
             <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-zh active">
-                    © 
+                    © 2024 AIF WORLD. 保留所有权利。
+                </div>
+                <div class="text-gray-400 text-sm mb-4 md:mb-0 lang-en">
+                    © 2024 AIF WORLD. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">隐私政策</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">使用条款</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Terms of Use</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-zh active">免责声明</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition text-sm lang-en">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 语言切换功能
+        let currentLanguage = 'zh'; // 默认语言为中文
+        
+        function toggleDesktopLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+        
+        function toggleMobileLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            // 更新所有语言元素
+            const zhElements = document.querySelectorAll('.lang-zh');
+            const enElements = document.querySelectorAll('.lang-en');
+            
+            if (currentLanguage === 'zh') {
+                zhElements.forEach(el => el.classList.add('active'));
+                enElements.forEach(el => el.classList.remove('active'));
+                document.getElementById('desktop-current-flag').src = 'https://flagcdn.com/w40/cn.png';
+                document.getElementById('mobile-current-flag').src = 'https://flagcdn.com/w40/cn.png';
+            } else {
+                zhElements.forEach(el => el.classList.remove('active'));
+                enElements.forEach(el => el.classList.add('active'));
+                document.getElementById('desktop-current-flag').src = 'https://flagcdn.com/w40/gb.png';
+                document.getElementById('mobile-current-flag').src = 'https://flagcdn.com/w40/gb.png';
+            }
+        }
+        
+        // 移动端菜单功能
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenu.classList.toggle('open');
+            mobileMenuOverlay.classList.toggle('active');
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.remove('active');
+        }
+        
+        // 场景详情切换功能
+        function toggleScenarioDetails(element) {
+            const scenarioCard = element.closest('.scenario-card');
+            const details = scenarioCard.querySelector('.scenario-details');
+            const icon = element.querySelector('i');
+            
+            details.classList.toggle('active');
+            
+            if (details.classList.contains('active')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+        
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置默认语言
+            updateLanguage();
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // 如果是移动端，关闭菜单
+                        if (window.innerWidth < 768) {
+                            closeMobileMenu();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
